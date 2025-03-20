@@ -383,10 +383,13 @@
         
             if (email) {
                 try {
-                    let response = await fetch("https://script.google.com/macros/s/AKfycby6rM4Tl14NhV0OhBN1QohP3pMm-gbCokyhpEz9jinwktzBqvLHYSWwCxxsr3nMpAg68A/exec", {  // Replace with your Web App URL
+                    let response = await fetch("https://script.google.com/macros/s/AKfycbyuQd3CcJmOJPuCFdtidlbJfOjWS5uPsDMJgQdoxftDGHXrJvTWB0L7kCjWkOuBG77NHw/exec", {  // Replace with your Web App URL
                         method: "POST",
                         redirect: "follow",
-                        body: JSON.stringify({ email: email }), 
+                        body: JSON.stringify({ 
+                            formType: "emailSignup",  // ✅ Distinguish this request
+                            email: email 
+                        }),  
                         headers: { "Content-Type": "text/plain" } // ✅ Fix CORS by using text/plain
                     });
         
@@ -410,6 +413,7 @@
             event.preventDefault();
         
             var formData = {
+                formType: "contactForm",  // ✅ Distinguish this request
                 name: document.getElementById("name").value,
                 email: document.getElementById("email").value,
                 auctionHouse: document.getElementById("auctionHouse").value,
@@ -417,7 +421,7 @@
             };
         
             try {
-                let response = await fetch("https://script.google.com/macros/s/AKfycby6rM4Tl14NhV0OhBN1QohP3pMm-gbCokyhpEz9jinwktzBqvLHYSWwCxxsr3nMpAg68A/exec", {  // Replace with your Web App URL
+                let response = await fetch("https://script.google.com/macros/s/AKfycbyuQd3CcJmOJPuCFdtidlbJfOjWS5uPsDMJgQdoxftDGHXrJvTWB0L7kCjWkOuBG77NHw/exec", {  // Replace with your Web App URL
                     method: "POST",
                     redirect: "follow",
                     body: JSON.stringify(formData), 
