@@ -377,60 +377,64 @@
     <!-- JavaScript to handle form submission -->
         <script>
             // Handle email signup form
-            document.getElementById("submitEmail").addEventListener("click", function(event) {
+            document.getElementById("submitEmail").addEventListener("click", async function(event) {
             event.preventDefault();
             var email = document.getElementById("emailSignup").value;
         
             if (email) {
-                fetch("https://script.google.com/macros/s/AKfycbx7wwxQIf6mwA219nN1HvgZltaj1-EZT96qDHquWizEmRsK7-WF3b4jJ5wyIzOgJnEy8w/exec", { // Replace with your deployed Web App URL
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ email: email }) 
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert("Thank you for subscribing! We'll keep you updated.");
-                    document.getElementById("emailSignup").value = "";
-                })
-                .catch(error => {
-                    console.error("Error:", error);
+                try {
+                    let response = await fetch("https://script.google.com/macros/s/AKfycby6rM4Tl14NhV0OhBN1QohP3pMm-gbCokyhpEz9jinwktzBqvLHYSWwCxxsr3nMpAg68A/exec", {  // Replace with your Web App URL
+                        method: "POST",
+                        redirect: "follow",
+                        body: JSON.stringify({ email: email }), 
+                        headers: { "Content-Type": "text/plain" } // ✅ Fix CORS by using text/plain
+                    });
+        
+                    if (response.ok) {
+                        alert("Thank you for subscribing! We'll keep you updated.");
+                        document.getElementById("emailSignup").value = "";
+                    } else {
+                        throw new Error("Request failed.");
+                    }
+                } catch (error) {
+                    console.error("Fetch Error:", error);
                     alert("There was a problem with your submission. Please try again.");
-                });
+                }
             } else {
                 alert("Please enter a valid email.");
             }
         });
     
         // Handle contact form submission
-        document.getElementById("contactForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-    
-        var formData = {
-            name: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            auctionHouse: document.getElementById("auctionHouse").value,
-            numListings: document.getElementById("numListings").value
-        };
-    
-        fetch("https://script.google.com/macros/s/AKfycbx7wwxQIf6mwA219nN1HvgZltaj1-EZT96qDHquWizEmRsK7-WF3b4jJ5wyIzOgJnEy8w/exec", { // Replace with your deployed Web App URL
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData) 
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert("Thank you for reaching out! We will get back to you soon.");
-            document.getElementById("contactForm").reset();
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("There was a problem with your submission. Please try again.");
+        document.getElementById("contactForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+        
+            var formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                auctionHouse: document.getElementById("auctionHouse").value,
+                numListings: document.getElementById("numListings").value
+            };
+        
+            try {
+                let response = await fetch("https://script.google.com/macros/s/AKfycby6rM4Tl14NhV0OhBN1QohP3pMm-gbCokyhpEz9jinwktzBqvLHYSWwCxxsr3nMpAg68A/exec", {  // Replace with your Web App URL
+                    method: "POST",
+                    redirect: "follow",
+                    body: JSON.stringify(formData), 
+                    headers: { "Content-Type": "text/plain" } // ✅ Fix CORS by using text/plain
+                });
+        
+                if (response.ok) {
+                    alert("Thank you for reaching out! We will get back to you soon.");
+                    document.getElementById("contactForm").reset();
+                } else {
+                    throw new Error("Request failed.");
+                }
+            } catch (error) {
+                console.error("Fetch Error:", error);
+                alert("There was a problem with your submission. Please try again.");
+            }
         });
-    });
 
     </script>
 
