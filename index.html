@@ -31,28 +31,36 @@
             padding: 0;
         }
 
-        /* Header */
+        /* Header Section */
         .header {
             background-color: var(--deep-forest);
-            text-align: left;
-            padding: 20px;
             display: flex;
+            justify-content: center;
             align-items: center;
+            padding: 40px;
         }
-
-        .header img {
-            width: 150px;
-            height: auto;
+        
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px; /* Optional, to prevent too large a header */
+            width: 100%;
+            text-align: center;
+        }
+        
+        .header-logo {
+            width: 150px; /* You can adjust the size of the logo here */
             margin-right: 20px;
         }
-
-        .header h1 {
+        
+        .header-text h1 {
             color: var(--emerald-whispers);
             font-size: 3em;
             margin-bottom: 10px;
         }
-
-        .header p {
+        
+        .header-text p {
             color: var(--honeycomb-glow);
             font-size: 1.2em;
         }
@@ -189,12 +197,14 @@
 </head>
 <body>
 
-    <!-- Header Section -->
+   <!-- Header Section -->
     <div class="header">
-        <img src="auctologue_octopus.jpg" alt="Auctologue Logo">
-        <div>
-            <h1>Auctologue: Streamlined AI-Assisted Auction Cataloging</h1>
-            <p>Streamline your auction cataloging with hybrid AI and expert full service assistance. Faster, more accurate listings at your fingertips.</p>
+        <div class="header-content">
+            <img src="auctologue_octopus.jpg" alt="Auctologue Logo" class="header-logo">
+            <div class="header-text">
+                <h1>Auctologue: Streamlined AI-Assisted Auction Cataloging</h1>
+                <p>Streamline your auction cataloging with hybrid AI and expert full service assistance. Faster, more accurate listings at your fingertips.</p>
+            </div>
         </div>
     </div>
 
