@@ -375,28 +375,29 @@
     </div>
     
     <!-- JavaScript to handle form submission -->
-    <script>
-        // Handle email signup form
-        document.getElementById("submitEmail").addEventListener("click", function(event) {
-            event.preventDefault(); // Prevent default form submission
+        <script>
+            // Handle email signup form
+            document.getElementById("submitEmail").addEventListener("click", function(event) {
+            event.preventDefault();
             var email = document.getElementById("emailSignup").value;
-            
+        
             if (email) {
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "https://script.google.com/macros/s/AKfycbxL4egusCFDDPAVzi_Ct4G6y5rMCYPe97ah0xqo-Q0adJiOBQFq57u40iTOEPd8_BZm/exec", true); // Replace with your Email Google Script URL
-                
-                xhr.onload = function() {
-                    if (xhr.status === 200) {
-                        alert("Thank you for subscribing! We'll keep you updated.");
-                        document.getElementById("emailSignup").value = ""; // Reset the email field
-                    } else {
-                        alert("There was a problem with your submission. Please try again.");
-                    }
-                };
-                
-                // Send the email data to Google Apps Script
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.send("email=" + encodeURIComponent(email));
+                fetch("https://script.google.com/macros/s/AKfycbzOcvurxC0vvEOSFmlauf7tetrORTCL9u_9QNWZhXucjIfrNLKG_9IsG897t4oWCxOkNQ/exec", { // Replace with your deployed Web App URL
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email: email }) 
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert("Thank you for subscribing! We'll keep you updated.");
+                    document.getElementById("emailSignup").value = "";
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("There was a problem with your submission. Please try again.");
+                });
             } else {
                 alert("Please enter a valid email.");
             }
@@ -404,24 +405,33 @@
     
         // Handle contact form submission
         document.getElementById("contactForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent the form from submitting normally
+        event.preventDefault();
     
-            var formData = new FormData(this);
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "https://script.google.com/macros/s/AKfycbwl9nmagXZ5fJcrYii5fGgea_p9BsLXD9DJLWky38EZUtdc57NapsNjUEyAXvG7radk/exec", true); // Replace with your Contact Google Script URL
-            
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    alert("Thank you for reaching out! We will get back to you soon.");
-                    document.getElementById("contactForm").reset(); // Reset the form
-                } else {
-                    alert("There was a problem with your submission. Please try again.");
-                }
-            };
+        var formData = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            auctionHouse: document.getElementById("auctionHouse").value,
+            numListings: document.getElementById("numListings").value
+        };
     
-            // Send the form data to Google Sheets
-            xhr.send(formData);
+        fetch("https://script.google.com/macros/s/AKfycbzOcvurxC0vvEOSFmlauf7tetrORTCL9u_9QNWZhXucjIfrNLKG_9IsG897t4oWCxOkNQ/exec", { // Replace with your deployed Web App URL
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData) 
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Thank you for reaching out! We will get back to you soon.");
+            document.getElementById("contactForm").reset();
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("There was a problem with your submission. Please try again.");
         });
+    });
+
     </script>
 
     <!-- Footer Section -->
