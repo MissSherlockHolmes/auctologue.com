@@ -307,10 +307,59 @@
 
     <!-- Call to Action Section -->
     <div class="cta-section">
-        <h2>Let's Talk!</h2>
-        <p>Since Auctologue works directly within your system, every project requires a consultation to discuss your needs and access requirements.</p>
-        <a href="mailto:contact@auctologue.com">Email us to schedule a consultation</a>
+        <h2>Get started: Boost Your Auction Efficiency Today!</h2>
+        <p>💰 Pricing starts at $0.50 per item</p>
+        <h3>🟢 Contact Us</h3>
+        <p>If you're ready to streamline your auction cataloging, fill out the form below and let's get started!</p>
+    
+        <!-- Contact Form -->
+        <form id="contactForm" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="auctionHouse">Auction House Name:</label>
+                <input type="text" id="auctionHouse" name="auctionHouse" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="numListings">Number of Listings Per Month:</label>
+                <input type="number" id="numListings" name="numListings" required>
+            </div>
+            
+            <button type="submit" id="submitForm" style="background-color: var(--emerald-whispers); color: var(--raven); padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer; font-size: 1em;">Submit</button>
+        </form>
     </div>
+    
+    <!-- JavaScript to handle form submission -->
+    <script>
+        // You will need to add Google Sheets API or a Google Script to handle the form submission
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+    
+            var formData = new FormData(this);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "YOUR_GOOGLE_SCRIPT_URL", true); // Replace with your Google Script URL
+            
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    alert("Thank you for reaching out! We will get back to you soon.");
+                    document.getElementById("contactForm").reset(); // Reset the form
+                } else {
+                    alert("There was a problem with your submission. Please try again.");
+                }
+            };
+    
+            xhr.send(formData); // Send the form data to Google Sheets
+        });
+</script>
 
     <!-- Footer Section -->
     <div class="footer">
