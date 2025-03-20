@@ -5,166 +5,161 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auctologue: Streamlined AI-Assisted Auction Cataloging</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cardo:wght@400;700&display=swap');
+        /* Colors */
+        :root {
+            --ultra-mint: #8df1b9;
+            --deep-forest: #3a4336;
+            --raven: #0c0908;
+            --lead: #20211d;
+            --emerald-whispers: #3f8266;
+            --sneaky-sesame: #866947;
+            --electra: #5eb389;
+            --veranda-gold: #ae9d6e;
+            --jovial-jade: #8cddad;
+            --honeycomb-glow: #e4ce9b;
+            --toxic-green: #61DE2A;
+            --white-porcelain: #fafcf4;
+        }
 
-        /* Elegant High-End Theme */
         body {
-            background-color: #080706;
-            color: #fafcf4; /* White Porcelain */
-            font-family: 'Cardo', serif;
-            text-align: center;
+            background-color: var(--raven);
+            color: var(--ultra-mint);
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
         }
 
-        /* Header Section */
+        /* Header */
         .header {
-            background-image: url('header.jpg');
-            background-size: cover;
-            background-position: center;
-            width: 100%;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            border-bottom: 3px solid #61DE2A; /* Toxic Green Border */
-        }
-
-        .header h1 {
-            font-size: 3.5em;
-            font-weight: 700;
-            font-family: 'Cinzel Decorative', serif;
-            color: #31c3c2;
-            text-shadow: -2px -2px 0 white,  
-                         2px -2px 0 white,  
-                        -2px  2px 0 white,  
-                         2px  2px 0 white,  
-                         3px 3px 8px rgba(187, 255, 255, 0.8);
-            letter-spacing: 2px;
-        }
-
-        /* Section Styling with Toxic Green Borders */
-        .section {
-            margin: 20px 0;
-            padding: 20px;
-            border: 2px solid #61DE2A; /* Toxic Green Border */
-            border-radius: 10px;
-        }
-
-        .section h2 {
-            font-size: 2em;
-            font-weight: 600;
-            font-family: 'Cinzel Decorative', serif;
-            color: #b9fa85;
-            text-shadow: 0 0 5px #fafcf4;
-        }
-
-        .section p {
-            font-size: 1.1em;
-            color: #fafcf4;
-            text-shadow: 0 0 3px #fafcf4;
-        }
-
-        .section a {
-            text-decoration: none;
-            display: inline-block;
-            background-color: #b9fa85;
-            color: black;
-            padding: 12px 18px;
-            margin-top: 15px;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 600;
-            font-family: 'Cinzel Decorative', serif;
-            transition: all 0.3s ease;
-        }
-
-        .section a:hover {
-            background-color: #9ca67a;
-            color: black;
-        }
-
-        /* Party Boxes */
-        .party-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            background-color: var(--deep-forest);
+            text-align: center;
             padding: 40px;
         }
 
-        .party-box {
-            background-color: #3a4742;
-            border: 3px solid #487b89;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px;
-            width: 280px;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            box-shadow: 0px 0px 20px rgba(95, 172, 184, 0.8);
+        .header h1 {
+            color: var(--emerald-whispers);
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--white-porcelain);
         }
 
-        .party-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 0px 20px rgba(95, 172, 184, 0.8);
-            background-color: #1c1e19;
+        .header p {
+            color: var(--honeycomb-glow);
+            font-size: 1.2em;
         }
 
-        .party-box h2 {
-            font-size: 1.8em;
-            font-weight: 600;
-            font-family: 'Cinzel Decorative', serif;
-            margin-bottom: 15px;
-            color: #b9fa85;
-            text-shadow: 0 0 5px #fafcf4;
+        /* Content Section */
+        .content {
+            padding: 40px;
+            text-align: center;
+            border: 2px solid var(--toxic-green);
+            border-radius: 8px;
+            margin: 20px 0;
         }
 
-        .party-box p {
+        .content h2 {
+            color: var(--veranda-gold);
+            font-size: 2em;
+            text-shadow: 0 0 10px var(--white-porcelain);
+        }
+
+        .content p {
+            color: var(--electra);
             font-size: 1.1em;
-            font-family: 'Cardo', serif;
-            color: #5facb8;
         }
 
-        /* Button Styling */
-        button {
-            background-color: #b9fa85;
-            color: black;
-            font-weight: bold;
-            padding: 12px 18px;
-            border: none;
+        .content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .content ul li {
+            font-size: 1.1em;
+            color: var(--electra);
+        }
+
+        /* Email Signup */
+        .email-signup {
+            background-color: var(--electra);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .email-signup input {
+            padding: 10px;
             border-radius: 5px;
-            margin-top: 15px;
+            font-size: 1em;
+            width: 250px;
+            border: none;
+        }
+
+        .email-signup button {
+            background-color: var(--emerald-whispers);
+            color: var(--raven);
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
             cursor: pointer;
             font-size: 1em;
-            font-family: 'Cinzel Decorative', serif;
-            transition: all 0.3s ease;
-            width: 100%;
+            margin-left: 10px;
         }
 
-        button:hover {
-            background-color: #9ca67a;
-            color: black;
+        .email-signup button:hover {
+            background-color: var(--jovial-jade);
         }
 
-        /* Footer */
+        /* Footer Section */
         .footer {
-            background-color: #3a4336;
+            background-color: var(--deep-forest);
             padding: 20px;
-            color: #fafcf4;
-            font-family: 'Cardo', serif;
-            margin-top: 50px;
-            border-top: 3px solid #61DE2A;
+            text-align: center;
+            color: var(--honeycomb-glow);
+            border-top: 3px solid var(--toxic-green);
         }
 
         .footer p {
-            font-size: 1.2em;
-            text-align: center;
-            text-shadow: 0 0 5px #fafcf4;
+            font-size: 1.1em;
+            text-shadow: 0 0 5px var(--white-porcelain);
         }
 
+        /* Call to Action Section */
+        .cta-section {
+            margin-top: 40px;
+            background-color: var(--sneaky-sesame);
+            padding: 20px;
+            border-radius: 8px;
+            color: var(--honeycomb-glow);
+        }
+
+        .cta-section h2 {
+            font-size: 1.8em;
+            color: var(--emerald-whispers);
+            text-shadow: 0 0 10px var(--white-porcelain);
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            color: var(--electra);
+        }
+
+        .cta-section a {
+            text-decoration: none;
+            background-color: var(--emerald-whispers);
+            color: var(--raven);
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 1em;
+            display: inline-block;
+        }
+
+        .cta-section a:hover {
+            background-color: var(--jovial-jade);
+        }
     </style>
 </head>
-
 <body>
 
     <!-- Header Section -->
@@ -173,21 +168,17 @@
         <p>Streamline your auction cataloging with AI and expert assistance. Faster, more accurate listings at your fingertips.</p>
     </div>
 
-    <!-- Sections with Toxic Green Borders -->
-    <div class="section">
+    <!-- Content Section -->
+    <div class="content">
         <h2>What We Do</h2>
-        <p>Auctologue is a boutique auction cataloging service that combines AI-driven automation with expert human refinement to create clear, accurate, and professional auction listings—without the time consuming frustration of manual research.</p>
-    </div>
+        <p>Auctologue is a boutique auction cataloging service that combines AI-driven automation with expert human refinement to create clear, accurate, and professional auction listings—without the frustration of manual research.</p>
 
-    <div class="section">
         <h2>How It Works</h2>
-        <p>1️⃣ Your team takes clear, detailed photos.</p>
-        <p>2️⃣ We process and identify key details using photo identification software and AI-powered tools.</p>
-        <p>3️⃣ We create structured, professional titles and descriptions.</p>
-        <p>4️⃣ Listings are formatted and integrate seamlessly into your catalog system.</p>
-    </div>
+        <p>1️⃣ Your team takes clear, detailed photos. <br>
+           2️⃣ We process and identify key details using AI-powered tools. <br>
+           3️⃣ We create structured, professional titles and descriptions. <br>
+           4️⃣ Listings are formatted to integrate seamlessly into your catalog system.</p>
 
-    <div class="section">
         <h2>Why Auctologue?</h2>
         <ul>
             <li>✅ Eliminates Manual Searching & Guesswork: No more ground crews wasting time googling random items.</li>
@@ -198,26 +189,26 @@
         </ul>
     </div>
 
-    <div class="section">
-        <h2>What We Need From You</h2>
-        <p>📸 Clear, high-resolution images from your ground crew.</p>
-        <p>📝 Basic item notes, including any visible defects or materials that may be ambiguous.</p>
-        <p>📂 Access to your auction catalog system so we can efficiently integrate descriptions.</p>
+    <!-- Email Signup Section -->
+    <div class="content">
+        <h2>Stay Updated!</h2>
+        <p>Enter your email to get more information and stay updated on our services.</p>
+        <div class="email-signup">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Sign Up</button>
+        </div>
     </div>
 
-    <div class="section">
-        <h2>What We Do Not Cover</h2>
-        <ul>
-            <li>Coins & Currency (Numismatics, Exonumia)</li>
-            <li>Stamps</li>
-            <li>Jewelry (beyond basic descriptions)</li>
-            <li>Original Artwork (we provide artist & title if identifiable, but not material verification)</li>
-        </ul>
+    <!-- Call to Action Section -->
+    <div class="cta-section">
+        <h2>Let's Talk!</h2>
+        <p>Since Auctologue works directly within your system, every project requires a consultation to discuss your needs and access requirements.</p>
+        <a href="mailto:contact@auctologue.com">Email us to schedule a consultation</a>
     </div>
 
     <!-- Footer Section -->
     <div class="footer">
-        <p>Let's talk! Email us today to set up a consultation and streamline your auction cataloging.</p>
+        <p>Our service streamlines auction cataloging by integrating AI with human expertise, improving speed, accuracy, and efficiency. Get started with Auctologue today!</p>
     </div>
 
 </body>
