@@ -246,9 +246,14 @@
     
         /* ✅ Make Header Responsive */
         .header {
-            padding: 20px;
             flex-direction: column; /* Stack logo & text */
+            padding: 20px;
             text-align: center;
+        }
+    
+        .header-content {
+            flex-direction: column; /* Stack elements */
+            align-items: center;
         }
     
         .header-logo {
@@ -257,13 +262,14 @@
         }
     
         .header-text h1 {
-            font-size: 2.2em; /* Reduce text size */
+            font-size: 2.2em; /* Adjust text size */
+            margin-top: 10px;
         }
     
         .header-text p {
             font-size: 1.1em;
         }
-    
+        
         /* ✅ Make Content Section Stack */
         .content {
             flex-direction: column; /* Stack image & text */
