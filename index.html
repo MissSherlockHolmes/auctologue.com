@@ -240,7 +240,7 @@
         /* ✅ MOBILE-FRIENDLY STYLING */
     @media (max-width: 768px) {
         body {
-            font-size: 16px; /* Larger text for better readability */
+            font-size: 20px; /* Larger text for better readability */
             padding: 10px;
         }
     
@@ -285,6 +285,36 @@
     
         .content .text {
             width: 100%; /* Make text full-width */
+        }
+
+        @media (max-width: 768px) {
+        .content {
+            flex-direction: column; /* Stack content vertically */
+            text-align: center; /* Center text */
+            padding: 20px;
+        }
+    
+        .content .text {
+            width: 100%; /* Make text full-width */
+        }
+    
+        .content ul {
+            padding: 0;
+            list-style-position: inside; /* Keeps bullet points aligned */
+            text-align: left; /* Keep list aligned left */
+            margin: 10px auto; /* Center the list */
+            max-width: 90%; /* Prevents text from stretching too far */
+        }
+    
+        .content ul li {
+            font-size: 1.1em; /* Slightly bigger for readability */
+            padding: 5px 0; /* Adds spacing between list items */
+        }
+    
+        .content p {
+            font-size: 1.2em; /* Increase text readability */
+            max-width: 90%; /* Prevents it from stretching too far */
+            margin: 0 auto 10px; /* Centers and adds spacing */
         }
     
         /* ✅ Improve Forms & Buttons for Mobile */
