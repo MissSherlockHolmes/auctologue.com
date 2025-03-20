@@ -32,8 +32,16 @@
         /* Header */
         .header {
             background-color: var(--deep-forest);
-            text-align: center;
-            padding: 40px;
+            text-align: left;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header img {
+            width: 150px;
+            height: auto;
+            margin-right: 20px;
         }
 
         .header h1 {
@@ -48,13 +56,25 @@
             font-size: 1.2em;
         }
 
-        /* Content Section */
+        /* Section Styling */
         .content {
+            display: flex;
+            justify-content: space-between;
             padding: 40px;
-            text-align: center;
+            margin: 20px 0;
             border: 2px solid var(--toxic-green);
             border-radius: 8px;
-            margin: 20px 0;
+            background-color: var(--deep-forest);
+        }
+
+        .content img {
+            width: 200px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .content .text {
+            width: 70%;
         }
 
         .content h2 {
@@ -66,16 +86,6 @@
         .content p {
             color: var(--electra);
             font-size: 1.1em;
-        }
-
-        .content ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .content ul li {
-            font-size: 1.1em;
-            color: var(--electra);
         }
 
         /* Email Signup */
@@ -131,6 +141,7 @@
             padding: 20px;
             border-radius: 8px;
             color: var(--honeycomb-glow);
+            border: 2px solid var(--toxic-green);
         }
 
         .cta-section h2 {
@@ -164,29 +175,48 @@
 
     <!-- Header Section -->
     <div class="header">
-        <h1>Auctologue: Streamlined AI-Assisted Auction Cataloging</h1>
-        <p>Streamline your auction cataloging with AI and expert assistance. Faster, more accurate listings at your fingertips.</p>
+        <img src="/mnt/data/auctologue_octopus.jpg" alt="Auctologue Logo">
+        <div>
+            <h1>Auctologue: Streamlined AI-Assisted Auction Cataloging</h1>
+            <p>Streamline your auction cataloging with AI and expert assistance. Faster, more accurate listings at your fingertips.</p>
+        </div>
     </div>
 
-    <!-- Content Section -->
+    <!-- Content Section: What We Do -->
     <div class="content">
-        <h2>What We Do</h2>
-        <p>Auctologue is a boutique auction cataloging service that combines AI-driven automation with expert human refinement to create clear, accurate, and professional auction listings—without the frustration of manual research.</p>
+        <img src="your-image-placeholder.jpg" alt="Image for What We Do">
+        <div class="text">
+            <h2>What We Do</h2>
+            <p>Auctologue is a boutique auction cataloging service that combines AI-driven automation with expert human refinement to create clear, accurate, and professional auction listings—without the frustration of manual research.</p>
+            <p>Auction houses and estate sellers rely on ground crews to handle photography and catalog items, but manual description writing is slow, inconsistent, and prone to errors. Our service streamlines the entire process by handling the item descriptions for you, reducing cataloging time and improving listing quality.</p>
+        </div>
+    </div>
 
-        <h2>How It Works</h2>
-        <p>1️⃣ Your team takes clear, detailed photos. <br>
-           2️⃣ We process and identify key details using AI-powered tools. <br>
-           3️⃣ We create structured, professional titles and descriptions. <br>
-           4️⃣ Listings are formatted to integrate seamlessly into your catalog system.</p>
+    <!-- Content Section: How It Works -->
+    <div class="content">
+        <img src="your-image-placeholder.jpg" alt="Image for How It Works">
+        <div class="text">
+            <h2>How It Works</h2>
+            <p>1️⃣ Your team takes clear, detailed photos. <br>
+               2️⃣ We process and identify key details using AI-powered tools. <br>
+               3️⃣ We create structured, professional titles and descriptions. <br>
+               4️⃣ Listings are formatted to integrate seamlessly into your catalog system.</p>
+        </div>
+    </div>
 
-        <h2>Why Auctologue?</h2>
-        <ul>
-            <li>✅ Eliminates Manual Searching & Guesswork: No more ground crews wasting time googling random items.</li>
-            <li>✅ Streamlines Auction Operations: Photographers can focus solely on images.</li>
-            <li>✅ Reduces Dependence on On-Site Experts: No need for additional in-house personnel.</li>
-            <li>✅ Flexible & System-Agnostic: We work with any auction catalog system.</li>
-            <li>✅ Led by an Industry Expert: Over 20 years of experience in auctions and estate liquidation.</li>
-        </ul>
+    <!-- Content Section: Why Auctologue -->
+    <div class="content">
+        <img src="your-image-placeholder.jpg" alt="Image for Why Auctologue">
+        <div class="text">
+            <h2>Why Auctologue?</h2>
+            <ul>
+                <li>✅ Eliminates Manual Searching & Guesswork</li>
+                <li>✅ Streamlines Auction Operations</li>
+                <li>✅ Reduces Dependence on On-Site Experts</li>
+                <li>✅ Flexible & System-Agnostic</li>
+                <li>✅ Led by an Industry Expert</li>
+            </ul>
+        </div>
     </div>
 
     <!-- Email Signup Section -->
