@@ -237,6 +237,96 @@
             margin-top: 10px;
         }
 
+        /* ✅ MOBILE-FRIENDLY STYLING */
+    @media (max-width: 768px) {
+        body {
+            font-size: 16px; /* Larger text for better readability */
+            padding: 10px;
+        }
+    
+        /* ✅ Make Header Responsive */
+        .header {
+            padding: 20px;
+            flex-direction: column; /* Stack logo & text */
+            text-align: center;
+        }
+    
+        .header-logo {
+            width: 100px; /* Reduce logo size */
+            margin-bottom: 10px;
+        }
+    
+        .header-text h1 {
+            font-size: 2.2em; /* Reduce text size */
+        }
+    
+        .header-text p {
+            font-size: 1.1em;
+        }
+    
+        /* ✅ Make Content Section Stack */
+        .content {
+            flex-direction: column; /* Stack image & text */
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+    
+        .content img {
+            max-width: 90%; /* Reduce image size */
+            margin-bottom: 15px;
+        }
+    
+        .content .text {
+            width: 100%; /* Make text full-width */
+        }
+    
+        /* ✅ Improve Forms & Buttons for Mobile */
+        .email-signup input,
+        .contact-form input,
+        .contact-form button {
+            width: 100%; /* Full-width for easier input */
+            font-size: 1.2em;
+            padding: 12px;
+        }
+    
+        .contact-form {
+            width: 90%; /* Reduce form width for better layout */
+            padding: 15px;
+        }
+    
+        /* ✅ Adjust Footer */
+        .footer {
+            padding: 15px;
+            font-size: 1em;
+        }
+    }
+    
+    /* ✅ FIX NAVIGATION MENU FOR MOBILE */
+    @media (max-width: 768px) {
+        .nav-menu {
+            display: none; /* Hide menu initially */
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: var(--deep-forest);
+            padding: 10px;
+        }
+    
+        .nav-menu.active {
+            display: flex; /* Show menu when active */
+        }
+    
+        .menu-toggle {
+            display: block; /* Show hamburger icon */
+            font-size: 2em;
+            cursor: pointer;
+            color: var(--ultra-mint);
+        }
+    }
+
     </style>
 </head>
 <body>
