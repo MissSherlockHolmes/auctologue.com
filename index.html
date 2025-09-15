@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auctologue: Streamlined AI-Assisted Auction Cataloging</title>
+    <title>⚠️ DEPRECATED - Auctologue: Streamlined AI-Assisted Auction Cataloging</title>
     <style>
         /* Colors */
         :root {
@@ -377,8 +377,8 @@
         <div class="header-content">
             <img src="auctologue_octopus.jpg" alt="Auctologue Logo" class="header-logo">
             <div class="header-text">
-                <h1>Auctologue: Streamlined AI-Assisted Auction Cataloging</h1>
-                <p>Streamline your auction cataloging with hybrid AI and expert full service assistance. Faster, more accurate listings at your fingertips.</p>
+                <h1>⚠️ DEPRECATED - Auctologue: Streamlined AI-Assisted Auction Cataloging</h1>
+                <p>🚨 <strong>NOTICE: This service has been deprecated and is no longer available.</strong> This website is maintained for historical reference only.</p>
             </div>
         </div>
     </div>
@@ -505,77 +505,28 @@
         </form>
     </div>
     
-    <!-- JavaScript to handle form submission -->
+    <!-- JavaScript to handle form submission - DISABLED DUE TO DEPRECATION -->
         <script>
-            // Handle email signup form
-            document.getElementById("submitEmail").addEventListener("click", async function(event) {
-            event.preventDefault();
-            var email = document.getElementById("emailSignup").value;
-        
-            if (email) {
-                try {
-                    let response = await fetch("https://script.google.com/macros/s/AKfycbyuQd3CcJmOJPuCFdtidlbJfOjWS5uPsDMJgQdoxftDGHXrJvTWB0L7kCjWkOuBG77NHw/exec", {  // Replace with your Web App URL
-                        method: "POST",
-                        redirect: "follow",
-                        body: JSON.stringify({ 
-                            formType: "emailSignup",  // ✅ Distinguish this request
-                            email: email 
-                        }),  
-                        headers: { "Content-Type": "text/plain" } // ✅ Fix CORS by using text/plain
-                    });
-        
-                    if (response.ok) {
-                        alert("Thank you for subscribing! We'll keep you updated.");
-                        document.getElementById("emailSignup").value = "";
-                    } else {
-                        throw new Error("Request failed.");
-                    }
-                } catch (error) {
-                    console.error("Fetch Error:", error);
-                    alert("There was a problem with your submission. Please try again.");
-                }
-            } else {
-                alert("Please enter a valid email.");
-            }
-        });
+            // DEPRECATED: All form functionality has been disabled
+            console.log("⚠️ DEPRECATED: Auctologue service is no longer available. Forms are disabled.");
+            
+            // Disable email signup form
+            document.getElementById("submitEmail").addEventListener("click", function(event) {
+                event.preventDefault();
+                alert("⚠️ DEPRECATED: This service is no longer available. Forms are disabled.");
+            });
     
-        // Handle contact form submission
-        document.getElementById("contactForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
-        
-            var formData = {
-                formType: "contactForm",  // ✅ Distinguish this request
-                name: document.getElementById("name").value,
-                email: document.getElementById("email").value,
-                auctionHouse: document.getElementById("auctionHouse").value,
-                numListings: document.getElementById("numListings").value
-            };
-        
-            try {
-                let response = await fetch("https://script.google.com/macros/s/AKfycbyuQd3CcJmOJPuCFdtidlbJfOjWS5uPsDMJgQdoxftDGHXrJvTWB0L7kCjWkOuBG77NHw/exec", {  // Replace with your Web App URL
-                    method: "POST",
-                    redirect: "follow",
-                    body: JSON.stringify(formData), 
-                    headers: { "Content-Type": "text/plain" } // ✅ Fix CORS by using text/plain
-                });
-        
-                if (response.ok) {
-                    alert("Thank you for reaching out! We will get back to you soon.");
-                    document.getElementById("contactForm").reset();
-                } else {
-                    throw new Error("Request failed.");
-                }
-            } catch (error) {
-                console.error("Fetch Error:", error);
-                alert("There was a problem with your submission. Please try again.");
-            }
-        });
+            // Disable contact form
+            document.getElementById("contactForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+                alert("⚠️ DEPRECATED: This service is no longer available. Forms are disabled.");
+            });
 
     </script>
 
     <!-- Footer Section -->
     <div class="footer">
-        <p>Our service streamlines auction cataloging by integrating AI with human expertise, improving speed, accuracy, and efficiency. Get started with Auctologue today!</p>
+        <p>⚠️ <strong>DEPRECATED:</strong> This service is no longer available. This website is maintained for historical reference only.</p>
     </div>
 
 </body>
