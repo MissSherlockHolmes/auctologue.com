@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Detail - Auctologue Extension Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .header {
+            background: white;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-left a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .header-center h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .header-right {
+            display: flex;
+            gap: 10px;
+        }
+        .header-right .nav-btn {
+            background: rgba(255,255,255,0.2);
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .header-right .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .nav-buttons {
+            background: white;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .nav-btn {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .nav-btn:hover {
+            background: #e9ecef;
+        }
+        .main-content {
+            min-height: calc(100vh - 120px);
+        }
+        .form-section {
+            background: white;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            flex: 1;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+        .dimensions-group {
+            display: flex;
+            gap: 10px;
+        }
+        .dimensions-group .form-group {
+            flex: 1;
+        }
+        .dimensions-group .form-group input {
+            text-align: center;
+        }
+        .photo-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        .photo-btn {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .photo-btn:hover {
+            background: #e9ecef;
+        }
+        .photo-display {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+            background: #fafafa;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .photo-display img {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+        .photo-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+        }
+        .pagination {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .page-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .page-btn:hover {
+            background: #0056b3;
+        }
+        .page-btn.active {
+            background: #28a745;
+        }
+        .page-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <a href="#" onclick="goBack()">← Close Item Detail</a>
+        </div>
+        <div class="header-center">
+            <h1>Item Detail</h1>
+        </div>
+        <div class="header-right">
+            <button class="nav-btn" onclick="previousItem()">← Previous</button>
+            <button class="nav-btn" onclick="nextItem()">Next →</button>
+        </div>
+    </div>
+
+
+    <div class="main-content">
+        <div class="form-section">
+            <div class="section-title">Required Basic Item Info</div>
+            
+            <!-- Image for extension detection -->
+            <div style="margin-bottom: 20px; text-align: center;">
+                <img id="item-image" src="Photoroom_20250320_165523.jpg" alt="Item Photo" style="max-width: 200px; height: auto; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="lotNumber">Lot #</label>
+                    <input type="text" id="lotNumber" name="lotNumber" value="">
+                </div>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" value="" placeholder="Product Title">
+                </div>
+                <div class="form-group">
+                    <label for="qty">Qty</label>
+                    <input type="number" id="qty" name="qty" value="1">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Enter item description..."></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="manufacturer">manufacturer</label>
+                    <input type="text" id="manufacturer" name="manufacturer" placeholder="manufacturer">
+                </div>
+                <div class="form-group">
+                    <label for="model">model</label>
+                    <input type="text" id="model" name="model" placeholder="model">
+                </div>
+                <div class="form-group">
+                    <label for="group">Group</label>
+                    <input type="text" id="group" name="group" placeholder="Group">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="size">Size</label>
+                    <input type="text" id="size" name="size" placeholder="Size">
+                </div>
+                <div class="form-group">
+                    <label for="consignor">consignor</label>
+                    <input type="text" id="consignor" name="consignor" value="">
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" value="">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="floor">Floor</label>
+                    <input type="text" id="floor" name="floor" placeholder="Flr">
+                </div>
+                <div class="form-group">
+                    <label for="site">Site</label>
+                    <input type="text" id="site" name="site" placeholder="Site">
+                </div>
+                <div class="form-group">
+                    <label>Dimensions (W, D, H)</label>
+                    <div class="dimensions-group">
+                        <div class="form-group">
+                            <input type="text" id="width" name="width" placeholder="W">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="depth" name="depth" placeholder="D">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="height" name="height" placeholder="H">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category">
+                    <option value="">Select Category...</option>
+                    <option value="Toys">Toys</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Antiques">Antiques</option>
+                    <option value="Collectibles">Collectibles</option>
+                    <option value="Art">Art</option>
+                    <option value="Jewelry">Jewelry</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 2;
+        
+        const items = [
+            {
+                lotNumber: "1001",
+                title: "",
+                description: "",
+                category: "",
+                manufacturer: "",
+                model: "",
+                group: "",
+                size: "",
+                consignor: "1025",
+                location: "Shelter Row 1",
+                floor: "",
+                site: "",
+                width: "",
+                depth: "",
+                height: "",
+                photo: "Photoroom_20250320_165523.jpg",
+                photoAlt: "Vintage Furniture Item"
+            },
+            {
+                lotNumber: "1002",
+                title: "",
+                description: "",
+                category: "",
+                manufacturer: "",
+                model: "",
+                group: "",
+                size: "",
+                consignor: "1026",
+                location: "Shelter Row 2",
+                floor: "",
+                site: "",
+                width: "",
+                depth: "",
+                height: "",
+                photo: "IMG_2227.JPG",
+                photoAlt: "Antique Desk Item"
+            }
+        ];
+
+        // Temporary storage for form data
+        let tempData = {
+            1: {},
+            2: {}
+        };
+
+        // Save current form data to temporary storage
+        function saveCurrentData() {
+            const formData = {
+                lotNumber: document.getElementById('lotNumber').value,
+                title: document.getElementById('title').value,
+                description: document.getElementById('description').value,
+                category: document.getElementById('category').value,
+                manufacturer: document.getElementById('manufacturer').value,
+                model: document.getElementById('model').value,
+                group: document.getElementById('group').value,
+                size: document.getElementById('size').value,
+                consignor: document.getElementById('consignor').value,
+                location: document.getElementById('location').value,
+                floor: document.getElementById('floor').value,
+                site: document.getElementById('site').value,
+                width: document.getElementById('width').value,
+                depth: document.getElementById('depth').value,
+                height: document.getElementById('height').value
+            };
+            tempData[currentPage] = formData;
+        }
+
+        // Load form data from temporary storage
+        function loadTempData(page) {
+            const data = tempData[page];
+            if (data) {
+                document.getElementById('lotNumber').value = data.lotNumber || '';
+                document.getElementById('title').value = data.title || '';
+                document.getElementById('description').value = data.description || '';
+                document.getElementById('category').value = data.category || '';
+                document.getElementById('manufacturer').value = data.manufacturer || '';
+                document.getElementById('model').value = data.model || '';
+                document.getElementById('group').value = data.group || '';
+                document.getElementById('size').value = data.size || '';
+                document.getElementById('consignor').value = data.consignor || '';
+                document.getElementById('location').value = data.location || '';
+                document.getElementById('floor').value = data.floor || '';
+                document.getElementById('site').value = data.site || '';
+                document.getElementById('width').value = data.width || '';
+                document.getElementById('depth').value = data.depth || '';
+                document.getElementById('height').value = data.height || '';
+            }
+        }
+
+        function loadItem(page) {
+            const item = items[page - 1];
+            
+            // First load any saved temporary data
+            loadTempData(page);
+            
+            // Then load the base item data (only if no temp data exists)
+            if (!tempData[page] || Object.keys(tempData[page]).length === 0) {
+                document.getElementById('lotNumber').value = item.lotNumber;
+                document.getElementById('title').value = item.title;
+                document.getElementById('description').value = item.description;
+                document.getElementById('category').value = item.category;
+                document.getElementById('consignor').value = item.consignor;
+                document.getElementById('location').value = item.location;
+            }
+            
+            // Update main image for extension detection
+            const mainImage = document.getElementById('item-image');
+            if (item.photo) {
+                mainImage.src = item.photo;
+                mainImage.alt = item.photoAlt;
+                mainImage.style.display = 'block';
+            } else {
+                mainImage.style.display = 'none';
+            }
+            
+        }
+
+        function goToPage(page) {
+            if (page < 1 || page > totalPages) return;
+            
+            // Save current data before switching
+            saveCurrentData();
+            
+            currentPage = page;
+            loadItem(currentPage);
+        }
+
+        function previousItem() {
+            if (currentPage > 1) {
+                goToPage(currentPage - 1);
+            }
+        }
+
+        function nextItem() {
+            if (currentPage < totalPages) {
+                goToPage(currentPage + 1);
+            }
+        }
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        function toggleLists() {
+            alert('Toggle lists/fields view');
+        }
+
+        // Add event listeners for auto-saving
+        function addAutoSaveListeners() {
+            const inputs = document.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                input.addEventListener('input', saveCurrentData);
+                input.addEventListener('change', saveCurrentData);
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadItem(1);
+            addAutoSaveListeners();
+        });
+    </script>
+</body>
+</html>
