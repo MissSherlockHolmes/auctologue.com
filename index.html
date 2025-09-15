@@ -13,33 +13,41 @@
         }
 
         :root {
-            --primary-blue: #0b63ce;
-            --dark-blue: #084a9c;
-            --light-gray: #f8f9fa;
-            --medium-gray: #6c757d;
-            --dark-gray: #343a40;
-            --white: #ffffff;
-            --shadow: 0 2px 10px rgba(0,0,0,0.1);
-            --border-radius: 8px;
+            --primary-blue: #3b82f6;
+            --dark-blue: #2563eb;
+            --accent-blue: #60a5fa;
+            --brand-blue: #93c5fd;
+            --dark-bg: #0b1220;
+            --card-bg: #111827;
+            --card-bg-alt: #0f172a;
+            --text-primary: #e5e7eb;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: #1f2937;
+            --border-light: #334155;
+            --shadow: 0 10px 30px rgba(0,0,0,0.35);
+            --border-radius: 10px;
+            --border-radius-lg: 16px;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
             line-height: 1.6;
-            color: var(--dark-gray);
-            background-color: #fffbe6;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
         }
 
         /* Header Image Styles */
         .header-image {
             width: 100%;
-            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            background: var(--card-bg);
             text-align: center;
-            padding: 0;
+            padding: 40px 20px;
             height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .banner-image {
@@ -47,6 +55,7 @@
             height: 100%;
             object-fit: contain;
             display: block;
+            border-radius: var(--border-radius);
         }
 
         /* Main Content */
@@ -59,10 +68,15 @@
         .hero-section {
             text-align: center;
             margin-bottom: 4rem;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
         }
 
         .hero-section h1 {
-            color: var(--primary-blue);
+            color: var(--text-primary);
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
@@ -70,34 +84,32 @@
 
         .hero-section .subtitle {
             font-size: 1.3rem;
-            color: var(--medium-gray);
+            color: var(--text-secondary);
             margin-bottom: 2rem;
         }
 
         .cta-button {
             display: inline-block;
-            background: var(--primary-blue);
-            color: var(--white);
-            padding: 1rem 2rem;
+            background: linear-gradient(180deg, var(--primary-blue), var(--dark-blue));
+            color: var(--text-primary);
+            padding: 0.7rem 1rem;
             border-radius: var(--border-radius);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
             box-shadow: var(--shadow);
             margin-top: 2rem;
+            border: 1px solid var(--primary-blue);
+            cursor: pointer;
         }
 
         .cta-button:hover {
-            background: var(--dark-blue);
+            background: linear-gradient(180deg, var(--dark-blue), var(--primary-blue));
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
         }
 
-        .hero-section {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
 
         .hero-image {
             max-width: 100%;
@@ -109,17 +121,22 @@
 
         .section {
             margin-bottom: 3rem;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
         }
 
         .section h2 {
-            color: var(--primary-blue);
+            color: var(--text-primary);
             font-size: 2.2rem;
             margin-bottom: 1.5rem;
             text-align: center;
         }
     
         .section h3 {
-            color: var(--dark-blue);
+            color: var(--primary-blue);
             font-size: 1.5rem;
             margin: 2rem 0 1rem;
         }
@@ -127,7 +144,7 @@
         .section p {
             font-size: 1.1rem;
             margin-bottom: 1rem;
-            color: var(--medium-gray);
+            color: var(--text-secondary);
         }
 
         .benefits-grid {
@@ -138,11 +155,12 @@
         }
 
         .benefit-card {
-            background: var(--light-gray);
+            background: linear-gradient(180deg, var(--card-bg), var(--card-bg-alt));
             padding: 2rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             text-align: center;
+            border: 1px solid var(--border-color);
         }
 
         .benefit-card h4 {
@@ -152,10 +170,11 @@
         }
 
         .how-it-works {
-            background: var(--light-gray);
+            background: var(--dark-bg);
             padding: 3rem;
             border-radius: var(--border-radius);
             margin: 2rem 0;
+            border: 1px solid var(--border-color);
         }
 
         .steps {
@@ -172,7 +191,7 @@
 
         .step-number {
             background: var(--primary-blue);
-            color: var(--white);
+            color: var(--text-primary);
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -201,15 +220,16 @@
 
         /* Footer */
         .footer {
-            background: var(--dark-gray);
-            color: var(--white);
+            background: var(--card-bg);
+            color: var(--text-primary);
             text-align: center;
             padding: 2rem;
             margin-top: 4rem;
+            border-top: 1px solid var(--border-color);
         }
 
         .footer a {
-            color: var(--white);
+            color: var(--primary-blue);
             text-decoration: none;
             margin: 0 1rem;
         }
@@ -273,6 +293,7 @@
             <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                 <a href="#how-it-works" class="cta-button">Learn How It Works</a>
                 <a href="test-listing.html" class="cta-button">Test Catalog</a>
+                <a href="https://app.auctologue.com/" class="cta-button" target="_blank">Open App</a>
         </div>
         </section>
 

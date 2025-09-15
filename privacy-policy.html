@@ -5,16 +5,56 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Privacy Policy — Auctologue Catalog Assistant</title>
   <style>
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;line-height:1.6;max-width:860px;margin:0 auto;padding:24px;color:#222}
-    h1{color:#0b63ce;margin-bottom:.2rem}
-    .last-updated{color:#666;font-style:italic;margin-bottom:1.25rem}
-    h2{margin-top:1.5rem;color:#333}
+    :root {
+      --primary-blue: #3b82f6;
+      --dark-blue: #2563eb;
+      --accent-blue: #60a5fa;
+      --brand-blue: #93c5fd;
+      --dark-bg: #0b1220;
+      --card-bg: #111827;
+      --card-bg-alt: #0f172a;
+      --text-primary: #e5e7eb;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-color: #1f2937;
+      --border-light: #334155;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --border-radius: 10px;
+      --border-radius-lg: 16px;
+    }
+    
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+      line-height:1.6;
+      max-width:860px;
+      margin:0 auto;
+      padding:24px;
+      color:var(--text-primary);
+      background-color:var(--dark-bg);
+    }
+    
+    .container {
+      background:var(--card-bg);
+      padding:3rem;
+      border-radius:var(--border-radius-lg);
+      box-shadow:var(--shadow);
+      border:1px solid var(--border-color);
+    }
+    
+    h1{color:var(--primary-blue);margin-bottom:.2rem}
+    .last-updated{color:var(--text-muted);font-style:italic;margin-bottom:1.25rem}
+    h2{margin-top:1.5rem;color:var(--text-primary)}
     ul{padding-left:1.2rem}
+    p{color:var(--text-secondary)}
+    li{color:var(--text-secondary)}
+    a{color:var(--primary-blue)}
+    a:hover{text-decoration:underline}
   </style>
 </head>
 <body>
-  <h1>Privacy Policy — Auctologue Catalog Assistant</h1>
-  <p class="last-updated">Last updated: 13 September 2025</p>
+  <div class="container">
+    <h1>Privacy Policy — Auctologue Catalog Assistant</h1>
+    <p class="last-updated">Last updated: 13 September 2025</p>
 
   <h2>1. Information Collected</h2>
   <p>The extension operates by transmitting and processing certain information necessary to deliver cataloging functions. This may include:</p>
@@ -65,5 +105,11 @@
 
   <h2>7. Contact</h2>
   <p>For any privacy-related requests, please contact: <a href="mailto:auctologue@auctologue.com">auctologue@auctologue.com</a></p>
+  
+  <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+    <a href="index.html" style="display: inline-block; background: var(--primary-blue); color: var(--text-primary); padding: 1rem 2rem; border-radius: var(--border-radius); text-decoration: none; font-weight: 600; margin: 0 0.5rem;">← Back to Home</a>
+    <a href="https://app.auctologue.com/" target="_blank" style="display: inline-block; background: var(--primary-blue); color: var(--text-primary); padding: 1rem 2rem; border-radius: var(--border-radius); text-decoration: none; font-weight: 600; margin: 0 0.5rem;">Open App</a>
+  </div>
+  </div>
 </body>
 </html>
