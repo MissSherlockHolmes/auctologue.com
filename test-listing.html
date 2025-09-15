@@ -245,60 +245,6 @@
                 <textarea id="description" name="description" placeholder="Enter item description..."></textarea>
             </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="manufacturer">manufacturer</label>
-                    <input type="text" id="manufacturer" name="manufacturer" placeholder="manufacturer">
-                </div>
-                <div class="form-group">
-                    <label for="model">model</label>
-                    <input type="text" id="model" name="model" placeholder="model">
-                </div>
-                <div class="form-group">
-                    <label for="group">Group</label>
-                    <input type="text" id="group" name="group" placeholder="Group">
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="size">Size</label>
-                    <input type="text" id="size" name="size" placeholder="Size">
-                </div>
-                <div class="form-group">
-                    <label for="consignor">consignor</label>
-                    <input type="text" id="consignor" name="consignor" value="">
-                </div>
-                <div class="form-group">
-                    <label for="location">Location</label>
-                    <input type="text" id="location" name="location" value="">
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="floor">Floor</label>
-                    <input type="text" id="floor" name="floor" placeholder="Flr">
-                </div>
-                <div class="form-group">
-                    <label for="site">Site</label>
-                    <input type="text" id="site" name="site" placeholder="Site">
-                </div>
-                <div class="form-group">
-                    <label>Dimensions (W, D, H)</label>
-                    <div class="dimensions-group">
-                        <div class="form-group">
-                            <input type="text" id="width" name="width" placeholder="W">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="depth" name="depth" placeholder="D">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="height" name="height" placeholder="H">
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         <div class="form-group">
             <label for="category">Category</label>
@@ -319,17 +265,6 @@
                 title: "",
                 description: "",
                 category: "",
-                manufacturer: "",
-                model: "",
-                group: "",
-                size: "",
-                consignor: "1025",
-                location: "Shelter Row 1",
-                floor: "",
-                site: "",
-                width: "",
-                depth: "",
-                height: "",
                 photo: "Photoroom_20250320_165523.jpg",
                 photoAlt: "Vintage Furniture Item"
             },
@@ -338,17 +273,6 @@
                 title: "",
                 description: "",
                 category: "",
-                manufacturer: "",
-                model: "",
-                group: "",
-                size: "",
-                consignor: "1026",
-                location: "Shelter Row 2",
-                floor: "",
-                site: "",
-                width: "",
-                depth: "",
-                height: "",
                 photo: "IMG_2227.JPG",
                 photoAlt: "Antique Desk Item"
             }
@@ -366,18 +290,7 @@
                 lotNumber: document.getElementById('lotNumber').value,
                 title: document.getElementById('title').value,
                 description: document.getElementById('description').value,
-                category: document.getElementById('category').value,
-                manufacturer: document.getElementById('manufacturer').value,
-                model: document.getElementById('model').value,
-                group: document.getElementById('group').value,
-                size: document.getElementById('size').value,
-                consignor: document.getElementById('consignor').value,
-                location: document.getElementById('location').value,
-                floor: document.getElementById('floor').value,
-                site: document.getElementById('site').value,
-                width: document.getElementById('width').value,
-                depth: document.getElementById('depth').value,
-                height: document.getElementById('height').value
+                category: document.getElementById('category').value
             };
             tempData[currentPage] = formData;
         }
@@ -390,17 +303,6 @@
                 document.getElementById('title').value = data.title || '';
                 document.getElementById('description').value = data.description || '';
                 document.getElementById('category').value = data.category || '';
-                document.getElementById('manufacturer').value = data.manufacturer || '';
-                document.getElementById('model').value = data.model || '';
-                document.getElementById('group').value = data.group || '';
-                document.getElementById('size').value = data.size || '';
-                document.getElementById('consignor').value = data.consignor || '';
-                document.getElementById('location').value = data.location || '';
-                document.getElementById('floor').value = data.floor || '';
-                document.getElementById('site').value = data.site || '';
-                document.getElementById('width').value = data.width || '';
-                document.getElementById('depth').value = data.depth || '';
-                document.getElementById('height').value = data.height || '';
             }
         }
 
@@ -416,8 +318,6 @@
                 document.getElementById('title').value = item.title;
                 document.getElementById('description').value = item.description;
                 document.getElementById('category').value = item.category;
-                document.getElementById('consignor').value = item.consignor;
-                document.getElementById('location').value = item.location;
             }
             
             // Update main image for extension detection
