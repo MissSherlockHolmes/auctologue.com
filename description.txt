@@ -1,0 +1,45 @@
+For decades, auction houses, estate sellers, and catalog managers have faced the same challenge: turning a room full of items into an organized catalog that bidders and buyers can understand. The process has traditionally involved long hours of manual work — in addition to photographing each object: typing out titles, researching descriptions, and copy-pasting details from one window to another.
+
+Anyone who has ever worked an estate auction or managed a product catalog knows how quickly the hours add up. A single auction might contain hundreds of objects, and each one requires at least a basic entry. Experienced staff members can move quickly, but the human brain has limits. As fatigue sets in, errors creep into the process: typos, mistakes and missed items of value that slip through unnoticed because the cataloger simply ran out of time or energy.
+
+This has always been the bottleneck of online cataloging. The manual process is tedious, repetitive, and error-prone. Every copy-paste from one window to another increases the chance of a mistake. Every late-night typing session increases the chance that something important will be overlooked. Even the best catalogers — people with years of experience and sharp eyes for detail — are still human, and human attention wears thin with fatigue and repetition.
+
+Auctologue Catalog Assistant was created to relieve this burden. Instead of forcing you to research and copy-paste by hand, the extension automatically retrieves images directly from the page you are viewing. Those images are securely transmitted to our processing system, where they are analyzed and transformed into structured, catalog-ready entries. In just seconds, you receive professional titles, descriptions, and suggested categories — no switching between windows, no extra typing, no endless copy-paste.
+
+By automating the most repetitive parts of the job, Auctologue reduces the pressure on catalogers and dramatically cuts down on errors caused by fatigue. When you no longer have to worry about typing every single word, you can focus on the higher-value work: confirming details, curating the flow of the sale, and making sure each item is represented accurately. The system's ability to identify and describe items consistently also lowers the risk of missing hidden value. An overlooked piece in a box lot, or a mislabeled antique, can cost both the seller and the auctioneer. By generating consistent entries directly from images, the extension helps reduce instances of valuables that slip through the cracks, and improves catalog searchability by consistently providing comprehensive terms in the descriptions.
+
+Key benefits:
+
+Removes the need for copy-pasting between windows.
+
+Speeds up catalog creation by processing images automatically.
+
+Maintains consistency across hundreds of entries, even late at night.
+
+Reduces fatigue-related errors, and saves time.
+
+Helps identify valuable items that might otherwise be rushed past or overlooked.
+
+Bridges the gap between learners and experts: new staff can produce expert-level entries, while experienced catalogers gain speed and efficiency.
+
+How it works:
+
+Install the extension and open the page with the items you want to catalog.
+
+The extension automatically detects the images on the page.
+
+Those images are securely processed by our system.
+
+Titles, descriptions, and categories are generated and returned instantly.
+
+Copy results directly into your catalog with one click.
+
+Permissions explained:
+
+Page access is required so images can be identified and processed.
+
+Clipboard access is used only when you copy generated results.
+
+All communication is encrypted via HTTPS. No advertising networks or third-party trackers are included.
+
+Auctologue Catalog Assistant doesn't change the nature of cataloging — it respects the craft and the expertise of auctioneers and catalog managers — but it removes the drudgery that slows down the work and leads to mistakes. The result is a faster, cleaner, more reliable cataloging process that saves time and protects value.
