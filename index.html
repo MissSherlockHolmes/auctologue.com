@@ -107,36 +107,17 @@
             position: absolute;
             width: 120px;
             height: 70px;
-            opacity: 0.95;
+            opacity: 0;
             background: transparent;
+            animation-fill-mode: forwards;
+            --fish-start-top: 50%;
+        }
+        .fish-zone .fish.entered {
+            opacity: 0.95;
+            will-change: left, top;
         }
         .fish img {
             width: 100%; height: 100%; object-fit: contain; display: block; background: transparent; position: absolute; top: 0; left: 0;
-            animation: fish-wave-blur 4s ease-in-out infinite;
-        }
-        .fish-1 img { animation-delay: 0s; }
-        .fish-2 img { animation-delay: 0.7s; }
-        .fish-3 img { animation-delay: 1.4s; }
-        .fish-4 img { animation-delay: 2.1s; }
-        .fish-5 img { animation-delay: 0.3s; }
-        .fish-6 img { animation-delay: 1s; }
-        .fish-7 img { animation-delay: 1.7s; }
-        .fish-8 img { animation-delay: 2.4s; }
-        .fish-9 img { animation-delay: 0.5s; }
-        .fish-10 img { animation-delay: 1.2s; }
-        .fish-11 img { animation-delay: 1.9s; }
-        .fish-12 img { animation-delay: 2.6s; }
-        .fish-13 img { animation-delay: 0.2s; }
-        .fish-14 img { animation-delay: 0.9s; }
-        .fish-15 img { animation-delay: 1.6s; }
-        .fish-16 img { animation-delay: 2.3s; }
-        .fish-17 img { animation-delay: 0.4s; }
-        .fish-18 img { animation-delay: 1.1s; }
-        .fish-19 img { animation-delay: 1.8s; }
-        .fish-20 img { animation-delay: 2.5s; }
-        @keyframes fish-wave-blur {
-            0%, 18%, 36%, 54%, 72%, 90%, 100% { filter: blur(0); }
-            4%, 22%, 40%, 58%, 76%, 94% { filter: blur(2px); }
         }
         /* Fish move diagonally (DVD-style); no purely vertical segments. */
         @keyframes bounce-dvd-1 {
@@ -259,7 +240,20 @@
             66% { left: 28%; top: 75%; transform: translate(-50%, -50%); }
             100% { left: -12%; top: 82%; transform: translate(-50%, -50%); }
         }
-        /* One facing per fish: odd = L→R (show right), even = R→L (show left). Same type never both on screen (paired delays). Max 5 on screen. */
+        /* JS-driven entry: gentle diagonal paths. top uses var(--fish-start-top) so entry height is randomized (set in JS, lower 60% of frame). */
+        @keyframes path-lr-1 { 0% { left: -12%; top: var(--fish-start-top); transform: translate(-50%, -50%); } 50% { left: 50%; top: calc(var(--fish-start-top) + 2%); transform: translate(-50%, -50%); } 100% { left: 112%; top: calc(var(--fish-start-top) + 1%); transform: translate(-50%, -50%); } }
+        @keyframes path-lr-2 { 0% { left: -12%; top: var(--fish-start-top); transform: translate(-50%, -50%); } 33% { left: 33%; top: calc(var(--fish-start-top) + 3%); transform: translate(-50%, -50%); } 66% { left: 66%; top: calc(var(--fish-start-top) - 1%); transform: translate(-50%, -50%); } 100% { left: 112%; top: calc(var(--fish-start-top) + 1%); transform: translate(-50%, -50%); } }
+        @keyframes path-lr-3 { 0% { left: -12%; top: var(--fish-start-top); transform: translate(-50%, -50%); } 40% { left: 38%; top: calc(var(--fish-start-top) + 6%); transform: translate(-50%, -50%); } 100% { left: 112%; top: calc(var(--fish-start-top) + 4%); transform: translate(-50%, -50%); } }
+        @keyframes path-lr-4 { 0% { left: -12%; top: var(--fish-start-top); transform: translate(-50%, -50%); } 50% { left: 50%; top: calc(var(--fish-start-top) - 6%); transform: translate(-50%, -50%); } 100% { left: 112%; top: calc(var(--fish-start-top) - 2%); transform: translate(-50%, -50%); } }
+        @keyframes path-lr-5 { 0% { left: -12%; top: var(--fish-start-top); transform: translate(-50%, -50%); } 50% { left: 50%; top: calc(var(--fish-start-top) + 7%); transform: translate(-50%, -50%); } 100% { left: 112%; top: calc(var(--fish-start-top) + 3%); transform: translate(-50%, -50%); } }
+        @keyframes path-lr-6 { 0% { left: -12%; top: var(--fish-start-top); transform: translate(-50%, -50%); } 50% { left: 50%; top: calc(var(--fish-start-top) - 6%); transform: translate(-50%, -50%); } 100% { left: 112%; top: calc(var(--fish-start-top) - 2%); transform: translate(-50%, -50%); } }
+        @keyframes path-rl-1 { 0% { left: 112%; top: var(--fish-start-top); transform: translate(-50%, -50%); } 50% { left: 50%; top: calc(var(--fish-start-top) + 1%); transform: translate(-50%, -50%); } 100% { left: -12%; top: calc(var(--fish-start-top) - 1%); transform: translate(-50%, -50%); } }
+        @keyframes path-rl-2 { 0% { left: 112%; top: var(--fish-start-top); transform: translate(-50%, -50%); } 33% { left: 66%; top: calc(var(--fish-start-top) - 2%); transform: translate(-50%, -50%); } 66% { left: 33%; top: calc(var(--fish-start-top) + 2%); transform: translate(-50%, -50%); } 100% { left: -12%; top: calc(var(--fish-start-top) - 1%); transform: translate(-50%, -50%); } }
+        @keyframes path-rl-3 { 0% { left: 112%; top: var(--fish-start-top); transform: translate(-50%, -50%); } 60% { left: 38%; top: calc(var(--fish-start-top) + 2%); transform: translate(-50%, -50%); } 100% { left: -12%; top: calc(var(--fish-start-top) - 4%); transform: translate(-50%, -50%); } }
+        @keyframes path-rl-4 { 0% { left: 112%; top: var(--fish-start-top); transform: translate(-50%, -50%); } 50% { left: 50%; top: calc(var(--fish-start-top) - 4%); transform: translate(-50%, -50%); } 100% { left: -12%; top: calc(var(--fish-start-top) + 2%); transform: translate(-50%, -50%); } }
+        @keyframes path-rl-5 { 0% { left: 112%; top: var(--fish-start-top); transform: translate(-50%, -50%); } 50% { left: 50%; top: calc(var(--fish-start-top) + 4%); transform: translate(-50%, -50%); } 100% { left: -12%; top: calc(var(--fish-start-top) - 3%); transform: translate(-50%, -50%); } }
+        @keyframes path-rl-6 { 0% { left: 112%; top: var(--fish-start-top); transform: translate(-50%, -50%); } 50% { left: 50%; top: calc(var(--fish-start-top) - 4%); transform: translate(-50%, -50%); } 100% { left: -12%; top: calc(var(--fish-start-top) + 2%); transform: translate(-50%, -50%); } }
+        /* One facing per fish: odd = L→R (show right), even = R→L (show left). */
         @keyframes fish-face-right-1 { 0%, 100% { opacity: 1; } }
         @keyframes fish-face-left-1 { 0%, 100% { opacity: 0; } }
         @keyframes fish-face-right-2 { 0%, 100% { opacity: 0; } }
@@ -301,67 +295,7 @@
         @keyframes fish-face-right-20 { 0%, 100% { opacity: 0; } }
         @keyframes fish-face-left-20 { 0%, 100% { opacity: 1; } }
         .fish .fish-right, .fish .fish-left { animation-fill-mode: backwards; }
-        /* 20 fish: (1,2)=goldfish, (3,4)=seahorse, (5,6)=betta, (7,8)=tropical, (9,10)=betta-red, (11,12)=cichlid, (13,14)=betta-teal, (15,16)=betta-gold, (17,18)=angelfish, (19,20)=rainbowfish. Delays set by JS (randomized entry order, R/L exclusivity and max 5 on screen preserved). */
-        .fish-1 .fish-right { animation: fish-face-right-1 74s linear infinite var(--fish-1-delay, 0s); }
-        .fish-1 .fish-left { animation: fish-face-left-1 74s linear infinite var(--fish-1-delay, 0s); }
-        .fish-2 .fish-right { animation: fish-face-right-2 74s linear infinite var(--fish-2-delay, 76s); }
-        .fish-2 .fish-left { animation: fish-face-left-2 74s linear infinite var(--fish-2-delay, 76s); }
-        .fish-3 .fish-right { animation: fish-face-right-3 78s linear infinite var(--fish-3-delay, 76s); }
-        .fish-3 .fish-left { animation: fish-face-left-3 78s linear infinite var(--fish-3-delay, 76s); }
-        .fish-4 .fish-right { animation: fish-face-right-4 78s linear infinite var(--fish-4-delay, 156s); }
-        .fish-4 .fish-left { animation: fish-face-left-4 78s linear infinite var(--fish-4-delay, 156s); }
-        .fish-5 .fish-right { animation: fish-face-right-5 76s linear infinite var(--fish-5-delay, 80s); }
-        .fish-5 .fish-left { animation: fish-face-left-5 76s linear infinite var(--fish-5-delay, 80s); }
-        .fish-6 .fish-right { animation: fish-face-right-6 76s linear infinite var(--fish-6-delay, 158s); }
-        .fish-6 .fish-left { animation: fish-face-left-6 76s linear infinite var(--fish-6-delay, 158s); }
-        .fish-7 .fish-right { animation: fish-face-right-7 72s linear infinite var(--fish-7-delay, 80s); }
-        .fish-7 .fish-left { animation: fish-face-left-7 72s linear infinite var(--fish-7-delay, 80s); }
-        .fish-8 .fish-right { animation: fish-face-right-8 72s linear infinite var(--fish-8-delay, 154s); }
-        .fish-8 .fish-left { animation: fish-face-left-8 72s linear infinite var(--fish-8-delay, 154s); }
-        .fish-9 .fish-right { animation: fish-face-right-9 79s linear infinite var(--fish-9-delay, 80s); }
-        .fish-9 .fish-left { animation: fish-face-left-9 79s linear infinite var(--fish-9-delay, 80s); }
-        .fish-10 .fish-right { animation: fish-face-right-10 79s linear infinite var(--fish-10-delay, 161s); }
-        .fish-10 .fish-left { animation: fish-face-left-10 79s linear infinite var(--fish-10-delay, 161s); }
-        .fish-11 .fish-right { animation: fish-face-right-11 75s linear infinite var(--fish-11-delay, 161s); }
-        .fish-11 .fish-left { animation: fish-face-left-11 75s linear infinite var(--fish-11-delay, 161s); }
-        .fish-12 .fish-right { animation: fish-face-right-12 75s linear infinite var(--fish-12-delay, 238s); }
-        .fish-12 .fish-left { animation: fish-face-left-12 75s linear infinite var(--fish-12-delay, 238s); }
-        .fish-13 .fish-right { animation: fish-face-right-13 73s linear infinite var(--fish-13-delay, 238s); }
-        .fish-13 .fish-left { animation: fish-face-left-13 73s linear infinite var(--fish-13-delay, 238s); }
-        .fish-14 .fish-right { animation: fish-face-right-14 73s linear infinite var(--fish-14-delay, 313s); }
-        .fish-14 .fish-left { animation: fish-face-left-14 73s linear infinite var(--fish-14-delay, 313s); }
-        .fish-15 .fish-right { animation: fish-face-right-15 77s linear infinite var(--fish-15-delay, 313s); }
-        .fish-15 .fish-left { animation: fish-face-left-15 77s linear infinite var(--fish-15-delay, 313s); }
-        .fish-16 .fish-right { animation: fish-face-right-16 77s linear infinite var(--fish-16-delay, 392s); }
-        .fish-16 .fish-left { animation: fish-face-left-16 77s linear infinite var(--fish-16-delay, 392s); }
-        .fish-17 .fish-right { animation: fish-face-right-17 71s linear infinite var(--fish-17-delay, 392s); }
-        .fish-17 .fish-left { animation: fish-face-left-17 71s linear infinite var(--fish-17-delay, 392s); }
-        .fish-18 .fish-right { animation: fish-face-right-18 71s linear infinite var(--fish-18-delay, 465s); }
-        .fish-18 .fish-left { animation: fish-face-left-18 71s linear infinite var(--fish-18-delay, 465s); }
-        .fish-19 .fish-right { animation: fish-face-right-19 76s linear infinite var(--fish-19-delay, 465s); }
-        .fish-19 .fish-left { animation: fish-face-left-19 76s linear infinite var(--fish-19-delay, 465s); }
-        .fish-20 .fish-right { animation: fish-face-right-20 76s linear infinite var(--fish-20-delay, 543s); }
-        .fish-20 .fish-left { animation: fish-face-left-20 76s linear infinite var(--fish-20-delay, 543s); }
-        .fish-1 { animation: bounce-dvd-1 74s linear infinite var(--fish-1-delay, 0s); animation-fill-mode: backwards; }
-        .fish-2 { animation: bounce-dvd-2 74s linear infinite var(--fish-2-delay, 76s); animation-fill-mode: backwards; }
-        .fish-3 { animation: bounce-dvd-3 78s linear infinite var(--fish-3-delay, 76s); animation-fill-mode: backwards; }
-        .fish-4 { animation: bounce-dvd-4 78s linear infinite var(--fish-4-delay, 156s); animation-fill-mode: backwards; }
-        .fish-5 { animation: bounce-dvd-5 76s linear infinite var(--fish-5-delay, 80s); animation-fill-mode: backwards; }
-        .fish-6 { animation: bounce-dvd-6 76s linear infinite var(--fish-6-delay, 158s); animation-fill-mode: backwards; }
-        .fish-7 { animation: bounce-dvd-7 72s linear infinite var(--fish-7-delay, 80s); animation-fill-mode: backwards; }
-        .fish-8 { animation: bounce-dvd-8 72s linear infinite var(--fish-8-delay, 154s); animation-fill-mode: backwards; }
-        .fish-9 { animation: bounce-dvd-9 79s linear infinite var(--fish-9-delay, 80s); animation-fill-mode: backwards; }
-        .fish-10 { animation: bounce-dvd-10 79s linear infinite var(--fish-10-delay, 161s); animation-fill-mode: backwards; }
-        .fish-11 { animation: bounce-dvd-11 75s linear infinite var(--fish-11-delay, 161s); animation-fill-mode: backwards; }
-        .fish-12 { animation: bounce-dvd-12 75s linear infinite var(--fish-12-delay, 238s); animation-fill-mode: backwards; }
-        .fish-13 { animation: bounce-dvd-13 73s linear infinite var(--fish-13-delay, 238s); animation-fill-mode: backwards; }
-        .fish-14 { animation: bounce-dvd-14 73s linear infinite var(--fish-14-delay, 313s); animation-fill-mode: backwards; }
-        .fish-15 { animation: bounce-dvd-15 77s linear infinite var(--fish-15-delay, 313s); animation-fill-mode: backwards; }
-        .fish-16 { animation: bounce-dvd-16 77s linear infinite var(--fish-16-delay, 392s); animation-fill-mode: backwards; }
-        .fish-17 { animation: bounce-dvd-17 71s linear infinite var(--fish-17-delay, 392s); animation-fill-mode: backwards; }
-        .fish-18 { animation: bounce-dvd-18 71s linear infinite var(--fish-18-delay, 465s); animation-fill-mode: backwards; }
-        .fish-19 { animation: bounce-dvd-19 76s linear infinite var(--fish-19-delay, 465s); animation-fill-mode: backwards; }
-        .fish-20 { animation: bounce-dvd-20 76s linear infinite var(--fish-20-delay, 543s); animation-fill-mode: backwards; }
+        /* 20 fish: entry driven by JS (counter, pair exclusivity, random 2–5s, random path/location). */
 
         /* Bespoke section: jellyfish floating (same logic as hero fish), full viewport width */
         .jelly-zone {
@@ -531,10 +465,10 @@
             animation: angler-swim-left 95s linear infinite;
             animation-fill-mode: backwards;
         }
-        .angler-zone .angler-1 { top: 20%; animation-delay: 0s; }
-        .angler-zone .angler-2 { top: 55%; animation-delay: 12s; }
-        .angler-zone .angler-3 { top: 70%; animation-delay: 6s; }
-        .angler-zone .angler-4 { top: 25%; animation-delay: 18s; }
+        .angler-zone .angler-1 { top: 20%; }
+        .angler-zone .angler-2 { top: 55%; }
+        .angler-zone .angler-3 { top: 70%; }
+        .angler-zone .angler-4 { top: 25%; }
 
         /* Bio/Founder section: sharks, same zone logic, swim forward only (no flip in center) */
         .shark-zone {
@@ -552,33 +486,39 @@
         #founder > *:not(.shark-zone) { position: relative; z-index: 1; }
         .shark-zone .shark {
             position: absolute;
-            width: 140px;
+            width: clamp(200px, 22vw, 280px);
             height: auto;
-            opacity: 0.55;
+            opacity: 0;
             will-change: left;
         }
-        .shark-zone .shark img {
+        .shark-zone .shark.entered {
+            opacity: 0.55;
+        }
+        .shark-zone .shark-flag {
+            display: block;
+            width: 100%;
+        }
+        .shark-zone .shark-flag img {
             width: 100%;
             height: auto;
             display: block;
         }
-        /* Swim right: start off left, end off right (use right-facing image) */
+        /* One GIF per direction per shark image; no CSS flip */
+        /* Swim right: start fully off left, end fully off right (shark width ~22vw) */
         @keyframes shark-swim-right {
-            0% { left: -12%; }
-            100% { left: 112%; }
+            0% { left: -35%; }
+            100% { left: 135%; }
         }
-        /* Swim left: start off right, end off left (use left-facing image, no flip) */
+        /* Swim left: start fully off right, end fully off left */
         @keyframes shark-swim-left {
-            0% { left: 112%; }
-            100% { left: -12%; }
+            0% { left: 135%; }
+            100% { left: -35%; }
         }
-        .shark-zone .shark-right {
-            animation: shark-swim-right 45s linear infinite;
-            animation-fill-mode: backwards;
+        .shark-zone .shark-right.entered {
+            animation: shark-swim-right 45s linear 1 forwards;
         }
-        .shark-zone .shark-left {
-            animation: shark-swim-left 50s linear infinite;
-            animation-fill-mode: backwards;
+        .shark-zone .shark-left.entered {
+            animation: shark-swim-left 50s linear 1 forwards;
         }
         .shark-zone .shark-1 { top: 12%; animation-delay: 0s; }
         .shark-zone .shark-2 { top: 42%; animation-delay: 8s; }
@@ -1311,16 +1251,17 @@
         </section>
 
         <section id="founder" class="page-section">
+            <!-- Sharks: one GIF per direction per shark image. Odd = left-image set, even = right-image set. -->
             <div class="shark-zone" aria-hidden="true">
-                <div class="shark shark-right shark-1"><img src="shark-left-flipped.png" alt=""></div>
-                <div class="shark shark-left shark-2"><img src="shark-right.png" alt=""></div>
-                <div class="shark shark-right shark-3"><img src="shark-right-flipped.png" alt=""></div>
-                <div class="shark shark-left shark-4"><img src="shark-left.png" alt=""></div>
-                <div class="shark shark-right shark-5"><img src="shark-left-flipped.png" alt=""></div>
-                <div class="shark shark-left shark-6"><img src="shark-right.png" alt=""></div>
-                <div class="shark shark-right shark-7"><img src="shark-right-flipped.png" alt=""></div>
-                <div class="shark shark-left shark-8"><img src="shark-left.png" alt=""></div>
-                <div class="shark shark-right shark-9"><img src="shark-left-flipped.png" alt=""></div>
+                <div class="shark shark-right shark-1"><span class="shark-flag"><img src="shark-left-flipped.gif" alt="" onerror="this.onerror=null;this.src='shark-left-flipped.png'"></span></div>
+                <div class="shark shark-left shark-2"><span class="shark-flag"><img src="shark-right.gif" alt="" onerror="this.onerror=null;this.src='shark-right.png'"></span></div>
+                <div class="shark shark-right shark-3"><span class="shark-flag"><img src="shark-right-flipped.gif" alt="" onerror="this.onerror=null;this.src='shark-right-flipped.png'"></span></div>
+                <div class="shark shark-left shark-4"><span class="shark-flag"><img src="shark-left.gif" alt="" onerror="this.onerror=null;this.src='shark-left.png'"></span></div>
+                <div class="shark shark-right shark-5"><span class="shark-flag"><img src="shark-left-flipped.gif" alt="" onerror="this.onerror=null;this.src='shark-left-flipped.png'"></span></div>
+                <div class="shark shark-left shark-6"><span class="shark-flag"><img src="shark-right.gif" alt="" onerror="this.onerror=null;this.src='shark-right.png'"></span></div>
+                <div class="shark shark-right shark-7"><span class="shark-flag"><img src="shark-right-flipped.gif" alt="" onerror="this.onerror=null;this.src='shark-right-flipped.png'"></span></div>
+                <div class="shark shark-left shark-8"><span class="shark-flag"><img src="shark-left.gif" alt="" onerror="this.onerror=null;this.src='shark-left.png'"></span></div>
+                <div class="shark shark-right shark-9"><span class="shark-flag"><img src="shark-left-flipped.gif" alt="" onerror="this.onerror=null;this.src='shark-left-flipped.png'"></span></div>
             </div>
             <h2><span style="font-weight: normal">From the</span> Auction Tent to the Tech Stack.</h2>
             <div class="founder-headshot-wrap" style="margin-bottom: 2rem;">
@@ -1410,25 +1351,220 @@
                 });
             });
 
-            (function randomizeFishEntryOrder() {
+            (function fishEntrySequence() {
                 var zone = document.querySelector('#home .fish-zone');
                 if (!zone) return;
-                var slotPairs = [[0, 76], [76, 156], [80, 158], [80, 154], [80, 161], [161, 238], [238, 313], [313, 392], [392, 465], [465, 543]];
-                var types = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-                for (var i = types.length - 1; i > 0; i--) {
-                    var j = Math.floor(Math.random() * (i + 1));
-                    var t = types[i]; types[i] = types[j]; types[j] = t;
+                var counter = 0;
+                var onScreen = [];
+                var activeFish = [];
+
+                function randomDelaySec() { return 2 + 0.5 * Math.floor(Math.random() * 11); }
+                function getBlocked() {
+                    var out = {};
+                    for (var i = 0; i < onScreen.length; i++) {
+                        var n = onScreen[i];
+                        out[n % 2 === 1 ? n + 1 : n - 1] = true;
+                    }
+                    return out;
                 }
-                var delays = [];
-                for (var i = 0; i < 10; i++) {
-                    var odd = types[i] * 2 + 1, even = types[i] * 2 + 2;
-                    delays[odd - 1] = slotPairs[i][0];
-                    delays[even - 1] = slotPairs[i][1];
+                function getAvailable() {
+                    var blocked = getBlocked();
+                    var list = [];
+                    for (var n = 1; n <= 20; n++) {
+                        if (blocked[n] || onScreen.indexOf(n) !== -1) continue;
+                        list.push(n);
+                    }
+                    return list;
                 }
-                for (var n = 1; n <= 20; n++) {
-                    var el = zone.querySelector('.fish-' + n);
-                    if (el) el.style.setProperty('--fish-' + n + '-delay', delays[n - 1] + 's');
+                function randomInRange(lo, hi) { return lo + Math.random() * (hi - lo); }
+                function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+                function positionAt(route, progress) {
+                    progress = clamp(progress, 0, 1);
+                    var n = route.length;
+                    var f = progress * (n - 1);
+                    var i = Math.floor(f);
+                    var j = Math.min(i + 1, n - 1);
+                    var t = f - i;
+                    return {
+                        x: route[i].x + (route[j].x - route[i].x) * t,
+                        y: route[i].y + (route[j].y - route[i].y) * t
+                    };
                 }
+                function getActiveFishPositions(atTime) {
+                    var out = [];
+                    for (var k = 0; k < activeFish.length; k++) {
+                        var a = activeFish[k];
+                        var progress = (atTime - a.startTime) / a.duration;
+                        if (progress >= 0 && progress <= 1) out.push(positionAt(a.route, progress));
+                    }
+                    return out;
+                }
+                function buildRoute(isLTR, avoidY) {
+                    var yMin = 40, yMax = 82;
+                    var startX = isLTR ? -12 : 112;
+                    var endX = isLTR ? 112 : -12;
+                    var startY = randomInRange(yMin, yMax);
+                    var endY = randomInRange(yMin, yMax);
+                    if (avoidY && avoidY.length > 0) {
+                        var best = -1, bestMinDist = -1;
+                        for (var tries = 0; tries < 8; tries++) {
+                            var sy = randomInRange(yMin, yMax);
+                            var ey = randomInRange(yMin, yMax);
+                            var minDist = 999;
+                            for (var i = 0; i < avoidY.length; i++) {
+                                var d = Math.min(Math.abs(sy - avoidY[i].y), Math.abs(ey - avoidY[i].y));
+                                if (d < minDist) minDist = d;
+                            }
+                            if (minDist > bestMinDist) { bestMinDist = minDist; startY = sy; endY = ey; }
+                        }
+                    }
+                    var numWaypoints = 5 + Math.floor(Math.random() * 4);
+                    var points = [{ x: startX, y: startY }];
+                    for (var i = 1; i <= numWaypoints; i++) {
+                        var t = i / (numWaypoints + 1);
+                        var x = startX + (endX - startX) * t + randomInRange(0, 2);
+                        var linearY = startY + (endY - startY) * t;
+                        var y = clamp(linearY + randomInRange(-3, 3), yMin, yMax);
+                        points.push({ x: x, y: y });
+                    }
+                    points.push({ x: endX, y: endY });
+                    points[1].y = startY + randomInRange(-1.5, 1.5);
+                    points[points.length - 2].y = endY + randomInRange(-1.5, 1.5);
+                    return points;
+                }
+                function overlapScore(route, duration, startTime, otherPositionsAt) {
+                    var score = 0;
+                    for (var s = 0.25; s <= 0.75; s += 0.25) {
+                        var myPos = positionAt(route, s);
+                        var t = startTime + duration * s;
+                        var others = otherPositionsAt(t);
+                        for (var o = 0; o < others.length; o++) {
+                            var dx = Math.abs(myPos.x - others[o].x);
+                            var dy = Math.abs(myPos.y - others[o].y);
+                            if (dx < 18 && dy < 14) score += (18 - dx) + (14 - dy);
+                        }
+                    }
+                    return score;
+                }
+                function keyframesFromRoute(route) {
+                    var transform = 'translate(-50%, -50%)';
+                    var len = route.length;
+                    return route.map(function(p, i) {
+                        var offset = (i / (len - 1)) * 100;
+                        return { offset: offset / 100, left: p.x + '%', top: p.y + '%', transform: transform };
+                    });
+                }
+                function enterFish() {
+                    if (counter >= 5) return;
+                    var available = getAvailable();
+                    if (available.length === 0) return;
+                    var fishIndex = available[Math.floor(Math.random() * available.length)];
+                    var el = zone.querySelector('.fish-' + fishIndex);
+                    if (!el) return;
+                    var isLTR = fishIndex % 2 === 1;
+                    var now = Date.now();
+                    var avoidY = getActiveFishPositions(now);
+                    var route = buildRoute(isLTR, avoidY);
+                    var duration = (42 + Math.random() * 54) * 1000;
+                    var startDelay = randomInRange(0, 2500);
+                    var rightImg = el.querySelector('.fish-right');
+                    var leftImg = el.querySelector('.fish-left');
+                    if (rightImg) rightImg.style.opacity = isLTR ? '1' : '0';
+                    if (leftImg) leftImg.style.opacity = isLTR ? '0' : '1';
+                    var start = route[0];
+                    el.style.left = start.x + '%';
+                    el.style.top = start.y + '%';
+                    el.style.transform = 'translate(-50%, -50%)';
+                    el.classList.add('entered');
+                    function startAnimation() {
+                        var startTime = Date.now();
+                        var keyframes = keyframesFromRoute(route);
+                        var anim = el.animate(keyframes, { duration: duration, fill: 'forwards', easing: 'linear' });
+                        activeFish.push({ fishIndex: fishIndex, route: route, startTime: startTime, duration: duration });
+                        anim.onfinish = function() {
+                            anim.cancel();
+                            el.classList.remove('entered');
+                            el.style.left = '';
+                            el.style.top = '';
+                            el.style.transform = '';
+                            var idx = onScreen.indexOf(fishIndex);
+                            if (idx !== -1) onScreen.splice(idx, 1);
+                            counter -= 1;
+                            var ai = -1;
+                            for (var k = 0; k < activeFish.length; k++) { if (activeFish[k].fishIndex === fishIndex) { ai = k; break; } }
+                            if (ai >= 0) activeFish.splice(ai, 1);
+                        };
+                    }
+                    onScreen.push(fishIndex);
+                    counter += 1;
+                    if (activeFish.length > 0) {
+                        var bestDuration = duration, bestScore = 1e9;
+                        for (var tryCount = 0; tryCount < 3; tryCount++) {
+                            var d = (38 + Math.random() * 58) * 1000;
+                            var st = now + startDelay;
+                            var sc = overlapScore(route, d, st, getActiveFishPositions);
+                            if (sc < bestScore) { bestScore = sc; bestDuration = d; }
+                        }
+                        duration = bestDuration;
+                    }
+                    setTimeout(startAnimation, startDelay);
+                }
+                function scheduleNext() {
+                    enterFish();
+                    setTimeout(scheduleNext, randomDelaySec() * 1000);
+                }
+                setTimeout(scheduleNext, Math.random() * 1500);
+            })();
+
+            (function randomizeAnglerfishEntry() {
+                var zone = document.querySelector('#extension .angler-zone');
+                if (!zone) return;
+                var anglers = zone.querySelectorAll('.anglerfish');
+                for (var i = 0; i < anglers.length; i++) {
+                    anglers[i].style.animationDelay = (Math.random() * 100) + 's';
+                }
+            })();
+
+            (function sharkEntrySequence() {
+                var zone = document.querySelector('#founder .shark-zone');
+                if (!zone) return;
+                var maxOnScreen = 2;
+                var activeSet = new Set();
+                function randomDelayMs() { return (2 + Math.random() * 4) * 1000; }
+                function getAvailable() {
+                    var list = [];
+                    for (var n = 1; n <= 9; n++) {
+                        if (!activeSet.has(n)) list.push(n);
+                    }
+                    return list;
+                }
+                function enterShark() {
+                    if (activeSet.size >= maxOnScreen) return;
+                    var available = getAvailable();
+                    if (available.length === 0) return;
+                    var index = available[Math.floor(Math.random() * available.length)];
+                    var el = zone.querySelector('.shark-' + index);
+                    if (!el) return;
+                    el.style.left = el.classList.contains('shark-right') ? '-35%' : '135%';
+                    el.classList.add('entered');
+                    activeSet.add(index);
+                    function onEnd() {
+                        el.removeEventListener('animationend', onEnd);
+                        el.classList.remove('entered');
+                        el.style.left = '';
+                        activeSet.delete(index);
+                        scheduleNext();
+                    }
+                    el.addEventListener('animationend', onEnd, { once: true });
+                }
+                function scheduleNext() {
+                    enterShark();
+                    setTimeout(scheduleNext, randomDelayMs());
+                }
+                setTimeout(function() {
+                    enterShark();
+                    setTimeout(scheduleNext, randomDelayMs());
+                }, 800);
             })();
 
             var bubble = document.getElementById('aucto-speech-bubble');

@@ -1,0 +1,11 @@
+{
+  "name": "auctologue-shark-gifs",
+  "private": true,
+  "scripts": {
+    "make-shark-gifs": "node scripts/make-shark-flag-gifs.js"
+  },
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "gifencoder": "^2.0.0"
+  }
+}
