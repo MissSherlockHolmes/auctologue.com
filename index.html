@@ -635,6 +635,59 @@
             box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
         }
 
+        .nav-cta-wrap {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            flex-shrink: 0;
+        }
+        .beta-postit {
+            position: absolute;
+            left: -102px;
+            bottom: -82px;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            background: linear-gradient(165deg, #fef9c3 0%, #fef08a 50%, #fde047 100%);
+            color: #2d1b06;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            line-height: 1.15;
+            text-align: center;
+            border-radius: 2px;
+            box-shadow:
+                2px 2px 0 rgba(0, 0, 0, 0.08),
+                4px 4px 10px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transform: rotate(-8deg);
+            transform-origin: bottom left;
+            animation: postit-wiggle 3s ease-in-out infinite;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .beta-postit::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 14px 14px;
+            border-color: transparent transparent rgba(0, 0, 0, 0.08) transparent;
+            border-radius: 0 0 2px 0;
+        }
+        @keyframes postit-wiggle {
+            0%, 100% { transform: rotate(-8deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(-6deg); }
+        }
+
         .nav-hamburger {
             display: none;
             flex-direction: column;
@@ -1150,8 +1203,11 @@
             }
             .navbar.menu-open .nav-links { display: flex; }
             .nav-links a { padding: 0.75rem 0.5rem; display: block; }
-            .nav-cta { order: 4; width: 100%; display: none; margin-top: 0.5rem; text-align: center; }
-            .navbar.menu-open .nav-cta { display: inline-block; width: auto; margin-top: 0.75rem; }
+            .nav-cta-wrap { order: 4; width: 100%; display: none; margin-top: 0.5rem; text-align: center; }
+            .navbar.menu-open .nav-cta-wrap { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
+            .nav-cta { margin-top: 0; }
+            .navbar.menu-open .nav-cta-wrap .nav-cta { display: inline-block; margin-top: 0.75rem; }
+            .beta-postit::after { display: none; }
             .hero-mascot { height: 22vh; }
             #home {
                 align-items: flex-start;
@@ -1227,7 +1283,7 @@
                 <span class="nav-logo-text">Auctologue</span>
             </a>
             <div class="aucto-speech-bubble" id="aucto-speech-bubble" role="tooltip">Hi, I'm Aucto! <button type="button" class="aucto-bubble-mute" id="aucto-speech-bubble-mute" aria-label="Mute">🔇</button><button type="button" class="aucto-bubble-close" id="aucto-speech-bubble-close" aria-label="Close">×</button></div>
-        </div>
+    </div>
         <button type="button" class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
             <span class="nav-hamburger-bar"></span>
             <span class="nav-hamburger-bar"></span>
@@ -1240,7 +1296,10 @@
             <li><a href="#founder">Founder</a></li>
             <li><a href="#extension">Extension</a></li>
         </ul>
-        <a href="https://app.auctologue.com/" class="nav-cta" target="_blank" rel="noopener">Open App</a>
+        <div class="nav-cta-wrap">
+            <span class="beta-postit" aria-hidden="true">Join Beta<br>Program!</span>
+            <a href="https://app.auctologue.com/" class="nav-cta" target="_blank" rel="noopener">Open App</a>
+        </div>
     </nav>
 
     <div class="scroll-aucto bubble-closed" id="scroll-aucto" aria-hidden="true">
@@ -1264,7 +1323,7 @@
                 <div class="sea-plant sea-plant-8"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad8" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad8)" d="M90 200 Q72 145 88 95 Q65 55 82 18 L90 18 Q72 58 90 98 Q70 148 85 200 Z"/></svg></div>
                 <div class="sea-plant sea-plant-9"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad9" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad9)" d="M75 200 Q55 150 80 100 Q50 60 85 25 L92 25 Q60 65 88 105 Q58 155 78 200 Z"/><path fill="url(#plantGrad9)" d="M25 200 Q10 140 35 90 Q5 45 38 10 L45 10 Q15 50 40 95 Q12 145 28 200 Z"/></svg></div>
                 <div class="sea-plant sea-plant-10"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad10" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad10)" d="M40 200 Q20 160 45 120 Q15 80 50 50 Q25 25 55 5 L65 5 Q35 30 60 55 Q30 90 55 130 Q25 165 45 200 Z"/></svg></div>
-            </div>
+        </div>
             <div class="fish-zone">
                 <div class="fish fish-1"><img src="goldfish-flipped.png" alt="" class="fish-right"><img src="goldfish.png" alt="" class="fish-left"></div>
                 <div class="fish fish-2"><img src="goldfish-flipped.png" alt="" class="fish-right"><img src="goldfish.png" alt="" class="fish-left"></div>
@@ -1286,7 +1345,7 @@
                 <div class="fish fish-18"><img src="angelfish-flipped.png" alt="" class="fish-right"><img src="angelfish.png" alt="" class="fish-left"></div>
                 <div class="fish fish-19"><img src="rainbowfish-flipped.png" alt="" class="fish-right"><img src="rainbowfish.png" alt="" class="fish-left"></div>
                 <div class="fish fish-20"><img src="rainbowfish-flipped.png" alt="" class="fish-right"><img src="rainbowfish.png" alt="" class="fish-left"></div>
-            </div>
+        </div>
             <div class="hero">
                 <img src="Aucto_Hat_Transparent.png" alt="Aucto" class="hero-mascot" id="hero-aucto">
                 <div class="halo" aria-label="Navigation">
@@ -1297,9 +1356,9 @@
                     <div class="halo-center">
                         <h1>Auctologue</h1>
                         <p class="tagline">The World's First Research-Based Auction Catalog Suite</p>
-                    </div>
-                </div>
-            </div>
+        </div>
+        </div>
+    </div>
         </section>
 
         <section id="bespoke" class="page-section">
@@ -1316,13 +1375,13 @@
                 <div class="jellyfish jelly-10"><img src="jellyfish.svg" alt=""></div>
                 <div class="jellyfish jelly-11"><img src="jellyfish.svg" alt=""></div>
                 <div class="jellyfish jelly-12"><img src="jellyfish.svg" alt=""></div>
-            </div>
+        </div>
             <h2>Bespoke Cataloging</h2>
             <p class="section-subtitle" style="color: var(--text-secondary); margin-bottom: 1rem;">Managed by Experts. Enhanced by Technology.</p>
             <div class="section-card">
                 <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 1.35rem; color: var(--accent-blue); margin-bottom: 1rem;">The Professional Standard</h3>
                 <p>Stop losing revenue to generic descriptions. Backed by decades of auction industry experience, Auctologue Bespoke provides the academic rigor and search-driven identification your lots deserve. We don&rsquo;t just &ldquo;list&rdquo; items. We identify maker-marks, brand details and item specifics that are often missed.</p>
-            </div>
+    </div>
             <div class="section-card">
                 <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 1.35rem; color: var(--accent-blue); margin-bottom: 1rem;">The Auctologue Advantage</h3>
                 <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
@@ -1330,7 +1389,7 @@
                     <li><strong>Research-First Methodology:</strong> We use proprietary search algorithms to find details that AI and LLMs don&rsquo;t have access to. We cross-reference global databases and auction archives to ensure your descriptions stand up to collector scrutiny.</li>
                     <li><strong>Seamless Integration:</strong> Receive a clean, revenue-optimized CSV ready to upload to your auction platform.</li>
                 </ul>
-            </div>
+        </div>
             <div class="section-card">
                 <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 1.35rem; color: var(--accent-blue); margin-bottom: 1rem;">How It Works</h3>
                 <ol style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
@@ -1338,7 +1397,7 @@
                     <li><strong>Research &amp; Review:</strong> Our team cross-references global databases and auction archives; every catalog is overseen by industry professionals.</li>
                     <li><strong>Revenue-Ready:</strong> Receive a formatted CSV optimized for SEO and ready for instant upload to your bidding platform.</li>
                 </ol>
-            </div>
+    </div>
             <p style="text-align: center; color: var(--text-primary); font-weight: 500;">Stop settling for &ldquo;good enough.&rdquo; Leverage years of experience to protect your hammer prices.</p>
         </section>
 
@@ -1362,8 +1421,8 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
+        </div>
+    </div>
         </section>
 
         <section id="founder" class="page-section">
@@ -1400,7 +1459,7 @@
                 <div class="anglerfish angler-left angler-2 face-left"><img src="anglerfish.png" alt=""></div>
                 <div class="anglerfish angler-right angler-3"><img src="anglerfish.png" alt=""></div>
                 <div class="anglerfish angler-left angler-4 face-left"><img src="anglerfish.png" alt=""></div>
-            </div>
+                </div>
             <h2>Catalog Assistant</h2>
             <p class="section-subtitle" style="color: var(--text-secondary); margin-bottom: 0.5rem;">A browser extension that transforms manual cataloging into automated efficiency.</p>
             <div style="text-align: center; margin-bottom: 1.5rem;">
@@ -1442,7 +1501,7 @@
                 <a href="mailto:auctologue@auctologue.com" style="color: var(--primary-blue); text-decoration: none; margin: 0 0.75rem;">Contact</a>
             </p>
             <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">&copy; 2025 Auctologue. All rights reserved.</p>
-        </footer>
+    </footer>
         </div>
     </main>
     <script>
