@@ -232,7 +232,7 @@
 
         .aucto-speech-bubble {
             position: fixed;
-            padding: 0.45rem 0.9rem;
+            padding: 0.45rem 1.5rem 0.45rem 0.9rem;
             background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
             color: #1e293b;
             border: 1.5px solid #94a3b8;
@@ -240,6 +240,7 @@
             font-family: 'Playfair Display', Georgia, serif;
             font-size: 0.85rem;
             font-weight: 500;
+            text-align: left;
             white-space: nowrap;
             box-shadow:
                 0 3px 0 0 rgba(148, 163, 184, 0.35),
@@ -277,6 +278,121 @@
         }
         .aucto-speech-bubble.visible {
             display: block;
+        }
+        .aucto-bubble-close {
+            position: absolute;
+            top: 0.2rem;
+            right: 0.35rem;
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 1rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0.1rem;
+            margin: 0;
+            border-radius: 2px;
+        }
+        .aucto-bubble-close:hover {
+            color: #1e293b;
+        }
+
+        /* Scroll Aucto: appears on left when sections are in view */
+        .scroll-aucto {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding-left: 0.75rem;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease, top 0.5s ease;
+        }
+        .scroll-aucto.visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        .scroll-aucto img {
+            width: 140px;
+            height: auto;
+            flex-shrink: 0;
+        }
+        .scroll-aucto-bubble {
+            max-width: 200px;
+            padding: 0.5rem 1.5rem 0.5rem 0.85rem;
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            border: 1.5px solid #94a3b8;
+            border-radius: 1.2rem;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            line-height: 1.45;
+            text-align: left;
+            box-shadow: 0 3px 0 0 rgba(148, 163, 184, 0.3), 0 6px 14px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            position: relative;
+            pointer-events: auto;
+        }
+        .scroll-aucto-bubble .aucto-bubble-close {
+            top: 0.25rem;
+            right: 0.4rem;
+        }
+        .scroll-aucto-bubble.bubble-closed {
+            display: none;
+        }
+        .scroll-aucto-figure {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .scroll-aucto img {
+            cursor: pointer;
+            display: block;
+        }
+        .scroll-aucto-badge {
+            display: none;
+            position: absolute;
+            top: 10%;
+            right: 18%;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .scroll-aucto-badge.badge-show .scroll-aucto-badge-icon {
+            animation: badge-bounce 2s ease-in-out infinite;
+        }
+        @keyframes badge-bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            15% { transform: translateY(-2px) scale(1.05); }
+            30% { transform: translateY(0) scale(1); }
+            45% { transform: translateY(-1px) scale(1.02); }
+            60%, 100% { transform: translateY(0) scale(1); }
+        }
+        .scroll-aucto-badge-icon {
+            font-size: 22px;
+            line-height: 1;
+            filter: drop-shadow(0 0 4px rgba(255, 220, 100, 0.9)) drop-shadow(0 0 12px rgba(255, 200, 50, 0.6)) drop-shadow(0 0 20px rgba(255, 180, 30, 0.4));
+        }
+        .scroll-aucto.bubble-closed .scroll-aucto-badge.badge-show {
+            display: flex;
+        }
+        .scroll-aucto-bubble::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 1.5px solid #94a3b8;
+            border-radius: 50%;
+            box-shadow: 0 1px 0 rgba(148, 163, 184, 0.3);
         }
 
         main { flex: 1; position: relative; display: flex; flex-direction: column; }
@@ -341,50 +457,50 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
-        /* Intermittent bounce: bounce–boun–bou–bou (decaying bounces) then long pause */
-        @keyframes bound-tl {
-            0%, 4% { transform: translate(-50%, -50%); }
-            5% { transform: translate(-50%, calc(-50% - 10px)); }
-            7% { transform: translate(-50%, -50%); }
-            8.5% { transform: translate(-50%, calc(-50% - 6px)); }
-            10% { transform: translate(-50%, -50%); }
-            11% { transform: translate(-50%, calc(-50% - 3px)); }
-            12.5% { transform: translate(-50%, -50%); }
-            13.5% { transform: translate(-50%, calc(-50% - 1px)); }
-            15%, 100% { transform: translate(-50%, -50%); }
+        /* Gentle decaying bounce (bounce boun bou bou) when fish is near */
+        @keyframes float-tl {
+            0%, 100% { transform: translate(-50%, -50%) translate(0, 0); }
+            4% { transform: translate(-50%, -50%) translate(0, -6px); }
+            8% { transform: translate(-50%, -50%) translate(0, 0); }
+            12% { transform: translate(-50%, -50%) translate(0, -3px); }
+            16% { transform: translate(-50%, -50%) translate(0, 0); }
+            19% { transform: translate(-50%, -50%) translate(0, -1.5px); }
+            22% { transform: translate(-50%, -50%) translate(0, 0); }
+            24% { transform: translate(-50%, -50%) translate(0, -0.5px); }
+            26%, 100% { transform: translate(-50%, -50%) translate(0, 0); }
         }
-        @keyframes bound-bl {
-            0%, 4% { transform: translate(-50%, -50%); }
-            5% { transform: translate(-50%, calc(-50% - 10px)); }
-            7% { transform: translate(-50%, -50%); }
-            8.5% { transform: translate(-50%, calc(-50% - 6px)); }
-            10% { transform: translate(-50%, -50%); }
-            11% { transform: translate(-50%, calc(-50% - 3px)); }
-            12.5% { transform: translate(-50%, -50%); }
-            13.5% { transform: translate(-50%, calc(-50% - 1px)); }
-            15%, 100% { transform: translate(-50%, -50%); }
+        @keyframes float-bl {
+            0%, 100% { transform: translate(-50%, -50%) translate(0, 0); }
+            5% { transform: translate(-50%, -50%) translate(0, -5px); }
+            9% { transform: translate(-50%, -50%) translate(0, 0); }
+            13% { transform: translate(-50%, -50%) translate(0, -2.5px); }
+            17% { transform: translate(-50%, -50%) translate(0, 0); }
+            20% { transform: translate(-50%, -50%) translate(0, -1px); }
+            23% { transform: translate(-50%, -50%) translate(0, 0); }
+            25% { transform: translate(-50%, -50%) translate(0, -0.4px); }
+            27%, 100% { transform: translate(-50%, -50%) translate(0, 0); }
         }
-        @keyframes bound-tr {
-            0%, 4% { transform: translate(50%, -50%); }
-            5% { transform: translate(50%, calc(-50% - 10px)); }
-            7% { transform: translate(50%, -50%); }
-            8.5% { transform: translate(50%, calc(-50% - 6px)); }
-            10% { transform: translate(50%, -50%); }
-            11% { transform: translate(50%, calc(-50% - 3px)); }
-            12.5% { transform: translate(50%, -50%); }
-            13.5% { transform: translate(50%, calc(-50% - 1px)); }
-            15%, 100% { transform: translate(50%, -50%); }
+        @keyframes float-tr {
+            0%, 100% { transform: translate(50%, -50%) translate(0, 0); }
+            4% { transform: translate(50%, -50%) translate(0, -6px); }
+            8% { transform: translate(50%, -50%) translate(0, 0); }
+            12% { transform: translate(50%, -50%) translate(0, -3px); }
+            16% { transform: translate(50%, -50%) translate(0, 0); }
+            19% { transform: translate(50%, -50%) translate(0, -1.5px); }
+            22% { transform: translate(50%, -50%) translate(0, 0); }
+            24% { transform: translate(50%, -50%) translate(0, -0.5px); }
+            26%, 100% { transform: translate(50%, -50%) translate(0, 0); }
         }
-        @keyframes bound-br {
-            0%, 4% { transform: translate(50%, -50%); }
-            5% { transform: translate(50%, calc(-50% - 10px)); }
-            7% { transform: translate(50%, -50%); }
-            8.5% { transform: translate(50%, calc(-50% - 6px)); }
-            10% { transform: translate(50%, -50%); }
-            11% { transform: translate(50%, calc(-50% - 3px)); }
-            12.5% { transform: translate(50%, -50%); }
-            13.5% { transform: translate(50%, calc(-50% - 1px)); }
-            15%, 100% { transform: translate(50%, -50%); }
+        @keyframes float-br {
+            0%, 100% { transform: translate(50%, -50%) translate(0, 0); }
+            5% { transform: translate(50%, -50%) translate(0, -5px); }
+            9% { transform: translate(50%, -50%) translate(0, 0); }
+            13% { transform: translate(50%, -50%) translate(0, -2.5px); }
+            17% { transform: translate(50%, -50%) translate(0, 0); }
+            20% { transform: translate(50%, -50%) translate(0, -1px); }
+            23% { transform: translate(50%, -50%) translate(0, 0); }
+            25% { transform: translate(50%, -50%) translate(0, -0.4px); }
+            27%, 100% { transform: translate(50%, -50%) translate(0, 0); }
         }
 
         .hero-mascot {
@@ -475,10 +591,12 @@
             pointer-events: none;
         }
 
-        .halo-bubble.bubble-top-left { animation: bound-tl 9s ease-in-out infinite; }
-        .halo-bubble.bubble-bottom-left { animation: bound-bl 12s ease-in-out infinite 2.5s; }
-        .halo-bubble.bubble-top-right { animation: bound-tr 11s ease-in-out infinite 5s; }
-        .halo-bubble.bubble-bottom-right { animation: bound-br 10s ease-in-out infinite 1.2s; }
+        /* Bubbles animate only when a fish is near (JS adds .bubble-float) */
+        .halo-bubble.bubble-float.bubble-top-left { animation: float-tl 11s ease-out infinite; }
+        .halo-bubble.bubble-float.bubble-bottom-left { animation: float-bl 11.5s ease-out infinite 0.8s; }
+        .halo-bubble.bubble-float.bubble-top-right { animation: float-tr 10.5s ease-out infinite 1.2s; }
+        .halo-bubble.bubble-float.bubble-bottom-right { animation: float-br 11.2s ease-out infinite 0.5s; }
+        .halo-bubble.bubble-float:hover { animation-play-state: paused; }
 
         .halo-bubble:hover {
             border-color: rgba(96, 165, 250, 0.4);
@@ -527,17 +645,65 @@
         }
 
         @media (max-width: 768px) {
+            .scroll-aucto { padding-left: 0.4rem; }
+            .scroll-aucto img { width: 90px; }
+            .scroll-aucto-bubble { max-width: 180px; font-size: 0.75rem; padding: 0.45rem 1.25rem 0.45rem 0.7rem; }
+            .scroll-aucto-badge { top: -25%; right: -25%; }
+            .scroll-aucto-badge-icon { font-size: 18px; }
+        }
+
+        @media (max-width: 768px) {
             .nav-links { order: 3; width: 100%; justify-content: flex-start; }
             .hero-mascot { height: 22vh; }
-            .halo { width: 88vmin; height: 56vmin; max-height: 50vh; }
+            /* Mobile: flow layout so halo nav doesn’t overlap or feel cramped */
+            .halo {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: auto;
+                max-height: none;
+                margin: 0.5rem 0 0;
+            }
+            .halo-center {
+                position: static;
+                transform: none;
+                left: auto;
+                top: auto;
+                width: 100%;
+                flex: 0 0 100%;
+                order: 0;
+            }
             .halo-center h1 { font-size: 10vmin; }
             .halo .tagline { font-size: 3.2vmin; }
             .halo-bubble {
-                width: 24vmin;
-                height: 24vmin;
-                min-width: 88px;
-                min-height: 88px;
-                font-size: 2.6vmin;
+                position: static;
+                transform: none;
+                left: auto;
+                right: auto;
+                top: auto;
+                width: 72px;
+                height: 72px;
+                min-width: 72px;
+                min-height: 72px;
+                flex: 0 0 72px;
+                margin: 0.35rem;
+                font-size: 0.7rem;
+                order: 1;
+            }
+            .halo-bubble.bubble-top-left,
+            .halo-bubble.bubble-bottom-left,
+            .halo-bubble.bubble-top-right,
+            .halo-bubble.bubble-bottom-right {
+                animation: none;
+            }
+            .halo-bubble.bubble-top-left:hover,
+            .halo-bubble.bubble-bottom-left:hover,
+            .halo-bubble.bubble-top-right:hover,
+            .halo-bubble.bubble-bottom-right:hover {
+                transform: scale(1.05);
             }
             .page-section { padding: 3rem 1rem; }
             .page-section .section-card { padding: 1.5rem 1.5rem; }
@@ -569,7 +735,7 @@
             <a href="#home" class="nav-logo" id="nav-logo" aria-label="Home">
                 <span class="nav-logo-text">Auctologue</span>
             </a>
-            <div class="aucto-speech-bubble" id="aucto-speech-bubble" role="tooltip">Hi, I'm Aucto!</div>
+            <div class="aucto-speech-bubble" id="aucto-speech-bubble" role="tooltip">Hi, I'm Aucto! <button type="button" class="aucto-bubble-close" id="aucto-speech-bubble-close" aria-label="Close">×</button></div>
         </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
@@ -580,6 +746,14 @@
         </ul>
         <a href="https://app.auctologue.com/" class="nav-cta" target="_blank" rel="noopener">Open App</a>
     </nav>
+
+    <div class="scroll-aucto bubble-closed" id="scroll-aucto" aria-hidden="true">
+        <div class="scroll-aucto-figure">
+            <img src="Aucto_Hat_Transparent.png" alt="" id="scroll-aucto-img">
+            <span class="scroll-aucto-badge" id="scroll-aucto-badge" aria-hidden="true" aria-label="New message"><span class="scroll-aucto-badge-icon">💡</span></span>
+        </div>
+        <div class="scroll-aucto-bubble bubble-closed" id="scroll-aucto-bubble"><span id="scroll-aucto-bubble-text"></span><button type="button" class="aucto-bubble-close" id="scroll-aucto-bubble-close" aria-label="Close">×</button></div>
+    </div>
 
     <main>
         <section id="home" class="hero-section">
@@ -624,22 +798,6 @@
             <p style="text-align: center; color: var(--text-primary); font-weight: 500;">Stop settling for &ldquo;good enough.&rdquo; Leverage years of experience to protect your hammer prices.</p>
         </section>
 
-        <section id="founder" class="page-section">
-            <h2><span style="font-weight: normal">From the</span> Auction Tent to the Tech Stack.</h2>
-            <div class="founder-headshot-wrap" style="margin-bottom: 2rem;">
-                <div class="founder-headshot" style="width: clamp(140px, 18vw, 200px); height: clamp(140px, 18vw, 200px); border-radius: 50%; overflow: hidden; border: 3px solid var(--border-color); box-shadow: var(--shadow); flex-shrink: 0;">
-                    <img src="founder-headshot.jpg" alt="Amberleigh Scheungrab Wankel" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <p class="founder-byline" style="font-family: 'Times New Roman', Times, serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin: 0;">Amberleigh Scheungrab Wankel</p>
-            </div>
-            <div class="section-card">
-                <p>Amberleigh Scheungrab Wankel was raised in the world of antiques, the daughter of a dedicated collector and antiques dealer, trailing her mother through estate sales and auction houses before she could even drive. Her professional foundation was built in the trenches of old-timey live auctions, learning the rhythm of the trade under the legendary Buddy Updike.</p>
-                <p>After honing her skills at Nashville Auction School, Amberleigh proved her command of the gavel and made history by becoming the <strong>2006 Virginia Auctioneer Champion</strong>, the first woman ever to hold the title. This mastery in the ring taught her a vital lesson: a catalog is a financial instrument. She recognized early that substandard cataloging is a silent thief; even a 5% yield loss from vague descriptions compounds into a massive deficit over a career. To Amberleigh, accuracy is a mandate for profitability.</p>
-                <p>By merging a lifetime of auction expertise with modern tech, she combined her love for process-driven logic and &ldquo;upcycled&rdquo; innovation as the Founding Visionary and core idea architect of <strong>Kõik LLC</strong>, a company with a mission to help people manage the overwhelming burden of &ldquo;everything.&rdquo; She now maintains a passive role in daily operations leveraging her technical training to ensure technology continues to grow the mission.</p>
-                <p>To bridge the gap between traditional expertise and modern scale, Amberleigh earned her <strong>Bachelor of Science in Software Development and Entrepreneurship</strong> from the Estonian Entrepreneurship University of Applied Sciences (Mainor). Today, she leads <strong>Auctologue</strong>, advancing the bridge between traditional care and digital efficiency.</p>
-            </div>
-        </section>
-
         <section id="comparison" class="page-section">
             <h2>The Auctologue Difference</h2>
             <div class="section-card">
@@ -661,6 +819,22 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </section>
+
+        <section id="founder" class="page-section">
+            <h2><span style="font-weight: normal">From the</span> Auction Tent to the Tech Stack.</h2>
+            <div class="founder-headshot-wrap" style="margin-bottom: 2rem;">
+                <div class="founder-headshot" style="width: clamp(140px, 18vw, 200px); height: clamp(140px, 18vw, 200px); border-radius: 50%; overflow: hidden; border: 3px solid var(--border-color); box-shadow: var(--shadow); flex-shrink: 0;">
+                    <img src="founder-headshot.jpg" alt="Amberleigh Scheungrab Wankel" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <p class="founder-byline" style="font-family: 'Times New Roman', Times, serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin: 0;">Amberleigh Scheungrab Wankel</p>
+            </div>
+            <div class="section-card">
+                <p>Amberleigh Scheungrab Wankel was raised in the world of antiques, the daughter of a dedicated collector and antiques dealer, trailing her mother through estate sales and auction houses before she could even drive. Her professional foundation was built in the trenches of old-timey live auctions, learning the rhythm of the trade under the legendary Buddy Updike.</p>
+                <p>After honing her skills at Nashville Auction School, Amberleigh proved her command of the gavel and made history by becoming the <strong>2006 Virginia Auctioneer Champion</strong>, the first woman ever to hold the title. This mastery in the ring taught her a vital lesson: a catalog is a financial instrument. She recognized early that substandard cataloging is a silent thief; even a 5% yield loss from vague descriptions compounds into a massive deficit over a career. To Amberleigh, accuracy is a mandate for profitability.</p>
+                <p>By merging a lifetime of auction expertise with modern tech, she combined her love for process-driven logic and &ldquo;upcycled&rdquo; innovation as the Founding Visionary and core idea architect of <strong>Kõik LLC</strong>, a company with a mission to help people manage the overwhelming burden of &ldquo;everything.&rdquo; She now maintains a passive role in daily operations leveraging her technical training to ensure technology continues to grow the mission.</p>
+                <p>To bridge the gap between traditional expertise and modern scale, Amberleigh earned her <strong>Bachelor of Science in Software Development and Entrepreneurship</strong> from the Estonian Entrepreneurship University of Applied Sciences (Mainor). Today, she leads <strong>Auctologue</strong>, advancing the bridge between traditional care and digital efficiency.</p>
             </div>
         </section>
 
@@ -764,6 +938,113 @@
             document.addEventListener('click', function (e) {
                 if (!bubble.contains(e.target) && e.target !== heroAucto && !wrap.contains(e.target)) hideBubble();
             });
+            var speechBubbleClose = document.getElementById('aucto-speech-bubble-close');
+            if (speechBubbleClose) speechBubbleClose.addEventListener('click', function (e) { e.stopPropagation(); hideBubble(); });
+
+            var scrollAucto = document.getElementById('scroll-aucto');
+            var scrollBubble = document.getElementById('scroll-aucto-bubble');
+            var scrollBubbleText = document.getElementById('scroll-aucto-bubble-text');
+            var scrollBubbleClose = document.getElementById('scroll-aucto-bubble-close');
+            var sectionIds = ['bespoke', 'founder', 'comparison', 'extension'];
+            var sectionMessages = {
+                bespoke: 'This is our full service white glove cataloging solution. We handle the research and the details and you get a ready-to-upload catalog.',
+                founder: 'That\'s Amberleigh. Auctioneer, champion, and the visionary behind Auctologue.',
+                comparison: 'We catch what generic tools and tired catalogers miss. Maker-marks, brand details, the stuff that matters.',
+                extension: 'Our browser extension. Get titles and descriptions from the page you\'re on, no copy-paste.',
+                beta: 'Curious about joining our beta? Just ask!'
+            };
+            if (scrollAucto && scrollBubble && scrollBubbleText) {
+                var footerEl = document.querySelector('.footer');
+                var scrollAuctoImg = document.getElementById('scroll-aucto-img');
+                var scrollAuctoBadge = document.getElementById('scroll-aucto-badge');
+                var readSectionIds = {};
+                var currentSectionId = null;
+                function updateScrollAucto() {
+                    var sections = sectionIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+                    var viewportMid = window.innerHeight * 0.4;
+                    var activeSection = null;
+                    var activeTop = Infinity;
+                    for (var i = 0; i < sections.length; i++) {
+                        var r = sections[i].getBoundingClientRect();
+                        if (r.top <= viewportMid && r.bottom > 120) {
+                            if (r.top < activeTop) {
+                                activeTop = r.top;
+                                activeSection = sections[i];
+                            }
+                        }
+                    }
+                    if (footerEl) {
+                        var fr = footerEl.getBoundingClientRect();
+                        if (fr.top < window.innerHeight - 80) {
+                            activeSection = { id: 'beta' };
+                        }
+                    }
+                    if (activeSection) {
+                        var id = activeSection.id;
+                        currentSectionId = id;
+                        scrollBubbleText.textContent = sectionMessages[id] || '';
+                        scrollAucto.classList.add('visible');
+                        scrollAucto.style.top = '180px';
+                        scrollAucto.style.transform = 'translateY(-50%)';
+                        if (scrollAuctoBadge) {
+                            if (scrollBubble.classList.contains('bubble-closed') && !readSectionIds[id]) scrollAuctoBadge.classList.add('badge-show');
+                            else scrollAuctoBadge.classList.remove('badge-show');
+                        }
+                    } else {
+                        currentSectionId = null;
+                        scrollAucto.classList.remove('visible');
+                        if (scrollAuctoBadge) scrollAuctoBadge.classList.remove('badge-show');
+                    }
+                }
+                if (scrollBubbleClose) scrollBubbleClose.addEventListener('click', function (e) { e.stopPropagation(); scrollBubble.classList.add('bubble-closed'); scrollAucto.classList.add('bubble-closed'); updateScrollAucto(); });
+                if (scrollAuctoImg) scrollAuctoImg.addEventListener('click', function () {
+                    var isClosed = scrollBubble.classList.contains('bubble-closed');
+                    if (isClosed) {
+                        scrollBubble.classList.remove('bubble-closed');
+                        scrollAucto.classList.remove('bubble-closed');
+                        if (currentSectionId) readSectionIds[currentSectionId] = true;
+                        if (scrollAuctoBadge) scrollAuctoBadge.classList.remove('badge-show');
+                    } else {
+                        scrollBubble.classList.add('bubble-closed');
+                        scrollAucto.classList.add('bubble-closed');
+                        updateScrollAucto();
+                    }
+                });
+                window.addEventListener('scroll', function () { requestAnimationFrame(updateScrollAucto); });
+                window.addEventListener('resize', updateScrollAucto);
+                updateScrollAucto();
+            }
+
+            (function fishBubbleFloat() {
+                var fishes = document.querySelectorAll('.ocean-decor .fish');
+                var haloBubbles = document.querySelectorAll('.halo-bubble');
+                if (!fishes.length || !haloBubbles.length) return;
+                var nearThreshold = 160;
+                function dist(cx1, cy1, cx2, cy2) {
+                    var dx = cx1 - cx2, dy = cy1 - cy2;
+                    return Math.sqrt(dx * dx + dy * dy);
+                }
+                function check() {
+                    var fishCenters = [];
+                    for (var i = 0; i < fishes.length; i++) {
+                        var r = fishes[i].getBoundingClientRect();
+                        fishCenters.push({ x: (r.left + r.right) / 2, y: (r.top + r.bottom) / 2 });
+                    }
+                    for (var j = 0; j < haloBubbles.length; j++) {
+                        var br = haloBubbles[j].getBoundingClientRect();
+                        var bcx = (br.left + br.right) / 2, bcy = (br.top + br.bottom) / 2;
+                        var minD = Infinity;
+                        for (var k = 0; k < fishCenters.length; k++) {
+                            var d = dist(bcx, bcy, fishCenters[k].x, fishCenters[k].y);
+                            if (d < minD) minD = d;
+                        }
+                        if (minD <= nearThreshold) haloBubbles[j].classList.add('bubble-float');
+                        else haloBubbles[j].classList.remove('bubble-float');
+                    }
+                }
+                setInterval(check, 180);
+                check();
+            })();
         })();
     </script>
 </body>
