@@ -50,13 +50,26 @@
             text-align: justify;
         }
 
-        .ocean-decor {
-            position: fixed;
-            inset: 0;
+        .fish-zone {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Sea plants (grass) only in home section, at bottom */
+        .sea-plant-zone {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40vh;
             pointer-events: none;
             z-index: 0;
         }
-
         .sea-plant {
             position: absolute;
             bottom: 0;
@@ -97,44 +110,485 @@
             opacity: 0.95;
             background: transparent;
         }
-        .fish img { width: 100%; height: 100%; object-fit: contain; display: block; background: transparent; }
-        /* Fish glide in from edges; transform in keyframes = center + face direction of travel (scaleX). */
+        .fish img {
+            width: 100%; height: 100%; object-fit: contain; display: block; background: transparent; position: absolute; top: 0; left: 0;
+            animation: fish-wave-blur 4s ease-in-out infinite;
+        }
+        .fish-1 img { animation-delay: 0s; }
+        .fish-2 img { animation-delay: 0.7s; }
+        .fish-3 img { animation-delay: 1.4s; }
+        .fish-4 img { animation-delay: 2.1s; }
+        .fish-5 img { animation-delay: 0.3s; }
+        .fish-6 img { animation-delay: 1s; }
+        .fish-7 img { animation-delay: 1.7s; }
+        .fish-8 img { animation-delay: 2.4s; }
+        .fish-9 img { animation-delay: 0.5s; }
+        .fish-10 img { animation-delay: 1.2s; }
+        .fish-11 img { animation-delay: 1.9s; }
+        .fish-12 img { animation-delay: 2.6s; }
+        .fish-13 img { animation-delay: 0.2s; }
+        .fish-14 img { animation-delay: 0.9s; }
+        .fish-15 img { animation-delay: 1.6s; }
+        .fish-16 img { animation-delay: 2.3s; }
+        .fish-17 img { animation-delay: 0.4s; }
+        .fish-18 img { animation-delay: 1.1s; }
+        .fish-19 img { animation-delay: 1.8s; }
+        .fish-20 img { animation-delay: 2.5s; }
+        @keyframes fish-wave-blur {
+            0%, 18%, 36%, 54%, 72%, 90%, 100% { filter: blur(0); }
+            4%, 22%, 40%, 58%, 76%, 94% { filter: blur(2px); }
+        }
+        /* Fish move diagonally (DVD-style); no purely vertical segments. */
         @keyframes bounce-dvd-1 {
-            0%, 100% { left: -12%; top: 52%; transform: translate(-50%, -50%) scaleX(-1); }
-            6% { left: 10%; top: 52%; transform: translate(-50%, -50%) scaleX(-1); }
-            28% { left: 86%; top: 78%; transform: translate(-50%, -50%) scaleX(-1); }
-            52% { left: 86%; top: 42%; transform: translate(-50%, -50%) scaleX(-1); }
-            76% { left: 10%; top: 78%; transform: translate(-50%, -50%) scaleX(1); }
-            94% { left: 10%; top: 52%; transform: translate(-50%, -50%) scaleX(1); }
+            0% { left: -12%; top: 42%; transform: translate(-50%, -50%); }
+            33% { left: 35%; top: 42%; transform: translate(-50%, -50%); }
+            66% { left: 78%; top: 42%; transform: translate(-50%, -50%); }
+            100% { left: 112%; top: 42%; transform: translate(-50%, -50%); }
         }
         @keyframes bounce-dvd-2 {
-            0%, 100% { left: 112%; top: 58%; transform: translate(-50%, -50%) scaleX(-1); }
-            6% { left: 90%; top: 58%; transform: translate(-50%, -50%) scaleX(-1); }
-            28% { left: 8%; top: 75%; transform: translate(-50%, -50%) scaleX(-1); }
-            52% { left: 8%; top: 42%; transform: translate(-50%, -50%) scaleX(-1); }
-            76% { left: 90%; top: 75%; transform: translate(-50%, -50%) scaleX(1); }
-            94% { left: 90%; top: 58%; transform: translate(-50%, -50%) scaleX(1); }
+            0% { left: 112%; top: 42%; transform: translate(-50%, -50%); }
+            33% { left: 75%; top: 42%; transform: translate(-50%, -50%); }
+            66% { left: 32%; top: 42%; transform: translate(-50%, -50%); }
+            100% { left: -12%; top: 42%; transform: translate(-50%, -50%); }
         }
         @keyframes bounce-dvd-3 {
-            0%, 100% { left: 112%; top: 38%; transform: translate(-50%, -50%) scaleX(1); }
-            6% { left: 90%; top: 38%; transform: translate(-50%, -50%) scaleX(1); }
-            28% { left: 90%; top: 78%; transform: translate(-50%, -50%) scaleX(1); }
-            52% { left: 12%; top: 78%; transform: translate(-50%, -50%) scaleX(1); }
-            76% { left: 12%; top: 38%; transform: translate(-50%, -50%) scaleX(-1); }
-            94% { left: 90%; top: 38%; transform: translate(-50%, -50%) scaleX(-1); }
+            0% { left: -12%; top: 42%; transform: translate(-50%, -50%); }
+            33% { left: 38%; top: 45%; transform: translate(-50%, -50%); }
+            66% { left: 82%; top: 62%; transform: translate(-50%, -50%); }
+            100% { left: 112%; top: 80%; transform: translate(-50%, -50%); }
         }
         @keyframes bounce-dvd-4 {
-            0%, 100% { left: -12%; top: 65%; transform: translate(-50%, -50%) scaleX(1); }
-            6% { left: 10%; top: 65%; transform: translate(-50%, -50%) scaleX(1); }
-            28% { left: 10%; top: 38%; transform: translate(-50%, -50%) scaleX(1); }
-            52% { left: 88%; top: 38%; transform: translate(-50%, -50%) scaleX(1); }
-            76% { left: 88%; top: 65%; transform: translate(-50%, -50%) scaleX(-1); }
-            94% { left: 10%; top: 65%; transform: translate(-50%, -50%) scaleX(-1); }
+            0% { left: 112%; top: 80%; transform: translate(-50%, -50%); }
+            33% { left: 78%; top: 58%; transform: translate(-50%, -50%); }
+            66% { left: 35%; top: 42%; transform: translate(-50%, -50%); }
+            100% { left: -12%; top: 42%; transform: translate(-50%, -50%); }
         }
-        .fish-1 { animation: bounce-dvd-1 92s linear infinite 0s; }
-        .fish-2 { animation: bounce-dvd-2 95s linear infinite 8s; }
-        .fish-3 { animation: bounce-dvd-3 88s linear infinite 22s; }
-        .fish-4 { animation: bounce-dvd-4 98s linear infinite 15s; }
+        @keyframes bounce-dvd-5 {
+            0% { left: -12%; top: 48%; transform: translate(-50%, -50%); }
+            33% { left: 42%; top: 42%; transform: translate(-50%, -50%); }
+            66% { left: 85%; top: 55%; transform: translate(-50%, -50%); }
+            100% { left: 112%; top: 48%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-6 {
+            0% { left: 112%; top: 68%; transform: translate(-50%, -50%); }
+            33% { left: 72%; top: 58%; transform: translate(-50%, -50%); }
+            66% { left: 38%; top: 75%; transform: translate(-50%, -50%); }
+            100% { left: -12%; top: 68%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-7 {
+            0% { left: -12%; top: 58%; transform: translate(-50%, -50%); }
+            33% { left: 45%; top: 48%; transform: translate(-50%, -50%); }
+            66% { left: 88%; top: 68%; transform: translate(-50%, -50%); }
+            100% { left: 112%; top: 58%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-8 {
+            0% { left: 112%; top: 72%; transform: translate(-50%, -50%); }
+            33% { left: 68%; top: 62%; transform: translate(-50%, -50%); }
+            66% { left: 28%; top: 82%; transform: translate(-50%, -50%); }
+            100% { left: -12%; top: 72%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-9 {
+            0% { left: -12%; top: 42%; transform: translate(-50%, -50%); }
+            33% { left: 40%; top: 42%; transform: translate(-50%, -50%); }
+            66% { left: 82%; top: 42%; transform: translate(-50%, -50%); }
+            100% { left: 112%; top: 42%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-10 {
+            0% { left: 112%; top: 78%; transform: translate(-50%, -50%); }
+            33% { left: 70%; top: 68%; transform: translate(-50%, -50%); }
+            66% { left: 32%; top: 88%; transform: translate(-50%, -50%); }
+            100% { left: -12%; top: 78%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-11 {
+            0% { left: -12%; top: 42%; transform: translate(-50%, -50%); }
+            33% { left: 42%; top: 42%; transform: translate(-50%, -50%); }
+            66% { left: 80%; top: 45%; transform: translate(-50%, -50%); }
+            100% { left: 112%; top: 42%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-12 {
+            0% { left: 112%; top: 42%; transform: translate(-50%, -50%); }
+            33% { left: 75%; top: 45%; transform: translate(-50%, -50%); }
+            66% { left: 35%; top: 42%; transform: translate(-50%, -50%); }
+            100% { left: -12%; top: 42%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-13 {
+            0% { left: -12%; top: 52%; transform: translate(-50%, -50%); }
+            33% { left: 38%; top: 58%; transform: translate(-50%, -50%); }
+            66% { left: 85%; top: 46%; transform: translate(-50%, -50%); }
+            100% { left: 112%; top: 52%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-14 {
+            0% { left: 112%; top: 52%; transform: translate(-50%, -50%); }
+            33% { left: 72%; top: 46%; transform: translate(-50%, -50%); }
+            66% { left: 28%; top: 60%; transform: translate(-50%, -50%); }
+            100% { left: -12%; top: 52%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-15 {
+            0% { left: -12%; top: 62%; transform: translate(-50%, -50%); }
+            33% { left: 45%; top: 55%; transform: translate(-50%, -50%); }
+            66% { left: 88%; top: 72%; transform: translate(-50%, -50%); }
+            100% { left: 112%; top: 62%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-16 {
+            0% { left: 112%; top: 62%; transform: translate(-50%, -50%); }
+            33% { left: 68%; top: 70%; transform: translate(-50%, -50%); }
+            66% { left: 32%; top: 52%; transform: translate(-50%, -50%); }
+            100% { left: -12%; top: 62%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-17 {
+            0% { left: -12%; top: 42%; transform: translate(-50%, -50%); }
+            33% { left: 42%; top: 42%; transform: translate(-50%, -50%); }
+            66% { left: 78%; top: 42%; transform: translate(-50%, -50%); }
+            100% { left: 112%; top: 42%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-18 {
+            0% { left: 112%; top: 42%; transform: translate(-50%, -50%); }
+            33% { left: 72%; top: 42%; transform: translate(-50%, -50%); }
+            66% { left: 35%; top: 42%; transform: translate(-50%, -50%); }
+            100% { left: -12%; top: 42%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-19 {
+            0% { left: -12%; top: 82%; transform: translate(-50%, -50%); }
+            33% { left: 38%; top: 75%; transform: translate(-50%, -50%); }
+            66% { left: 85%; top: 88%; transform: translate(-50%, -50%); }
+            100% { left: 112%; top: 82%; transform: translate(-50%, -50%); }
+        }
+        @keyframes bounce-dvd-20 {
+            0% { left: 112%; top: 82%; transform: translate(-50%, -50%); }
+            33% { left: 68%; top: 88%; transform: translate(-50%, -50%); }
+            66% { left: 28%; top: 75%; transform: translate(-50%, -50%); }
+            100% { left: -12%; top: 82%; transform: translate(-50%, -50%); }
+        }
+        /* One facing per fish: odd = L→R (show right), even = R→L (show left). Same type never both on screen (paired delays). Max 5 on screen. */
+        @keyframes fish-face-right-1 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-left-1 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-right-2 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-left-2 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-right-3 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-left-3 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-right-4 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-left-4 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-right-5 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-left-5 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-right-6 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-left-6 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-right-7 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-left-7 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-right-8 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-left-8 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-right-9 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-left-9 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-right-10 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-left-10 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-right-11 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-left-11 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-right-12 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-left-12 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-right-13 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-left-13 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-right-14 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-left-14 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-right-15 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-left-15 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-right-16 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-left-16 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-right-17 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-left-17 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-right-18 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-left-18 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-right-19 { 0%, 100% { opacity: 1; } }
+        @keyframes fish-face-left-19 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-right-20 { 0%, 100% { opacity: 0; } }
+        @keyframes fish-face-left-20 { 0%, 100% { opacity: 1; } }
+        .fish .fish-right, .fish .fish-left { animation-fill-mode: backwards; }
+        /* 20 fish: (1,2)=goldfish, (3,4)=seahorse, (5,6)=betta, (7,8)=tropical, (9,10)=betta-red, (11,12)=cichlid, (13,14)=betta-teal, (15,16)=betta-gold, (17,18)=angelfish, (19,20)=rainbowfish. Delays set by JS (randomized entry order, R/L exclusivity and max 5 on screen preserved). */
+        .fish-1 .fish-right { animation: fish-face-right-1 74s linear infinite var(--fish-1-delay, 0s); }
+        .fish-1 .fish-left { animation: fish-face-left-1 74s linear infinite var(--fish-1-delay, 0s); }
+        .fish-2 .fish-right { animation: fish-face-right-2 74s linear infinite var(--fish-2-delay, 76s); }
+        .fish-2 .fish-left { animation: fish-face-left-2 74s linear infinite var(--fish-2-delay, 76s); }
+        .fish-3 .fish-right { animation: fish-face-right-3 78s linear infinite var(--fish-3-delay, 76s); }
+        .fish-3 .fish-left { animation: fish-face-left-3 78s linear infinite var(--fish-3-delay, 76s); }
+        .fish-4 .fish-right { animation: fish-face-right-4 78s linear infinite var(--fish-4-delay, 156s); }
+        .fish-4 .fish-left { animation: fish-face-left-4 78s linear infinite var(--fish-4-delay, 156s); }
+        .fish-5 .fish-right { animation: fish-face-right-5 76s linear infinite var(--fish-5-delay, 80s); }
+        .fish-5 .fish-left { animation: fish-face-left-5 76s linear infinite var(--fish-5-delay, 80s); }
+        .fish-6 .fish-right { animation: fish-face-right-6 76s linear infinite var(--fish-6-delay, 158s); }
+        .fish-6 .fish-left { animation: fish-face-left-6 76s linear infinite var(--fish-6-delay, 158s); }
+        .fish-7 .fish-right { animation: fish-face-right-7 72s linear infinite var(--fish-7-delay, 80s); }
+        .fish-7 .fish-left { animation: fish-face-left-7 72s linear infinite var(--fish-7-delay, 80s); }
+        .fish-8 .fish-right { animation: fish-face-right-8 72s linear infinite var(--fish-8-delay, 154s); }
+        .fish-8 .fish-left { animation: fish-face-left-8 72s linear infinite var(--fish-8-delay, 154s); }
+        .fish-9 .fish-right { animation: fish-face-right-9 79s linear infinite var(--fish-9-delay, 80s); }
+        .fish-9 .fish-left { animation: fish-face-left-9 79s linear infinite var(--fish-9-delay, 80s); }
+        .fish-10 .fish-right { animation: fish-face-right-10 79s linear infinite var(--fish-10-delay, 161s); }
+        .fish-10 .fish-left { animation: fish-face-left-10 79s linear infinite var(--fish-10-delay, 161s); }
+        .fish-11 .fish-right { animation: fish-face-right-11 75s linear infinite var(--fish-11-delay, 161s); }
+        .fish-11 .fish-left { animation: fish-face-left-11 75s linear infinite var(--fish-11-delay, 161s); }
+        .fish-12 .fish-right { animation: fish-face-right-12 75s linear infinite var(--fish-12-delay, 238s); }
+        .fish-12 .fish-left { animation: fish-face-left-12 75s linear infinite var(--fish-12-delay, 238s); }
+        .fish-13 .fish-right { animation: fish-face-right-13 73s linear infinite var(--fish-13-delay, 238s); }
+        .fish-13 .fish-left { animation: fish-face-left-13 73s linear infinite var(--fish-13-delay, 238s); }
+        .fish-14 .fish-right { animation: fish-face-right-14 73s linear infinite var(--fish-14-delay, 313s); }
+        .fish-14 .fish-left { animation: fish-face-left-14 73s linear infinite var(--fish-14-delay, 313s); }
+        .fish-15 .fish-right { animation: fish-face-right-15 77s linear infinite var(--fish-15-delay, 313s); }
+        .fish-15 .fish-left { animation: fish-face-left-15 77s linear infinite var(--fish-15-delay, 313s); }
+        .fish-16 .fish-right { animation: fish-face-right-16 77s linear infinite var(--fish-16-delay, 392s); }
+        .fish-16 .fish-left { animation: fish-face-left-16 77s linear infinite var(--fish-16-delay, 392s); }
+        .fish-17 .fish-right { animation: fish-face-right-17 71s linear infinite var(--fish-17-delay, 392s); }
+        .fish-17 .fish-left { animation: fish-face-left-17 71s linear infinite var(--fish-17-delay, 392s); }
+        .fish-18 .fish-right { animation: fish-face-right-18 71s linear infinite var(--fish-18-delay, 465s); }
+        .fish-18 .fish-left { animation: fish-face-left-18 71s linear infinite var(--fish-18-delay, 465s); }
+        .fish-19 .fish-right { animation: fish-face-right-19 76s linear infinite var(--fish-19-delay, 465s); }
+        .fish-19 .fish-left { animation: fish-face-left-19 76s linear infinite var(--fish-19-delay, 465s); }
+        .fish-20 .fish-right { animation: fish-face-right-20 76s linear infinite var(--fish-20-delay, 543s); }
+        .fish-20 .fish-left { animation: fish-face-left-20 76s linear infinite var(--fish-20-delay, 543s); }
+        .fish-1 { animation: bounce-dvd-1 74s linear infinite var(--fish-1-delay, 0s); animation-fill-mode: backwards; }
+        .fish-2 { animation: bounce-dvd-2 74s linear infinite var(--fish-2-delay, 76s); animation-fill-mode: backwards; }
+        .fish-3 { animation: bounce-dvd-3 78s linear infinite var(--fish-3-delay, 76s); animation-fill-mode: backwards; }
+        .fish-4 { animation: bounce-dvd-4 78s linear infinite var(--fish-4-delay, 156s); animation-fill-mode: backwards; }
+        .fish-5 { animation: bounce-dvd-5 76s linear infinite var(--fish-5-delay, 80s); animation-fill-mode: backwards; }
+        .fish-6 { animation: bounce-dvd-6 76s linear infinite var(--fish-6-delay, 158s); animation-fill-mode: backwards; }
+        .fish-7 { animation: bounce-dvd-7 72s linear infinite var(--fish-7-delay, 80s); animation-fill-mode: backwards; }
+        .fish-8 { animation: bounce-dvd-8 72s linear infinite var(--fish-8-delay, 154s); animation-fill-mode: backwards; }
+        .fish-9 { animation: bounce-dvd-9 79s linear infinite var(--fish-9-delay, 80s); animation-fill-mode: backwards; }
+        .fish-10 { animation: bounce-dvd-10 79s linear infinite var(--fish-10-delay, 161s); animation-fill-mode: backwards; }
+        .fish-11 { animation: bounce-dvd-11 75s linear infinite var(--fish-11-delay, 161s); animation-fill-mode: backwards; }
+        .fish-12 { animation: bounce-dvd-12 75s linear infinite var(--fish-12-delay, 238s); animation-fill-mode: backwards; }
+        .fish-13 { animation: bounce-dvd-13 73s linear infinite var(--fish-13-delay, 238s); animation-fill-mode: backwards; }
+        .fish-14 { animation: bounce-dvd-14 73s linear infinite var(--fish-14-delay, 313s); animation-fill-mode: backwards; }
+        .fish-15 { animation: bounce-dvd-15 77s linear infinite var(--fish-15-delay, 313s); animation-fill-mode: backwards; }
+        .fish-16 { animation: bounce-dvd-16 77s linear infinite var(--fish-16-delay, 392s); animation-fill-mode: backwards; }
+        .fish-17 { animation: bounce-dvd-17 71s linear infinite var(--fish-17-delay, 392s); animation-fill-mode: backwards; }
+        .fish-18 { animation: bounce-dvd-18 71s linear infinite var(--fish-18-delay, 465s); animation-fill-mode: backwards; }
+        .fish-19 { animation: bounce-dvd-19 76s linear infinite var(--fish-19-delay, 465s); animation-fill-mode: backwards; }
+        .fish-20 { animation: bounce-dvd-20 76s linear infinite var(--fish-20-delay, 543s); animation-fill-mode: backwards; }
+
+        /* Bespoke section: jellyfish floating (same logic as hero fish), full viewport width */
+        .jelly-zone {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100vw;
+            margin-left: -50vw;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        #bespoke { position: relative; }
+        #bespoke > *:not(.jelly-zone) { position: relative; z-index: 1; }
+        .jelly-zone .jellyfish {
+            position: absolute;
+            width: 70px;
+            height: auto;
+            opacity: 0.85;
+            will-change: left, top;
+        }
+        /* Explicit start positions so every jelly moves (animation-fill-mode: backwards uses 0% keyframe) */
+        .jelly-zone .jelly-1 { left: -10%; top: 15%; }
+        .jelly-zone .jelly-2 { left: 105%; top: 42%; }
+        .jelly-zone .jelly-3 { left: 90%; top: 80%; }
+        .jelly-zone .jelly-4 { left: -8%; top: 60%; }
+        .jelly-zone .jelly-5 { left: 100%; top: 10%; }
+        .jelly-zone .jelly-6 { left: -10%; top: 85%; }
+        .jelly-zone .jelly-7 { left: 105%; top: 42%; }
+        .jelly-zone .jelly-8 { left: -5%; top: 42%; }
+        .jelly-zone .jelly-9 { left: 105%; top: 90%; }
+        .jelly-zone .jelly-10 { left: -10%; top: 10%; }
+        .jelly-zone .jelly-11 { left: 105%; top: 70%; }
+        .jelly-zone .jelly-12 { left: -10%; top: 5%; }
+        .jelly-zone .jellyfish img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        @keyframes jelly-1 {
+            0%, 100% { left: -10%; top: 15%; }
+            20% { left: 25%; top: 42%; }
+            40% { left: 75%; top: 42%; }
+            60% { left: 85%; top: 70%; }
+            80% { left: 20%; top: 75%; }
+        }
+        @keyframes jelly-2 {
+            0%, 100% { left: 105%; top: 42%; }
+            25% { left: 80%; top: 42%; }
+            50% { left: 15%; top: 55%; }
+            75% { left: 5%; top: 80%; }
+        }
+        @keyframes jelly-3 {
+            0%, 100% { left: 90%; top: 80%; }
+            20% { left: 60%; top: 65%; }
+            50% { left: 25%; top: 42%; }
+            80% { left: -8%; top: 42%; }
+        }
+        @keyframes jelly-4 {
+            0%, 100% { left: -8%; top: 60%; }
+            30% { left: 40%; top: 45%; }
+            60% { left: 88%; top: 55%; }
+            90% { left: 50%; top: 85%; }
+        }
+        @keyframes jelly-5 {
+            0%, 100% { left: 100%; top: 10%; }
+            22% { left: 70%; top: 50%; }
+            55% { left: 30%; top: 75%; }
+            85% { left: -5%; top: 42%; }
+        }
+        @keyframes jelly-6 {
+            0%, 100% { left: -10%; top: 85%; }
+            28% { left: 80%; top: 70%; }
+            58% { left: 85%; top: 42%; }
+            88% { left: 10%; top: 15%; }
+        }
+        @keyframes jelly-7 {
+            0%, 100% { left: 105%; top: 42%; }
+            30% { left: 50%; top: 42%; }
+            60% { left: 10%; top: 60%; }
+            90% { left: 70%; top: 80%; }
+        }
+        @keyframes jelly-8 {
+            0%, 100% { left: -5%; top: 42%; }
+            25% { left: 60%; top: 50%; }
+            55% { left: 90%; top: 42%; }
+            85% { left: 30%; top: 75%; }
+        }
+        @keyframes jelly-9 {
+            0%, 100% { left: 105%; top: 90%; }
+            22% { left: 35%; top: 60%; }
+            50% { left: -8%; top: 42%; }
+            78% { left: 55%; top: 15%; }
+        }
+        @keyframes jelly-10 {
+            0%, 100% { left: -10%; top: 10%; }
+            33% { left: 75%; top: 45%; }
+            66% { left: 85%; top: 80%; }
+            90% { left: 5%; top: 50%; }
+        }
+        @keyframes jelly-11 {
+            0%, 100% { left: 105%; top: 70%; }
+            28% { left: 40%; top: 85%; }
+            58% { left: -10%; top: 45%; }
+            88% { left: 65%; top: 42%; }
+        }
+        @keyframes jelly-12 {
+            0%, 100% { left: -10%; top: 5%; }
+            35% { left: 15%; top: 65%; }
+            70% { left: 95%; top: 55%; }
+            95% { left: 45%; top: 90%; }
+        }
+        .jelly-zone .jelly-1 { animation: jelly-1 170s linear infinite 0s; animation-fill-mode: backwards; }
+        .jelly-zone .jelly-2 { animation: jelly-2 184s linear infinite 24s; animation-fill-mode: backwards; }
+        .jelly-zone .jelly-3 { animation: jelly-3 156s linear infinite 10s; animation-fill-mode: backwards; }
+        .jelly-zone .jelly-4 { animation: jelly-4 176s linear infinite 36s; animation-fill-mode: backwards; }
+        .jelly-zone .jelly-5 { animation: jelly-5 190s linear infinite 14s; animation-fill-mode: backwards; }
+        .jelly-zone .jelly-6 { animation: jelly-6 164s linear infinite 48s; animation-fill-mode: backwards; }
+        .jelly-zone .jelly-7 { animation: jelly-7 180s linear infinite 6s; animation-fill-mode: backwards; }
+        .jelly-zone .jelly-8 { animation: jelly-8 172s linear infinite 30s; animation-fill-mode: backwards; }
+        .jelly-zone .jelly-9 { animation: jelly-9 160s linear infinite 18s; animation-fill-mode: backwards; }
+        .jelly-zone .jelly-10 { animation: jelly-10 188s linear infinite 42s; animation-fill-mode: backwards; }
+        .jelly-zone .jelly-11 { animation: jelly-11 168s linear infinite 12s; animation-fill-mode: backwards; }
+        .jelly-zone .jelly-12 { animation: jelly-12 176s linear infinite 54s; animation-fill-mode: backwards; }
+
+        /* Extension section: anglerfish swim forward only (same logic as sharks), no backward movement */
+        .angler-zone {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100vw;
+            margin-left: -50vw;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        #extension { position: relative; }
+        #extension > *:not(.angler-zone) { position: relative; z-index: 1; }
+        .angler-zone .anglerfish {
+            position: absolute;
+            width: 80px;
+            height: auto;
+            opacity: 0.85;
+            will-change: left;
+        }
+        .angler-zone .anglerfish img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .angler-zone .anglerfish.face-left img { transform: scaleX(-1); }
+        @keyframes angler-swim-right {
+            0% { left: -12%; }
+            100% { left: 112%; }
+        }
+        @keyframes angler-swim-left {
+            0% { left: 112%; }
+            100% { left: -12%; }
+        }
+        .angler-zone .anglerfish.angler-right {
+            animation: angler-swim-right 90s linear infinite;
+            animation-fill-mode: backwards;
+        }
+        .angler-zone .anglerfish.angler-left {
+            animation: angler-swim-left 95s linear infinite;
+            animation-fill-mode: backwards;
+        }
+        .angler-zone .angler-1 { top: 20%; animation-delay: 0s; }
+        .angler-zone .angler-2 { top: 55%; animation-delay: 12s; }
+        .angler-zone .angler-3 { top: 70%; animation-delay: 6s; }
+        .angler-zone .angler-4 { top: 25%; animation-delay: 18s; }
+
+        /* Bio/Founder section: sharks, same zone logic, swim forward only (no flip in center) */
+        .shark-zone {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100vw;
+            margin-left: -50vw;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        #founder { position: relative; }
+        #founder > *:not(.shark-zone) { position: relative; z-index: 1; }
+        .shark-zone .shark {
+            position: absolute;
+            width: 140px;
+            height: auto;
+            opacity: 0.55;
+            will-change: left;
+        }
+        .shark-zone .shark img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        /* Swim right: start off left, end off right (use right-facing image) */
+        @keyframes shark-swim-right {
+            0% { left: -12%; }
+            100% { left: 112%; }
+        }
+        /* Swim left: start off right, end off left (use left-facing image, no flip) */
+        @keyframes shark-swim-left {
+            0% { left: 112%; }
+            100% { left: -12%; }
+        }
+        .shark-zone .shark-right {
+            animation: shark-swim-right 45s linear infinite;
+            animation-fill-mode: backwards;
+        }
+        .shark-zone .shark-left {
+            animation: shark-swim-left 50s linear infinite;
+            animation-fill-mode: backwards;
+        }
+        .shark-zone .shark-1 { top: 12%; animation-delay: 0s; }
+        .shark-zone .shark-2 { top: 42%; animation-delay: 8s; }
+        .shark-zone .shark-3 { top: 58%; animation-delay: 15s; }
+        .shark-zone .shark-4 { top: 78%; animation-delay: 5s; }
+        .shark-zone .shark-5 { top: 42%; animation-delay: 22s; }
+        .shark-zone .shark-6 { top: 65%; animation-delay: 11s; }
+        .shark-zone .shark-7 { top: 8%; animation-delay: 28s; }
+        .shark-zone .shark-8 { top: 48%; animation-delay: 3s; }
+        .shark-zone .shark-9 { top: 85%; animation-delay: 18s; }
 
         main { position: relative; z-index: 1; }
 
@@ -254,7 +708,7 @@
             content: '';
             position: absolute;
             left: -5px;
-            top: 38%;
+            top: 42%;
             transform: translateY(-50%);
             width: 12px;
             height: 12px;
@@ -399,6 +853,7 @@
 
         /* Hero: first viewport, centered content */
         #home {
+            height: 100vh;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -708,25 +1163,10 @@
             .page-section { padding: 3rem 1rem; }
             .page-section .section-card { padding: 1.5rem 1.5rem; }
         }
+
     </style>
 </head>
 <body>
-    <div class="ocean-decor" aria-hidden="true">
-        <div class="sea-plant sea-plant-1"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad1" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad1)" d="M40 200 Q20 160 45 120 Q15 80 50 50 Q25 25 55 5 L65 5 Q35 30 60 55 Q30 90 55 130 Q25 165 45 200 Z"/><path fill="url(#plantGrad1)" d="M12 200 Q-2 150 22 100 Q0 55 28 15 L36 15 Q10 58 32 102 Q5 152 15 200 Z"/></svg></div>
-        <div class="sea-plant sea-plant-2"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad2" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad2)" d="M75 200 Q55 150 80 100 Q50 60 85 25 L92 25 Q60 65 88 105 Q58 155 78 200 Z"/></svg></div>
-        <div class="sea-plant sea-plant-3"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad3" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad3)" d="M25 200 Q10 140 35 90 Q5 45 38 10 L45 10 Q15 50 40 95 Q12 145 28 200 Z"/><path fill="url(#plantGrad3)" d="M55 200 Q38 155 62 110 Q35 70 58 35 L66 35 Q42 72 64 112 Q38 158 52 200 Z"/></svg></div>
-        <div class="sea-plant sea-plant-4"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad4" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad4)" d="M40 200 Q20 160 45 120 Q15 80 50 50 Q25 25 55 5 L65 5 Q35 30 60 55 Q30 90 55 130 Q25 165 45 200 Z"/></svg></div>
-        <div class="sea-plant sea-plant-5"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad5" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad5)" d="M55 200 Q38 155 62 110 Q35 70 58 35 L66 35 Q42 72 64 112 Q38 158 52 200 Z"/></svg></div>
-        <div class="sea-plant sea-plant-6"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad6" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad6)" d="M25 200 Q10 140 35 90 Q5 45 38 10 L45 10 Q15 50 40 95 Q12 145 28 200 Z"/></svg></div>
-        <div class="sea-plant sea-plant-7"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad7" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad7)" d="M40 200 Q20 160 45 120 Q15 80 50 50 Q25 25 55 5 L65 5 Q35 30 60 55 Q30 90 55 130 Q25 165 45 200 Z"/><path fill="url(#plantGrad7)" d="M12 200 Q-2 150 22 100 Q0 55 28 15 L36 15 Q10 58 32 102 Q5 152 15 200 Z"/></svg></div>
-        <div class="sea-plant sea-plant-8"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad8" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad8)" d="M90 200 Q72 145 88 95 Q65 55 82 18 L90 18 Q72 58 90 98 Q70 148 85 200 Z"/></svg></div>
-        <div class="sea-plant sea-plant-9"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad9" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad9)" d="M75 200 Q55 150 80 100 Q50 60 85 25 L92 25 Q60 65 88 105 Q58 155 78 200 Z"/><path fill="url(#plantGrad9)" d="M25 200 Q10 140 35 90 Q5 45 38 10 L45 10 Q15 50 40 95 Q12 145 28 200 Z"/></svg></div>
-        <div class="sea-plant sea-plant-10"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad10" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad10)" d="M40 200 Q20 160 45 120 Q15 80 50 50 Q25 25 55 5 L65 5 Q35 30 60 55 Q30 90 55 130 Q25 165 45 200 Z"/></svg></div>
-        <div class="fish fish-1"><img src="goldfish.png" alt="Goldfish"></div>
-        <div class="fish fish-2"><img src="seahorse.png" alt="Seahorse"></div>
-        <div class="fish fish-3"><img src="betta.png" alt="Betta fish"></div>
-        <div class="fish fish-4"><img src="tropical-fish.png" alt="Tropical fish"></div>
-    </div>
     <nav class="navbar" aria-label="Main navigation">
         <div class="nav-logo-wrap">
             <button type="button" class="aucto-btn" id="aucto-btn" aria-label="Meet Aucto">
@@ -757,6 +1197,40 @@
 
     <main>
         <section id="home" class="hero-section">
+            <div class="sea-plant-zone" aria-hidden="true">
+                <div class="sea-plant sea-plant-1"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad1" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad1)" d="M40 200 Q20 160 45 120 Q15 80 50 50 Q25 25 55 5 L65 5 Q35 30 60 55 Q30 90 55 130 Q25 165 45 200 Z"/><path fill="url(#plantGrad1)" d="M12 200 Q-2 150 22 100 Q0 55 28 15 L36 15 Q10 58 32 102 Q5 152 15 200 Z"/></svg></div>
+                <div class="sea-plant sea-plant-2"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad2" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad2)" d="M75 200 Q55 150 80 100 Q50 60 85 25 L92 25 Q60 65 88 105 Q58 155 78 200 Z"/></svg></div>
+                <div class="sea-plant sea-plant-3"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad3" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad3)" d="M25 200 Q10 140 35 90 Q5 45 38 10 L45 10 Q15 50 40 95 Q12 145 28 200 Z"/><path fill="url(#plantGrad3)" d="M55 200 Q38 155 62 110 Q35 70 58 35 L66 35 Q42 72 64 112 Q38 158 52 200 Z"/></svg></div>
+                <div class="sea-plant sea-plant-4"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad4" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad4)" d="M40 200 Q20 160 45 120 Q15 80 50 50 Q25 25 55 5 L65 5 Q35 30 60 55 Q30 90 55 130 Q25 165 45 200 Z"/></svg></div>
+                <div class="sea-plant sea-plant-5"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad5" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad5)" d="M55 200 Q38 155 62 110 Q35 70 58 35 L66 35 Q42 72 64 112 Q38 158 52 200 Z"/></svg></div>
+                <div class="sea-plant sea-plant-6"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad6" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad6)" d="M25 200 Q10 140 35 90 Q5 45 38 10 L45 10 Q15 50 40 95 Q12 145 28 200 Z"/></svg></div>
+                <div class="sea-plant sea-plant-7"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad7" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad7)" d="M40 200 Q20 160 45 120 Q15 80 50 50 Q25 25 55 5 L65 5 Q35 30 60 55 Q30 90 55 130 Q25 165 45 200 Z"/><path fill="url(#plantGrad7)" d="M12 200 Q-2 150 22 100 Q0 55 28 15 L36 15 Q10 58 32 102 Q5 152 15 200 Z"/></svg></div>
+                <div class="sea-plant sea-plant-8"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad8" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad8)" d="M90 200 Q72 145 88 95 Q65 55 82 18 L90 18 Q72 58 90 98 Q70 148 85 200 Z"/></svg></div>
+                <div class="sea-plant sea-plant-9"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad9" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad9)" d="M75 200 Q55 150 80 100 Q50 60 85 25 L92 25 Q60 65 88 105 Q58 155 78 200 Z"/><path fill="url(#plantGrad9)" d="M25 200 Q10 140 35 90 Q5 45 38 10 L45 10 Q15 50 40 95 Q12 145 28 200 Z"/></svg></div>
+                <div class="sea-plant sea-plant-10"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad10" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad10)" d="M40 200 Q20 160 45 120 Q15 80 50 50 Q25 25 55 5 L65 5 Q35 30 60 55 Q30 90 55 130 Q25 165 45 200 Z"/></svg></div>
+            </div>
+            <div class="fish-zone">
+                <div class="fish fish-1"><img src="goldfish-flipped.png" alt="" class="fish-right"><img src="goldfish.png" alt="" class="fish-left"></div>
+                <div class="fish fish-2"><img src="goldfish-flipped.png" alt="" class="fish-right"><img src="goldfish.png" alt="" class="fish-left"></div>
+                <div class="fish fish-3"><img src="seahorse.png" alt="" class="fish-right"><img src="seahorse-flipped.png" alt="" class="fish-left"></div>
+                <div class="fish fish-4"><img src="seahorse.png" alt="" class="fish-right"><img src="seahorse-flipped.png" alt="" class="fish-left"></div>
+                <div class="fish fish-5"><img src="betta-flipped.png" alt="" class="fish-right"><img src="betta.png" alt="" class="fish-left"></div>
+                <div class="fish fish-6"><img src="betta-flipped.png" alt="" class="fish-right"><img src="betta.png" alt="" class="fish-left"></div>
+                <div class="fish fish-7"><img src="tropical-fish.png" alt="" class="fish-right"><img src="tropical-fish-flipped.png" alt="" class="fish-left"></div>
+                <div class="fish fish-8"><img src="tropical-fish.png" alt="" class="fish-right"><img src="tropical-fish-flipped.png" alt="" class="fish-left"></div>
+                <div class="fish fish-9"><img src="betta-red.png" alt="" class="fish-right"><img src="betta-red-flipped.png" alt="" class="fish-left"></div>
+                <div class="fish fish-10"><img src="betta-red.png" alt="" class="fish-right"><img src="betta-red-flipped.png" alt="" class="fish-left"></div>
+                <div class="fish fish-11"><img src="cichlid-flipped.png" alt="" class="fish-right"><img src="cichlid.png" alt="" class="fish-left"></div>
+                <div class="fish fish-12"><img src="cichlid-flipped.png" alt="" class="fish-right"><img src="cichlid.png" alt="" class="fish-left"></div>
+                <div class="fish fish-13"><img src="betta-teal.png" alt="" class="fish-right"><img src="betta-teal-flipped.png" alt="" class="fish-left"></div>
+                <div class="fish fish-14"><img src="betta-teal.png" alt="" class="fish-right"><img src="betta-teal-flipped.png" alt="" class="fish-left"></div>
+                <div class="fish fish-15"><img src="betta-gold.png" alt="" class="fish-right"><img src="betta-gold-flipped.png" alt="" class="fish-left"></div>
+                <div class="fish fish-16"><img src="betta-gold.png" alt="" class="fish-right"><img src="betta-gold-flipped.png" alt="" class="fish-left"></div>
+                <div class="fish fish-17"><img src="angelfish-flipped.png" alt="" class="fish-right"><img src="angelfish.png" alt="" class="fish-left"></div>
+                <div class="fish fish-18"><img src="angelfish-flipped.png" alt="" class="fish-right"><img src="angelfish.png" alt="" class="fish-left"></div>
+                <div class="fish fish-19"><img src="rainbowfish-flipped.png" alt="" class="fish-right"><img src="rainbowfish.png" alt="" class="fish-left"></div>
+                <div class="fish fish-20"><img src="rainbowfish-flipped.png" alt="" class="fish-right"><img src="rainbowfish.png" alt="" class="fish-left"></div>
+            </div>
             <div class="hero">
                 <img src="Aucto_Hat_Transparent.png" alt="Aucto" class="hero-mascot" id="hero-aucto">
                 <div class="halo" aria-label="Navigation">
@@ -773,6 +1247,20 @@
         </section>
 
         <section id="bespoke" class="page-section">
+            <div class="jelly-zone" aria-hidden="true">
+                <div class="jellyfish jelly-1"><img src="jellyfish.svg" alt=""></div>
+                <div class="jellyfish jelly-2"><img src="jellyfish.svg" alt=""></div>
+                <div class="jellyfish jelly-3"><img src="jellyfish.svg" alt=""></div>
+                <div class="jellyfish jelly-4"><img src="jellyfish.svg" alt=""></div>
+                <div class="jellyfish jelly-5"><img src="jellyfish.svg" alt=""></div>
+                <div class="jellyfish jelly-6"><img src="jellyfish.svg" alt=""></div>
+                <div class="jellyfish jelly-7"><img src="jellyfish.svg" alt=""></div>
+                <div class="jellyfish jelly-8"><img src="jellyfish.svg" alt=""></div>
+                <div class="jellyfish jelly-9"><img src="jellyfish.svg" alt=""></div>
+                <div class="jellyfish jelly-10"><img src="jellyfish.svg" alt=""></div>
+                <div class="jellyfish jelly-11"><img src="jellyfish.svg" alt=""></div>
+                <div class="jellyfish jelly-12"><img src="jellyfish.svg" alt=""></div>
+            </div>
             <h2>Bespoke Cataloging</h2>
             <p class="section-subtitle" style="color: var(--text-secondary); margin-bottom: 1rem;">Managed by Experts. Enhanced by Technology.</p>
             <div class="section-card">
@@ -823,6 +1311,17 @@
         </section>
 
         <section id="founder" class="page-section">
+            <div class="shark-zone" aria-hidden="true">
+                <div class="shark shark-right shark-1"><img src="shark-left-flipped.png" alt=""></div>
+                <div class="shark shark-left shark-2"><img src="shark-right.png" alt=""></div>
+                <div class="shark shark-right shark-3"><img src="shark-right-flipped.png" alt=""></div>
+                <div class="shark shark-left shark-4"><img src="shark-left.png" alt=""></div>
+                <div class="shark shark-right shark-5"><img src="shark-left-flipped.png" alt=""></div>
+                <div class="shark shark-left shark-6"><img src="shark-right.png" alt=""></div>
+                <div class="shark shark-right shark-7"><img src="shark-right-flipped.png" alt=""></div>
+                <div class="shark shark-left shark-8"><img src="shark-left.png" alt=""></div>
+                <div class="shark shark-right shark-9"><img src="shark-left-flipped.png" alt=""></div>
+            </div>
             <h2><span style="font-weight: normal">From the</span> Auction Tent to the Tech Stack.</h2>
             <div class="founder-headshot-wrap" style="margin-bottom: 2rem;">
                 <div class="founder-headshot" style="width: clamp(140px, 18vw, 200px); height: clamp(140px, 18vw, 200px); border-radius: 50%; overflow: hidden; border: 3px solid var(--border-color); box-shadow: var(--shadow); flex-shrink: 0;">
@@ -839,6 +1338,12 @@
         </section>
 
         <section id="extension" class="page-section">
+            <div class="angler-zone" aria-hidden="true">
+                <div class="anglerfish angler-right angler-1"><img src="anglerfish.png" alt=""></div>
+                <div class="anglerfish angler-left angler-2 face-left"><img src="anglerfish.png" alt=""></div>
+                <div class="anglerfish angler-right angler-3"><img src="anglerfish.png" alt=""></div>
+                <div class="anglerfish angler-left angler-4 face-left"><img src="anglerfish.png" alt=""></div>
+            </div>
             <h2>Catalog Assistant</h2>
             <p class="section-subtitle" style="color: var(--text-secondary); margin-bottom: 0.5rem;">A browser extension that transforms manual cataloging into automated efficiency.</p>
             <div style="text-align: center; margin-bottom: 1.5rem;">
@@ -904,6 +1409,27 @@
                     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 });
             });
+
+            (function randomizeFishEntryOrder() {
+                var zone = document.querySelector('#home .fish-zone');
+                if (!zone) return;
+                var slotPairs = [[0, 76], [76, 156], [80, 158], [80, 154], [80, 161], [161, 238], [238, 313], [313, 392], [392, 465], [465, 543]];
+                var types = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+                for (var i = types.length - 1; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var t = types[i]; types[i] = types[j]; types[j] = t;
+                }
+                var delays = [];
+                for (var i = 0; i < 10; i++) {
+                    var odd = types[i] * 2 + 1, even = types[i] * 2 + 2;
+                    delays[odd - 1] = slotPairs[i][0];
+                    delays[even - 1] = slotPairs[i][1];
+                }
+                for (var n = 1; n <= 20; n++) {
+                    var el = zone.querySelector('.fish-' + n);
+                    if (el) el.style.setProperty('--fish-' + n + '-delay', delays[n - 1] + 's');
+                }
+            })();
 
             var bubble = document.getElementById('aucto-speech-bubble');
             var heroAucto = document.getElementById('hero-aucto');
@@ -1016,7 +1542,7 @@
             }
 
             (function fishBubbleFloat() {
-                var fishes = document.querySelectorAll('.ocean-decor .fish');
+                var fishes = document.querySelectorAll('#home .fish');
                 var haloBubbles = document.querySelectorAll('.halo-bubble');
                 if (!fishes.length || !haloBubbles.length) return;
                 var nearThreshold = 160;
