@@ -635,6 +635,29 @@
             box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
         }
 
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+        .nav-hamburger-bar {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: currentColor;
+            border-radius: 1px;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
         .aucto-speech-bubble {
             position: fixed;
             padding: 0.45rem 2.5rem 0.45rem 1rem;
@@ -1090,13 +1113,45 @@
         @media (max-width: 768px) {
             .scroll-aucto { padding-left: 0.4rem; }
             .scroll-aucto img { width: 90px; }
+            .scroll-aucto.visible {
+                top: auto !important;
+                bottom: 1rem !important;
+                transform: none !important;
+            }
             .scroll-aucto-bubble { max-width: 180px; font-size: 0.75rem; padding: 0.45rem 2.25rem 0.45rem 0.7rem; }
             .scroll-aucto-badge { top: -25%; right: -25%; }
             .scroll-aucto-badge-icon { font-size: 18px; }
         }
 
         @media (max-width: 768px) {
-            .nav-links { order: 3; width: 100%; justify-content: flex-start; }
+            .aucto-speech-bubble {
+                max-width: 85vw;
+                white-space: normal;
+            }
+            .nav-hamburger { display: flex; order: 2; }
+            .nav-hamburger[aria-expanded="true"] .nav-hamburger-bar:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+            .nav-hamburger[aria-expanded="true"] .nav-hamburger-bar:nth-child(2) {
+                opacity: 0;
+            }
+            .nav-hamburger[aria-expanded="true"] .nav-hamburger-bar:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+            .nav-links {
+                order: 3;
+                width: 100%;
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                padding: 0.5rem 0 0;
+                border-top: 1px solid var(--border-color);
+                margin-top: 0.5rem;
+            }
+            .navbar.menu-open .nav-links { display: flex; }
+            .nav-links a { padding: 0.75rem 0.5rem; display: block; }
+            .nav-cta { order: 4; width: 100%; display: none; margin-top: 0.5rem; text-align: center; }
+            .navbar.menu-open .nav-cta { display: inline-block; width: auto; margin-top: 0.75rem; }
             .hero-mascot { height: 22vh; }
             /* Mobile: flow layout so halo nav doesn’t overlap or feel cramped */
             .halo {
@@ -1165,11 +1220,16 @@
             </a>
             <div class="aucto-speech-bubble" id="aucto-speech-bubble" role="tooltip">Hi, I'm Aucto! <button type="button" class="aucto-bubble-mute" id="aucto-speech-bubble-mute" aria-label="Mute">🔇</button><button type="button" class="aucto-bubble-close" id="aucto-speech-bubble-close" aria-label="Close">×</button></div>
         </div>
-        <ul class="nav-links">
+        <button type="button" class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+            <span class="nav-hamburger-bar"></span>
+            <span class="nav-hamburger-bar"></span>
+            <span class="nav-hamburger-bar"></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#bespoke">Bespoke</a></li>
-            <li><a href="#founder">Founder</a></li>
             <li><a href="#comparison">Comparison</a></li>
+            <li><a href="#founder">Founder</a></li>
             <li><a href="#extension">Extension</a></li>
         </ul>
         <a href="https://app.auctologue.com/" class="nav-cta" target="_blank" rel="noopener">Open App</a>
@@ -1398,6 +1458,33 @@
                     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
                 });
             });
+
+            (function navHamburger() {
+                var hamburger = document.getElementById('nav-hamburger');
+                var navbar = document.querySelector('.navbar');
+                var navLinks = document.getElementById('nav-links');
+                if (!hamburger || !navbar) return;
+                function closeMenu() {
+                    navbar.classList.remove('menu-open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    hamburger.setAttribute('aria-label', 'Open menu');
+                }
+                function openMenu() {
+                    navbar.classList.add('menu-open');
+                    hamburger.setAttribute('aria-expanded', 'true');
+                    hamburger.setAttribute('aria-label', 'Close menu');
+                }
+                function toggleMenu() {
+                    if (navbar.classList.contains('menu-open')) closeMenu();
+                    else openMenu();
+                }
+                hamburger.addEventListener('click', toggleMenu);
+                if (navLinks) {
+                    navLinks.querySelectorAll('a[href^="#"]').forEach(function (a) {
+                        a.addEventListener('click', closeMenu);
+                    });
+                }
+            })();
 
             (function fishEntrySequence() {
                 var zone = document.querySelector('#home .fish-zone');
