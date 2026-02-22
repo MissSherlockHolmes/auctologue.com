@@ -1950,7 +1950,7 @@
                 extension: 'Sound_Bytes/ElevenLabs_2026-02-22T18_44_28_Edward - British, Dark, Seductive, Low_pvc_sp112_s30_sb70_se100_b_m2.mp3',
                 beta: 'Sound_Bytes/ElevenLabs_2026-02-22T18_45_21_Edward - British, Dark, Seductive, Low_pvc_sp112_s30_sb70_se100_b_m2.mp3'
             };
-            var auctoMuted = (function() { try { return sessionStorage.getItem(AUCTO_MUTE_KEY) === '1'; } catch (e) { return false; } })();
+            var auctoMuted = (function() { try { return sessionStorage.getItem(AUCTO_MUTE_KEY) !== '0'; } catch (e) { return true; } })();
             var auctoCurrentAudio = null;
             function stopAuctoSound() {
                 if (auctoCurrentAudio) {
@@ -1984,12 +1984,10 @@
             window.auctoPlay = function(key) {
                 console.log('[auctoPlay] key=', key);
                 stopAuctoSound();
-                try {
-                    if (sessionStorage.getItem(AUCTO_MUTE_KEY) === '1') {
-                        console.log('[auctoPlay] skipped: muted');
-                        return;
-                    }
-                } catch (e) {}
+                if (auctoMuted) {
+                    console.log('[auctoPlay] skipped: muted');
+                    return;
+                }
                 var src = auctoSounds[key];
                 if (!src) {
                     console.log('[auctoPlay] skipped: no src for key');
