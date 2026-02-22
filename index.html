@@ -1163,12 +1163,13 @@
                 display: flex;
                 flex-wrap: wrap;
                 flex-direction: row;
-                justify-content: space-evenly;
+                justify-content: center;
                 align-items: center;
                 width: 100%;
                 height: auto;
                 max-height: none;
                 margin: 0.5rem 0 0;
+                gap: 0.5rem 0.6rem; /* even horizontal gap between all bubbles */
             }
             .halo-center {
                 position: static;
@@ -1192,8 +1193,8 @@
                 height: 72px;
                 min-width: 72px;
                 min-height: 72px;
-                flex: 0 0 72px;
-                margin: 4.25rem 0 0.35rem 0;
+                flex: 0 0 72px; /* fixed size so gap alone controls spacing */
+                margin: 4.25rem 0 0.35rem 0; /* no side margins – gap handles spacing */
                 font-size: 0.7rem;
                 order: 1;
             }
