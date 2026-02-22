@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog Assistant — Auctologue Extension</title>
+    <meta name="description" content="Auctologue Catalog Assistant is a powerful tool for auction houses looking to streamline their cataloging process. Our tech stack automatically generates professional titles, descriptions, and categories from product images, saving hours of manual work and reducing cataloging errors." />
+    <meta property="og:title" content="Auctologue Catalog Assistant" />
+    <meta property="og:site_name" content="Auctologue" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Auctologue Catalog Assistant streamlines cataloging with automatic titles, descriptions, and categories from product images." />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image" content="icon128.png" />
+    <meta name="theme-color" content="#0b1220" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon128.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon128.png">
+    <link rel="apple-touch-icon" href="icon128.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-blue: #3b82f6;
+            --dark-blue: #2563eb;
+            --accent-blue: #60a5fa;
+            --brand-blue: #93c5fd;
+            --dark-bg: #0b1220;
+            --card-bg: #111827;
+            --card-bg-alt: #0f172a;
+            --text-primary: #e5e7eb;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: #1f2937;
+            --border-light: #334155;
+            --shadow: 0 10px 30px rgba(0,0,0,0.35);
+            --border-radius: 10px;
+            --border-radius-lg: 16px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--dark-bg);
+        }
+
+        .header-image {
+            width: 100%;
+            background: var(--card-bg);
+            text-align: center;
+            padding: 40px 20px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .banner-image {
+            width: auto;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            border-radius: var(--border-radius);
+        }
+
+        .main-content { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 4rem;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .hero-section h1 { color: var(--text-primary); font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .hero-section .subtitle { font-size: 1.3rem; color: var(--text-secondary); margin-bottom: 2rem; }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(180deg, var(--primary-blue), var(--dark-blue));
+            color: var(--text-primary);
+            padding: 0.7rem 1rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+            border: 1px solid var(--primary-blue);
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(180deg, var(--dark-blue), var(--primary-blue));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .section h2 { color: var(--text-primary); font-size: 2.2rem; margin-bottom: 1.5rem; text-align: center; }
+        .section h3 { color: var(--primary-blue); font-size: 1.5rem; margin: 2rem 0 1rem; }
+        .section p { font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-secondary); }
+
+        .benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 2rem 0; }
+
+        .benefit-card {
+            background: linear-gradient(180deg, var(--card-bg), var(--card-bg-alt));
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .benefit-card h4 { color: var(--primary-blue); font-size: 1.3rem; margin-bottom: 1rem; }
+
+        .how-it-works {
+            background: var(--dark-bg);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; margin-top: 2rem; }
+        .step { text-align: center; padding: 1.5rem; }
+
+        .step-number {
+            background: var(--primary-blue);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+
+        .footer {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer a { color: var(--primary-blue); text-decoration: none; margin: 0 1rem; }
+        .footer a:hover { text-decoration: underline; }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo { font-weight: 700; font-size: 1.25rem; color: var(--text-primary); text-decoration: none; }
+        .nav-logo:hover { color: var(--accent-blue); }
+
+        .nav-links { display: flex; align-items: center; flex-wrap: wrap; gap: 0.25rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover { color: var(--text-primary); background: rgba(59, 130, 246, 0.1); }
+
+        .nav-cta {
+            display: inline-block;
+            background: linear-gradient(180deg, var(--primary-blue), var(--dark-blue));
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid var(--primary-blue);
+            transition: all 0.2s ease;
+        }
+        .nav-cta:hover {
+            background: linear-gradient(180deg, var(--dark-blue), var(--primary-blue));
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 0.6rem 1rem; }
+            .nav-links { order: 3; width: 100%; justify-content: flex-start; }
+            .hero-section h1 { font-size: 2.2rem; }
+            .hero-section .subtitle { font-size: 1.1rem; }
+            .main-content { padding: 2rem 1rem; }
+            .section h2 { font-size: 1.8rem; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 1024px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+    </style>
+</head>
+<body>
+    <nav class="navbar" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo">Auctologue</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="bespoke.html">Bespoke</a></li>
+            <li><a href="founder.html">Founder</a></li>
+            <li><a href="comparison.html">Comparison</a></li>
+            <li><a href="extension.html">Extension</a></li>
+            <li><a href="test-listing.html">Test Catalog</a></li>
+        </ul>
+        <a href="https://app.auctologue.com/" class="nav-cta" target="_blank" rel="noopener">Open App</a>
+    </nav>
+
+    <div class="header-image">
+        <img src="Auctologue_Future_World_Marquee_web.jpg" alt="Auctologue Future World" class="banner-image">
+    </div>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <h1>Catalog Assistant</h1>
+            <p class="subtitle">Transform manual cataloging into automated efficiency.</p>
+            <p>For decades, auction houses, estate sellers, and catalog managers have faced the same challenge: turning a room full of items into an organized catalog that bidders and buyers can understand. The process has traditionally involved long hours of manual work — in addition to photographing each object: typing out titles, researching descriptions, and copy-pasting details from one window to another.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#how-it-works" class="cta-button">Learn How It Works</a>
+                <a href="test-listing.html" class="cta-button">Test Catalog</a>
+                <a href="https://app.auctologue.com/" class="cta-button" target="_blank" rel="noopener">Open App</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>The Cataloging Challenge</h2>
+            <p>Anyone who has ever worked an estate auction or managed a product catalog knows how quickly the hours add up. A single auction might contain hundreds of objects, and each one requires at least a basic entry. Experienced staff members can move quickly, but the human brain has limits. As fatigue sets in, errors creep into the process: typos, mistakes and missed items of value that slip through unnoticed because the cataloger simply ran out of time or energy.</p>
+            <p>This has always been the bottleneck of online cataloging. The manual process is tedious, repetitive, and error-prone. Every copy-paste from one window to another increases the chance of a mistake. Every late-night typing session increases the chance that something important will be overlooked. Even the best catalogers — people with years of experience and sharp eyes for detail — are still human, and human attention wears thin with fatigue and repetition.</p>
+        </section>
+
+        <section class="section">
+            <h2>Our Solution</h2>
+            <img src="Aucto_in_a_Chair_web.jpg" alt="Aucto in a Chair" class="hero-image">
+            <p>Auctologue Catalog Assistant was created to relieve this burden. Instead of forcing you to research and copy-paste by hand, the extension automatically retrieves images directly from the page you are viewing. Those images are securely transmitted to our processing system, where they are analyzed and transformed into structured, catalog-ready entries. In just seconds, you receive professional titles, descriptions, and suggested categories — no switching between windows, no extra typing, no endless copy-paste.</p>
+        </section>
+
+        <section class="section">
+            <h2>Key Benefits</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h4>🚀 Speed & Efficiency</h4>
+                    <p>Removes the need for copy-pasting between windows and speeds up catalog creation by processing images automatically.</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>🎯 Consistency</h4>
+                    <p>Maintains consistency across hundreds of entries, even late at night, reducing fatigue-related errors.</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>👥 Team Empowerment</h4>
+                    <p>Bridges the gap between learners and experts: new staff can produce expert-level entries, while experienced catalogers gain speed and efficiency.</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>⚡ Fast Processing</h4>
+                    <p>Get results in seconds with our optimized processing system designed for auction cataloging workflows.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="how-it-works">
+            <h2>How It Works</h2>
+            <div class="how-it-works">
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Install & Open</h3>
+                        <p>Install the extension and open the page with the items you want to catalog.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Auto-Detection</h3>
+                        <p>The extension automatically detects the images on the page.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Secure Processing</h3>
+                        <p>Those images are securely processed by our system.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Instant Results</h3>
+                        <p>Titles, descriptions, and categories are generated and returned instantly.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <h3>Auto-Insert or Copy</h3>
+                        <p>Results are automatically inserted into form fields on supported websites, or copy directly into your catalog with one click.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Privacy & Security</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h4>🔒 Secure Processing</h4>
+                    <p>All communication is encrypted via HTTPS. No advertising networks or third-party trackers are included.</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>📋 Minimal Permissions</h4>
+                    <p>Page access is required so images can be identified and processed. Clipboard access is used only when you copy generated results.</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>🛡️ Data Protection</h4>
+                    <p>Your data is handled with the highest security standards and is never sold to third parties.</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem;">
+                <a href="privacy-policy.html" class="cta-button">Read Our Privacy Policy</a>
+            </p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p style="font-style: italic; color: var(--text-muted); margin-bottom: 1rem;">Auctologue is a proud company dedicated to the logic of loops, organizational efficiency, and the repurposing of value.</p>
+        <p>&copy; 2025 Auctologue. All rights reserved.</p>
+        <p>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="founder.html">Founder</a>
+            <a href="mailto:auctologue@auctologue.com">Contact Us</a>
+        </p>
+    </footer>
+</body>
+</html>

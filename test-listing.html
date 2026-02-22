@@ -5,6 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item Detail - Auctologue Extension Test</title>
     <style>
+        :root {
+            --primary-blue: #3b82f6;
+            --dark-blue: #2563eb;
+            --accent-blue: #60a5fa;
+            --dark-bg: #0b1220;
+            --card-bg: #111827;
+            --text-primary: #e5e7eb;
+            --text-secondary: #cbd5e1;
+            --border-color: #1f2937;
+            --border-radius: 10px;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        .nav-logo:hover { color: var(--accent-blue); }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: var(--text-primary);
+            background: rgba(59, 130, 246, 0.1);
+        }
+        .nav-cta {
+            display: inline-block;
+            background: linear-gradient(180deg, var(--primary-blue), var(--dark-blue));
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid var(--primary-blue);
+        }
+        .nav-cta:hover {
+            background: linear-gradient(180deg, var(--dark-blue), var(--primary-blue));
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
             margin: 0;
@@ -202,6 +264,18 @@
     </style>
 </head>
 <body>
+    <nav class="navbar" aria-label="Main navigation">
+        <a href="index.html" class="nav-logo">Auctologue</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="bespoke.html">Bespoke</a></li>
+            <li><a href="founder.html">Founder</a></li>
+            <li><a href="comparison.html">Comparison</a></li>
+            <li><a href="extension.html">Extension</a></li>
+            <li><a href="test-listing.html">Test Catalog</a></li>
+        </ul>
+        <a href="https://app.auctologue.com/" class="nav-cta" target="_blank" rel="noopener">Open App</a>
+    </nav>
     <div class="header">
         <div class="header-left">
             <a href="#" onclick="goBack()">← Close Item Detail</a>

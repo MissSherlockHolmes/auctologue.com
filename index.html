@@ -3,30 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auctologue Catalog Assistant - Streamline Your Auction Cataloging</title>
-    <meta name="description" content="Auctologue Catalog Assistant is a powerful tool for auction houses looking to streamline their cataloging process. Our tech stack automatically generates professional titles, descriptions, and categories from product images, saving hours of manual work and reducing cataloging errors." />
-    <meta property="og:title" content="Auctologue Catalog Assistant" />
+    <title>Auctologue - Research-Based Auction Cataloging</title>
+    <meta name="description" content="Auctologue - The World's First Research-Based Auction Catalog Suite. From our Catalog Assistant extension to bespoke catalog suites, we help auction houses and sellers maximize value and avoid AI pollution." />
+    <meta property="og:title" content="Auctologue" />
     <meta property="og:site_name" content="Auctologue" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Auctologue Catalog Assistant is a powerful tool for auction houses looking to streamline their cataloging process. Our tech stack automatically generates professional titles, descriptions, and categories from product images, saving hours of manual work and reducing cataloging errors." />
-    <meta property="og:image:type" content="image/png" />
+    <meta property="og:description" content="The World's First Research-Based Auction Catalog Suite." />
     <meta property="og:image" content="icon128.png" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Auctologue Catalog Assistant" />
-    <meta name="twitter:description" content="Auctologue Catalog Assistant is a powerful tool for auction houses looking to streamline their cataloging process. Our tech stack automatically generates professional titles, descriptions, and categories from product images, saving hours of manual work and reducing cataloging errors." />
-    <meta name="twitter:image" content="icon128.png" />
     <meta name="theme-color" content="#0b1220" />
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="icon128.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icon128.png">
     <link rel="apple-touch-icon" href="icon128.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        /* Modern CSS Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --primary-blue: #3b82f6;
@@ -40,382 +33,738 @@
             --text-secondary: #cbd5e1;
             --text-muted: #94a3b8;
             --border-color: #1f2937;
-            --border-light: #334155;
             --shadow: 0 10px 30px rgba(0,0,0,0.35);
             --border-radius: 10px;
             --border-radius-lg: 16px;
         }
 
+        html { scroll-behavior: smooth; font-size: 18px; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            font-family: 'Times New Roman', Times, serif;
             line-height: 1.6;
             color: var(--text-primary);
-            background-color: var(--dark-bg);
-        }
-
-        /* Header Image Styles */
-        .header-image {
-            width: 100%;
-            background: var(--card-bg);
-            text-align: center;
-            padding: 40px 20px;
-            height: 300px;
+            background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark-blue) 4%, #1e3a5f 10%, #152238 18%, var(--dark-bg) 25%);
+            min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid var(--border-color);
+            flex-direction: column;
+            text-align: justify;
         }
 
-        .banner-image {
-            width: auto;
+        .ocean-decor {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .sea-plant {
+            position: absolute;
+            bottom: 0;
+            width: 100px;
+            height: 40vh;
+            opacity: 0.5;
+        }
+        .sea-plant svg {
+            width: 100%;
             height: 100%;
             object-fit: contain;
+            object-position: bottom;
             display: block;
-            border-radius: var(--border-radius);
+            transform-origin: bottom center;
+        }
+        @keyframes wave-plant {
+            0% { transform: rotate(-4deg); }
+            25% { transform: rotate(0deg); }
+            50% { transform: rotate(4deg); }
+            75% { transform: rotate(0deg); }
+            100% { transform: rotate(-4deg); }
+        }
+        .sea-plant-1 { left: 0%; }    .sea-plant-1 svg { animation: wave-plant 4.2s linear infinite 0s; }
+        .sea-plant-2 { left: 5%; }    .sea-plant-2 svg { animation: wave-plant 5.8s linear infinite 0.5s; }
+        .sea-plant-3 { left: 12%; }   .sea-plant-3 svg { animation: wave-plant 4.7s linear infinite 1.2s; }
+        .sea-plant-4 { left: 20%; }   .sea-plant-4 svg { animation: wave-plant 6.1s linear infinite 0.1s; }
+        .sea-plant-5 { left: 48%; }   .sea-plant-5 svg { animation: wave-plant 5.2s linear infinite 2s; }
+        .sea-plant-6 { left: 52%; }   .sea-plant-6 svg { animation: wave-plant 4.5s linear infinite 0.8s; }
+        .sea-plant-7 { right: 20%; left: auto; }   .sea-plant-7 svg { animation: wave-plant 5.4s linear infinite 1.5s; }
+        .sea-plant-8 { right: 12%; left: auto; }   .sea-plant-8 svg { animation: wave-plant 4.9s linear infinite 0.3s; }
+        .sea-plant-9 { right: 5%; left: auto; }    .sea-plant-9 svg { animation: wave-plant 6s linear infinite 1.8s; }
+        .sea-plant-10 { right: 0%; left: auto; }   .sea-plant-10 svg { animation: wave-plant 5.1s linear infinite 0.6s; }
+
+        .fish {
+            position: absolute;
+            width: 120px;
+            height: 70px;
+            opacity: 0.95;
+            background: transparent;
+        }
+        .fish img { width: 100%; height: 100%; object-fit: contain; display: block; background: transparent; }
+        /* Fish glide in from edges; transform in keyframes = center + face direction of travel (scaleX). */
+        @keyframes bounce-dvd-1 {
+            0%, 100% { left: -12%; top: 52%; transform: translate(-50%, -50%) scaleX(-1); }
+            6% { left: 10%; top: 52%; transform: translate(-50%, -50%) scaleX(-1); }
+            28% { left: 86%; top: 78%; transform: translate(-50%, -50%) scaleX(-1); }
+            52% { left: 86%; top: 42%; transform: translate(-50%, -50%) scaleX(-1); }
+            76% { left: 10%; top: 78%; transform: translate(-50%, -50%) scaleX(1); }
+            94% { left: 10%; top: 52%; transform: translate(-50%, -50%) scaleX(1); }
+        }
+        @keyframes bounce-dvd-2 {
+            0%, 100% { left: 112%; top: 58%; transform: translate(-50%, -50%) scaleX(-1); }
+            6% { left: 90%; top: 58%; transform: translate(-50%, -50%) scaleX(-1); }
+            28% { left: 8%; top: 75%; transform: translate(-50%, -50%) scaleX(-1); }
+            52% { left: 8%; top: 42%; transform: translate(-50%, -50%) scaleX(-1); }
+            76% { left: 90%; top: 75%; transform: translate(-50%, -50%) scaleX(1); }
+            94% { left: 90%; top: 58%; transform: translate(-50%, -50%) scaleX(1); }
+        }
+        @keyframes bounce-dvd-3 {
+            0%, 100% { left: 112%; top: 38%; transform: translate(-50%, -50%) scaleX(1); }
+            6% { left: 90%; top: 38%; transform: translate(-50%, -50%) scaleX(1); }
+            28% { left: 90%; top: 78%; transform: translate(-50%, -50%) scaleX(1); }
+            52% { left: 12%; top: 78%; transform: translate(-50%, -50%) scaleX(1); }
+            76% { left: 12%; top: 38%; transform: translate(-50%, -50%) scaleX(-1); }
+            94% { left: 90%; top: 38%; transform: translate(-50%, -50%) scaleX(-1); }
+        }
+        @keyframes bounce-dvd-4 {
+            0%, 100% { left: -12%; top: 65%; transform: translate(-50%, -50%) scaleX(1); }
+            6% { left: 10%; top: 65%; transform: translate(-50%, -50%) scaleX(1); }
+            28% { left: 10%; top: 38%; transform: translate(-50%, -50%) scaleX(1); }
+            52% { left: 88%; top: 38%; transform: translate(-50%, -50%) scaleX(1); }
+            76% { left: 88%; top: 65%; transform: translate(-50%, -50%) scaleX(-1); }
+            94% { left: 10%; top: 65%; transform: translate(-50%, -50%) scaleX(-1); }
+        }
+        .fish-1 { animation: bounce-dvd-1 92s linear infinite 0s; }
+        .fish-2 { animation: bounce-dvd-2 95s linear infinite 8s; }
+        .fish-3 { animation: bounce-dvd-3 88s linear infinite 22s; }
+        .fish-4 { animation: bounce-dvd-4 98s linear infinite 15s; }
+
+        main { position: relative; z-index: 1; }
+
+        .navbar {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(90deg, var(--dark-bg) 0%, #152238 22%, #1e3a5f 50%, #152238 78%, var(--dark-bg) 100%);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            overflow: visible;
+        }
+        .nav-logo-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: visible;
         }
 
-        /* Main Content */
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .hero-section {
-            text-align: center;
-            margin-bottom: 4rem;
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-        }
-
-        .hero-section h1 {
+        .nav-logo {
+            display: flex;
+            align-items: center;
             color: var(--text-primary);
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            text-decoration: none;
+        }
+        .nav-logo:hover .nav-logo-text { color: var(--accent-blue); }
+        .aucto-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            margin-right: 0.6rem;
+            line-height: 0;
+            display: inline-flex;
+        }
+        .aucto-btn img {
+            height: 52px;
+            width: auto;
+            vertical-align: middle;
+        }
+        .nav-logo img {
+            height: 52px;
+            width: auto;
+            margin-right: 0.6rem;
+            vertical-align: middle;
+        }
+        .nav-logo-text {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.85rem;
+            transition: color 0.2s ease;
         }
 
-        .hero-section .subtitle {
-            font-size: 1.3rem;
+        .nav-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            list-style: none;
+        }
+        .nav-links a {
             color: var(--text-secondary);
-            margin-bottom: 2rem;
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--border-radius);
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: var(--text-primary);
+            background: rgba(59, 130, 246, 0.1);
         }
 
-        .cta-button {
+        .nav-cta {
             display: inline-block;
             background: linear-gradient(180deg, var(--primary-blue), var(--dark-blue));
             color: var(--text-primary);
-            padding: 0.7rem 1rem;
+            padding: 0.65rem 1.25rem;
             border-radius: var(--border-radius);
             text-decoration: none;
+            font-family: 'Times New Roman', Times, serif;
             font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
-            margin-top: 2rem;
+            font-size: 1.05rem;
             border: 1px solid var(--primary-blue);
-            cursor: pointer;
+            transition: all 0.2s ease;
         }
-
-        .cta-button:hover {
+        .nav-cta:hover {
             background: linear-gradient(180deg, var(--dark-blue), var(--primary-blue));
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
         }
 
-
-        .hero-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            margin: 2rem 0;
+        .aucto-speech-bubble {
+            position: fixed;
+            padding: 0.45rem 0.9rem;
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+            border: 1.5px solid #94a3b8;
+            border-radius: 1.4rem;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+            box-shadow:
+                0 3px 0 0 rgba(148, 163, 184, 0.35),
+                0 6px 14px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            z-index: 99999;
+            display: none;
+            pointer-events: auto;
         }
-
-        .section {
-            margin-bottom: 3rem;
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border-color);
-        }
-
-        .section h2 {
-            color: var(--text-primary);
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-    
-        .section h3 {
-            color: var(--primary-blue);
-            font-size: 1.5rem;
-            margin: 2rem 0 1rem;
-        }
-
-        .section p {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: var(--text-secondary);
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .benefit-card {
-            background: linear-gradient(180deg, var(--card-bg), var(--card-bg-alt));
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            border: 1px solid var(--border-color);
-        }
-
-        .benefit-card h4 {
-            color: var(--primary-blue);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .how-it-works {
-            background: var(--dark-bg);
-            padding: 3rem;
-            border-radius: var(--border-radius);
-            margin: 2rem 0;
-            border: 1px solid var(--border-color);
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .step {
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .step-number {
-            background: var(--primary-blue);
-            color: var(--text-primary);
-            width: 40px;
-            height: 40px;
+        .aucto-speech-bubble::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 38%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 1.5px solid #94a3b8;
             border-radius: 50%;
+            box-shadow: 0 1px 0 rgba(148, 163, 184, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+        .aucto-speech-bubble::after {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 62%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 1.5px solid #94a3b8;
+            border-radius: 50%;
+            box-shadow: 0 1px 0 rgba(148, 163, 184, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+        .aucto-speech-bubble.visible {
+            display: block;
+        }
+
+        main { flex: 1; position: relative; display: flex; flex-direction: column; }
+
+        /* Hero: first viewport, centered content */
+        #home {
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            font-weight: bold;
+            position: relative;
         }
 
-        .features-showcase {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin: 3rem 0;
+        .hero {
+            position: relative;
+            z-index: 1;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5vh 2vw;
         }
 
-        .feature-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+        /* Long-page sections below the fold */
+        .page-section {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            scroll-margin-top: 5rem;
+            border-top: 2px solid var(--accent-blue);
         }
-
-        /* Footer */
-        .footer {
-            background: var(--card-bg);
+        .page-section h2 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
             color: var(--text-primary);
+            margin-bottom: 1.5rem;
             text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-            border-top: 1px solid var(--border-color);
+        }
+        .page-section .section-card {
+            background: var(--card-bg);
+            padding: 2.5rem 3rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+        .page-section .section-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+        .page-section .section-card p:last-child { margin-bottom: 0; }
+        .page-section .section-card strong { color: var(--accent-blue); }
+        .page-section .section-subtitle { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 1.5rem; text-align: center; }
+        .page-section .section-card h3 { text-align: center; }
+        .page-section .founder-headshot-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; }
+
+        @keyframes bound {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        /* Intermittent bounce: bounce–boun–bou–bou (decaying bounces) then long pause */
+        @keyframes bound-tl {
+            0%, 4% { transform: translate(-50%, -50%); }
+            5% { transform: translate(-50%, calc(-50% - 10px)); }
+            7% { transform: translate(-50%, -50%); }
+            8.5% { transform: translate(-50%, calc(-50% - 6px)); }
+            10% { transform: translate(-50%, -50%); }
+            11% { transform: translate(-50%, calc(-50% - 3px)); }
+            12.5% { transform: translate(-50%, -50%); }
+            13.5% { transform: translate(-50%, calc(-50% - 1px)); }
+            15%, 100% { transform: translate(-50%, -50%); }
+        }
+        @keyframes bound-bl {
+            0%, 4% { transform: translate(-50%, -50%); }
+            5% { transform: translate(-50%, calc(-50% - 10px)); }
+            7% { transform: translate(-50%, -50%); }
+            8.5% { transform: translate(-50%, calc(-50% - 6px)); }
+            10% { transform: translate(-50%, -50%); }
+            11% { transform: translate(-50%, calc(-50% - 3px)); }
+            12.5% { transform: translate(-50%, -50%); }
+            13.5% { transform: translate(-50%, calc(-50% - 1px)); }
+            15%, 100% { transform: translate(-50%, -50%); }
+        }
+        @keyframes bound-tr {
+            0%, 4% { transform: translate(50%, -50%); }
+            5% { transform: translate(50%, calc(-50% - 10px)); }
+            7% { transform: translate(50%, -50%); }
+            8.5% { transform: translate(50%, calc(-50% - 6px)); }
+            10% { transform: translate(50%, -50%); }
+            11% { transform: translate(50%, calc(-50% - 3px)); }
+            12.5% { transform: translate(50%, -50%); }
+            13.5% { transform: translate(50%, calc(-50% - 1px)); }
+            15%, 100% { transform: translate(50%, -50%); }
+        }
+        @keyframes bound-br {
+            0%, 4% { transform: translate(50%, -50%); }
+            5% { transform: translate(50%, calc(-50% - 10px)); }
+            7% { transform: translate(50%, -50%); }
+            8.5% { transform: translate(50%, calc(-50% - 6px)); }
+            10% { transform: translate(50%, -50%); }
+            11% { transform: translate(50%, calc(-50% - 3px)); }
+            12.5% { transform: translate(50%, -50%); }
+            13.5% { transform: translate(50%, calc(-50% - 1px)); }
+            15%, 100% { transform: translate(50%, -50%); }
         }
 
-        .footer a {
-            color: var(--primary-blue);
+        .hero-mascot {
+            width: auto;
+            height: 26vh;
+            object-fit: contain;
+            margin-bottom: 0.5vh;
+            animation: bound 2.4s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        .halo {
+            position: relative;
+            width: 82vmin;
+            height: 54vmin;
+            max-height: 52vh;
+            margin: 0 auto;
+            flex-shrink: 0;
+        }
+
+        .halo-center {
+            position: absolute;
+            left: 50%;
+            top: 46%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .halo-center h1 {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 9vmin;
+            line-height: 1.25;
+            color: var(--text-primary);
+            padding: 0;
+            overflow: visible;
+        }
+
+        .halo .tagline {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 3vmin;
+            color: var(--text-secondary);
+            margin-top: 0.3vh;
+        }
+
+        .halo-bubble {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 22vmin;
+            height: 22vmin;
+            min-width: 100px;
+            min-height: 100px;
+            border-radius: 50%;
+            background:
+                radial-gradient(ellipse 80% 50% at 30% 25%, rgba(255, 255, 255, 0.18) 0%, transparent 55%),
+                radial-gradient(ellipse 100% 100% at 50% 50%, rgba(15, 23, 42, 0.85) 0%, rgba(7, 12, 22, 0.95) 100%);
+            backdrop-filter: blur(14px) saturate(140%);
+            -webkit-backdrop-filter: blur(14px) saturate(140%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-primary);
             text-decoration: none;
-            margin: 0 1rem;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 2.4vmin;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.2;
+            padding: 0.5em;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.5),
+                inset -2px -2px 10px rgba(0, 0, 0, 0.4),
+                inset 2px 2px 10px rgba(255, 255, 255, 0.08),
+                inset 0 0 20px rgba(255, 255, 255, 0.02);
+            overflow: hidden;
+        }
+        .halo-bubble::before {
+            content: '';
+            position: absolute;
+            left: 12%;
+            top: 14%;
+            width: 28%;
+            height: 22%;
+            background: radial-gradient(ellipse 100% 100% at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.15) 40%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        .halo-bubble.bubble-top-left { animation: bound-tl 9s ease-in-out infinite; }
+        .halo-bubble.bubble-bottom-left { animation: bound-bl 12s ease-in-out infinite 2.5s; }
+        .halo-bubble.bubble-top-right { animation: bound-tr 11s ease-in-out infinite 5s; }
+        .halo-bubble.bubble-bottom-right { animation: bound-br 10s ease-in-out infinite 1.2s; }
+
+        .halo-bubble:hover {
+            border-color: rgba(96, 165, 250, 0.4);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.55),
+                0 0 24px rgba(96, 165, 250, 0.12),
+                inset -2px -2px 10px rgba(0, 0, 0, 0.35),
+                inset 2px 2px 12px rgba(255, 255, 255, 0.1),
+                inset 0 0 24px rgba(255, 255, 255, 0.03);
+            animation-play-state: paused;
+        }
+        .halo-bubble:hover::before {
+            background: radial-gradient(ellipse 100% 100% at 50% 50%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.18) 40%, transparent 70%);
+        }
+        .halo-bubble.bubble-top-left:hover { transform: translate(-50%, -50%) scale(1.05); }
+        .halo-bubble.bubble-bottom-left:hover { transform: translate(-50%, -50%) scale(1.05); }
+        .halo-bubble.bubble-top-right:hover { transform: translate(50%, -50%) scale(1.05); }
+        .halo-bubble.bubble-bottom-right:hover { transform: translate(50%, -50%) scale(1.05); }
+
+        /* Arch: left side */
+        .halo-bubble.bubble-top-left {
+            left: 0;
+            top: 12%;
+            transform: translate(-50%, -50%);
         }
 
-        /* Responsive Design */
+        .halo-bubble.bubble-bottom-left {
+            left: -4%;
+            top: 68%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Arch: right side */
+        .halo-bubble.bubble-top-right {
+            right: 0;
+            top: 12%;
+            left: auto;
+            transform: translate(50%, -50%);
+        }
+
+        .halo-bubble.bubble-bottom-right {
+            right: -4%;
+            top: 68%;
+            left: auto;
+            transform: translate(50%, -50%);
+        }
+
         @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 2.2rem;
+            .nav-links { order: 3; width: 100%; justify-content: flex-start; }
+            .hero-mascot { height: 22vh; }
+            .halo { width: 88vmin; height: 56vmin; max-height: 50vh; }
+            .halo-center h1 { font-size: 10vmin; }
+            .halo .tagline { font-size: 3.2vmin; }
+            .halo-bubble {
+                width: 24vmin;
+                height: 24vmin;
+                min-width: 88px;
+                min-height: 88px;
+                font-size: 2.6vmin;
             }
-            
-            .hero-section .subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .main-content {
-                padding: 2rem 1rem;
-            }
-            
-            .section h2 {
-                font-size: 1.8rem;
-            }
-            
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .steps {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 1024px) {
-            .steps {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-    @media (max-width: 768px) {
-            .steps {
-                grid-template-columns: 1fr;
-            }
+            .page-section { padding: 3rem 1rem; }
+            .page-section .section-card { padding: 1.5rem 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Header Image -->
-    <div class="header-image">
-        <img src="Auctologue_Future_World_Marquee_web.jpg" alt="Auctologue Future World" class="banner-image">
+    <div class="ocean-decor" aria-hidden="true">
+        <div class="sea-plant sea-plant-1"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad1" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad1)" d="M40 200 Q20 160 45 120 Q15 80 50 50 Q25 25 55 5 L65 5 Q35 30 60 55 Q30 90 55 130 Q25 165 45 200 Z"/><path fill="url(#plantGrad1)" d="M12 200 Q-2 150 22 100 Q0 55 28 15 L36 15 Q10 58 32 102 Q5 152 15 200 Z"/></svg></div>
+        <div class="sea-plant sea-plant-2"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad2" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad2)" d="M75 200 Q55 150 80 100 Q50 60 85 25 L92 25 Q60 65 88 105 Q58 155 78 200 Z"/></svg></div>
+        <div class="sea-plant sea-plant-3"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad3" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad3)" d="M25 200 Q10 140 35 90 Q5 45 38 10 L45 10 Q15 50 40 95 Q12 145 28 200 Z"/><path fill="url(#plantGrad3)" d="M55 200 Q38 155 62 110 Q35 70 58 35 L66 35 Q42 72 64 112 Q38 158 52 200 Z"/></svg></div>
+        <div class="sea-plant sea-plant-4"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad4" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad4)" d="M40 200 Q20 160 45 120 Q15 80 50 50 Q25 25 55 5 L65 5 Q35 30 60 55 Q30 90 55 130 Q25 165 45 200 Z"/></svg></div>
+        <div class="sea-plant sea-plant-5"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad5" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad5)" d="M55 200 Q38 155 62 110 Q35 70 58 35 L66 35 Q42 72 64 112 Q38 158 52 200 Z"/></svg></div>
+        <div class="sea-plant sea-plant-6"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad6" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad6)" d="M25 200 Q10 140 35 90 Q5 45 38 10 L45 10 Q15 50 40 95 Q12 145 28 200 Z"/></svg></div>
+        <div class="sea-plant sea-plant-7"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad7" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad7)" d="M40 200 Q20 160 45 120 Q15 80 50 50 Q25 25 55 5 L65 5 Q35 30 60 55 Q30 90 55 130 Q25 165 45 200 Z"/><path fill="url(#plantGrad7)" d="M12 200 Q-2 150 22 100 Q0 55 28 15 L36 15 Q10 58 32 102 Q5 152 15 200 Z"/></svg></div>
+        <div class="sea-plant sea-plant-8"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad8" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad8)" d="M90 200 Q72 145 88 95 Q65 55 82 18 L90 18 Q72 58 90 98 Q70 148 85 200 Z"/></svg></div>
+        <div class="sea-plant sea-plant-9"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad9" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad9)" d="M75 200 Q55 150 80 100 Q50 60 85 25 L92 25 Q60 65 88 105 Q58 155 78 200 Z"/><path fill="url(#plantGrad9)" d="M25 200 Q10 140 35 90 Q5 45 38 10 L45 10 Q15 50 40 95 Q12 145 28 200 Z"/></svg></div>
+        <div class="sea-plant sea-plant-10"><svg viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="plantGrad10" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" style="stop-color:#0d2818"/><stop offset="50%" style="stop-color:#1a4d2e"/><stop offset="100%" style="stop-color:#2d5a3d"/></linearGradient></defs><path fill="url(#plantGrad10)" d="M40 200 Q20 160 45 120 Q15 80 50 50 Q25 25 55 5 L65 5 Q35 30 60 55 Q30 90 55 130 Q25 165 45 200 Z"/></svg></div>
+        <div class="fish fish-1"><img src="goldfish.png" alt="Goldfish"></div>
+        <div class="fish fish-2"><img src="seahorse.png" alt="Seahorse"></div>
+        <div class="fish fish-3"><img src="betta.png" alt="Betta fish"></div>
+        <div class="fish fish-4"><img src="tropical-fish.png" alt="Tropical fish"></div>
     </div>
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="nav-logo-wrap">
+            <button type="button" class="aucto-btn" id="aucto-btn" aria-label="Meet Aucto">
+                <img src="Aucto_Hat_Transparent.png" alt="Aucto">
+            </button>
+            <a href="#home" class="nav-logo" id="nav-logo" aria-label="Home">
+                <span class="nav-logo-text">Auctologue</span>
+            </a>
+            <div class="aucto-speech-bubble" id="aucto-speech-bubble" role="tooltip">Hi, I'm Aucto!</div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#bespoke">Bespoke</a></li>
+            <li><a href="#founder">Founder</a></li>
+            <li><a href="#comparison">Comparison</a></li>
+            <li><a href="#extension">Extension</a></li>
+        </ul>
+        <a href="https://app.auctologue.com/" class="nav-cta" target="_blank" rel="noopener">Open App</a>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <h2>Transform Manual Cataloging into Automated Efficiency</h2>
-            <p>For decades, auction houses, estate sellers, and catalog managers have faced the same challenge: turning a room full of items into an organized catalog that bidders and buyers can understand. The process has traditionally involved long hours of manual work — in addition to photographing each object: typing out titles, researching descriptions, and copy-pasting details from one window to another.</p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="#how-it-works" class="cta-button">Learn How It Works</a>
-                <a href="test-listing.html" class="cta-button">Test Catalog</a>
-                <a href="https://app.auctologue.com/" class="cta-button" target="_blank">Open App</a>
-        </div>
-        </section>
-
-        <!-- Problem Section -->
-        <section class="section">
-            <h2>The Cataloging Challenge</h2>
-            <p>Anyone who has ever worked an estate auction or managed a product catalog knows how quickly the hours add up. A single auction might contain hundreds of objects, and each one requires at least a basic entry. Experienced staff members can move quickly, but the human brain has limits. As fatigue sets in, errors creep into the process: typos, mistakes and missed items of value that slip through unnoticed because the cataloger simply ran out of time or energy.</p>
-            
-            <p>This has always been the bottleneck of online cataloging. The manual process is tedious, repetitive, and error-prone. Every copy-paste from one window to another increases the chance of a mistake. Every late-night typing session increases the chance that something important will be overlooked. Even the best catalogers — people with years of experience and sharp eyes for detail — are still human, and human attention wears thin with fatigue and repetition.</p>
-        </section>
-
-        <!-- Solution Section -->
-        <section class="section">
-            <h2>Our Solution</h2>
-            <img src="Aucto_in_a_Chair_web.jpg" alt="Aucto in a Chair" class="hero-image">
-            <p>Auctologue Catalog Assistant was created to relieve this burden. Instead of forcing you to research and copy-paste by hand, the extension automatically retrieves images directly from the page you are viewing. Those images are securely transmitted to our processing system, where they are analyzed and transformed into structured, catalog-ready entries. In just seconds, you receive professional titles, descriptions, and suggested categories — no switching between windows, no extra typing, no endless copy-paste.</p>
-        </section>
-
-        <!-- Benefits Section -->
-        <section class="section">
-            <h2>Key Benefits</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <h4>🚀 Speed & Efficiency</h4>
-                    <p>Removes the need for copy-pasting between windows and speeds up catalog creation by processing images automatically.</p>
-        </div>
-                <div class="benefit-card">
-                    <h4>🎯 Consistency</h4>
-                    <p>Maintains consistency across hundreds of entries, even late at night, reducing fatigue-related errors.</p>
-        </div>
-                <div class="benefit-card">
-                    <h4>👥 Team Empowerment</h4>
-                    <p>Bridges the gap between learners and experts: new staff can produce expert-level entries, while experienced catalogers gain speed and efficiency.</p>
-        </div>
-                <div class="benefit-card">
-                    <h4>⚡ Fast Processing</h4>
-                    <p>Get results in seconds with our optimized processing system designed for auction cataloging workflows.</p>
-        </div>
-    </div>
-        </section>
-
-        <!-- How It Works Section -->
-        <section class="section" id="how-it-works">
-            <h2>How It Works</h2>
-            <div class="how-it-works">
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h3>Install & Open</h3>
-                        <p>Install the extension and open the page with the items you want to catalog.</p>
-        </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h3>Auto-Detection</h3>
-                        <p>The extension automatically detects the images on the page.</p>
-    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h3>Secure Processing</h3>
-                        <p>Those images are securely processed by our system.</p>
-        </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <h3>Instant Results</h3>
-                        <p>Titles, descriptions, and categories are generated and returned instantly.</p>
-    </div>
-                    <div class="step">
-                        <div class="step-number">5</div>
-                        <h3>Auto-Insert or Copy</h3>
-                        <p>Results are automatically inserted into form fields on supported websites, or copy directly into your catalog with one click.</p>
-        </div>
-    </div>
-            </div>
-        </section>
-
-
-        <!-- Privacy & Security -->
-        <section class="section">
-            <h2>Privacy & Security</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <h4>🔒 Secure Processing</h4>
-                    <p>All communication is encrypted via HTTPS. No advertising networks or third-party trackers are included.</p>
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero">
+                <img src="Aucto_Hat_Transparent.png" alt="Aucto" class="hero-mascot" id="hero-aucto">
+                <div class="halo" aria-label="Navigation">
+                    <a href="#bespoke" class="halo-bubble bubble-top-left">Bespoke</a>
+                    <a href="#founder" class="halo-bubble bubble-bottom-left">Founder</a>
+                    <a href="#comparison" class="halo-bubble bubble-top-right">Comparison</a>
+                    <a href="#extension" class="halo-bubble bubble-bottom-right">Extension</a>
+                    <div class="halo-center">
+                        <h1>Auctologue</h1>
+                        <p class="tagline">The World's First Research-Based Auction Catalog Suite</p>
+                    </div>
                 </div>
-                <div class="benefit-card">
-                    <h4>📋 Minimal Permissions</h4>
-                    <p>Page access is required so images can be identified and processed. Clipboard access is used only when you copy generated results.</p>
             </div>
-                <div class="benefit-card">
-                    <h4>🛡️ Data Protection</h4>
-                    <p>Your data is handled with the highest security standards and is never sold to third parties.</p>
+        </section>
+
+        <section id="bespoke" class="page-section">
+            <h2>Bespoke Cataloging</h2>
+            <p class="section-subtitle" style="color: var(--text-secondary); margin-bottom: 1rem;">Managed by Experts. Enhanced by Technology.</p>
+            <div class="section-card">
+                <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 1.35rem; color: var(--accent-blue); margin-bottom: 1rem;">The Professional Standard</h3>
+                <p>Stop losing revenue to generic descriptions. Backed by decades of auction industry experience, Auctologue Bespoke provides the academic rigor and search-driven identification your lots deserve. We don&rsquo;t just &ldquo;list&rdquo; items. We identify maker-marks, brand details and item specifics that are often missed.</p>
             </div>
+            <div class="section-card">
+                <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 1.35rem; color: var(--accent-blue); margin-bottom: 1rem;">The Auctologue Advantage</h3>
+                <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
+                    <li><strong>Deep Industry Expertise:</strong> Every catalog is overseen by professionals who understand the nuances of the secondary market.</li>
+                    <li><strong>Research-First Methodology:</strong> We use proprietary search algorithms to find details that AI and LLMs don&rsquo;t have access to. We cross-reference global databases and auction archives to ensure your descriptions stand up to collector scrutiny.</li>
+                    <li><strong>Seamless Integration:</strong> Receive a clean, revenue-optimized CSV ready to upload to your auction platform.</li>
+                </ul>
             </div>
-            <p style="text-align: center; margin-top: 2rem;">
-                <a href="privacy-policy.html" class="cta-button">Read Our Privacy Policy</a>
+            <div class="section-card">
+                <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 1.35rem; color: var(--accent-blue); margin-bottom: 1rem;">How It Works</h3>
+                <ol style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
+                    <li><strong>Direct Upload:</strong> Send your raw auction photos to our secure portal.</li>
+                    <li><strong>Research &amp; Review:</strong> Our team cross-references global databases and auction archives; every catalog is overseen by industry professionals.</li>
+                    <li><strong>Revenue-Ready:</strong> Receive a formatted CSV optimized for SEO and ready for instant upload to your bidding platform.</li>
+                </ol>
+            </div>
+            <p style="text-align: center; color: var(--text-primary); font-weight: 500;">Stop settling for &ldquo;good enough.&rdquo; Leverage years of experience to protect your hammer prices.</p>
+        </section>
+
+        <section id="founder" class="page-section">
+            <h2><span style="font-weight: normal">From the</span> Auction Tent to the Tech Stack.</h2>
+            <div class="founder-headshot-wrap" style="margin-bottom: 2rem;">
+                <div class="founder-headshot" style="width: clamp(140px, 18vw, 200px); height: clamp(140px, 18vw, 200px); border-radius: 50%; overflow: hidden; border: 3px solid var(--border-color); box-shadow: var(--shadow); flex-shrink: 0;">
+                    <img src="founder-headshot.jpg" alt="Amberleigh Scheungrab Wankel" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <p class="founder-byline" style="font-family: 'Times New Roman', Times, serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin: 0;">Amberleigh Scheungrab Wankel</p>
+            </div>
+            <div class="section-card">
+                <p>Amberleigh Scheungrab Wankel was raised in the world of antiques, the daughter of a dedicated collector and antiques dealer, trailing her mother through estate sales and auction houses before she could even drive. Her professional foundation was built in the trenches of old-timey live auctions, learning the rhythm of the trade under the legendary Buddy Updike.</p>
+                <p>After honing her skills at Nashville Auction School, Amberleigh proved her command of the gavel and made history by becoming the <strong>2006 Virginia Auctioneer Champion</strong>, the first woman ever to hold the title. This mastery in the ring taught her a vital lesson: a catalog is a financial instrument. She recognized early that substandard cataloging is a silent thief; even a 5% yield loss from vague descriptions compounds into a massive deficit over a career. To Amberleigh, accuracy is a mandate for profitability.</p>
+                <p>By merging a lifetime of auction expertise with modern tech, she combined her love for process-driven logic and &ldquo;upcycled&rdquo; innovation as the Founding Visionary and core idea architect of <strong>Kõik LLC</strong>, a company with a mission to help people manage the overwhelming burden of &ldquo;everything.&rdquo; She now maintains a passive role in daily operations leveraging her technical training to ensure technology continues to grow the mission.</p>
+                <p>To bridge the gap between traditional expertise and modern scale, Amberleigh earned her <strong>Bachelor of Science in Software Development and Entrepreneurship</strong> from the Estonian Entrepreneurship University of Applied Sciences (Mainor). Today, she leads <strong>Auctologue</strong>, advancing the bridge between traditional care and digital efficiency.</p>
+            </div>
+        </section>
+
+        <section id="comparison" class="page-section">
+            <h2>The Auctologue Difference</h2>
+            <div class="section-card">
+                <div class="comparison-table-wrap" style="overflow-x: auto;">
+                    <table class="comparison-table" style="width: 100%; border-collapse: collapse; color: var(--text-secondary);">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border-color);">
+                                <th style="text-align: center; padding: 0.75rem; font-family: 'Times New Roman', Times, serif;">Image</th>
+                                <th style="text-align: center; padding: 0.75rem; font-family: 'Times New Roman', Times, serif;">Gemini</th>
+                                <th style="text-align: center; padding: 0.75rem; font-family: 'Times New Roman', Times, serif; border-left: 2px solid rgba(234, 179, 8, 0.5);">Auctologue</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 0.75rem; vertical-align: top; text-align: center;">[Thumbnail]</td>
+                                <td style="padding: 0.75rem; vertical-align: top;">&ldquo;Old wooden chair, possibly 19th century. Simple design.&rdquo;</td>
+                                <td style="padding: 0.75rem; vertical-align: top; border-left: 2px solid rgba(234, 179, 8, 0.5); background: rgba(234, 179, 8, 0.06);">Early 19th-century American Shaker side chair, maple and cherry. Features original rush seat and distinctive tilter mechanism. Attributed to the Mount Lebanon community.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="extension" class="page-section">
+            <h2>Catalog Assistant</h2>
+            <p class="section-subtitle" style="color: var(--text-secondary); margin-bottom: 0.5rem;">A browser extension that transforms manual cataloging into automated efficiency.</p>
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <img src="Aucto_in_a_Chair_web.jpg" alt="Aucto in a Chair" style="max-width: min(400px, 90%); height: auto; border-radius: var(--border-radius); box-shadow: var(--shadow); border: 1px solid var(--border-color);">
+            </div>
+            <div class="section-card">
+                <p>For decades, auction houses, estate sellers, and catalog managers have faced the same challenge: turning a room full of items into an organized catalog that bidders and buyers can understand. The process has traditionally involved long hours of manual work, in addition to photographing each object: typing out titles, researching descriptions, and copy-pasting details from one window to another.</p>
+            </div>
+            <div class="section-card">
+                <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 1.35rem; color: var(--accent-blue); margin-bottom: 1rem;">Our Solution</h3>
+                <p>Auctologue Catalog Assistant was created to relieve this burden. The extension automatically retrieves images from the page you are viewing, transmits them securely to our processing system, and returns professional titles, descriptions, and suggested categories in seconds, no switching between windows, no extra typing, no endless copy-paste.</p>
+            </div>
+            <div class="section-card">
+                <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 1.35rem; color: var(--accent-blue); margin-bottom: 1rem;">How It Works</h3>
+                <ol style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
+                    <li><strong>Install &amp; Open</strong> the extension and open the page with items you want to catalog.</li>
+                    <li><strong>Auto-Detection</strong> of images on the page.</li>
+                    <li><strong>Secure Processing</strong> by our system.</li>
+                    <li><strong>Instant Results</strong>: titles, descriptions, and categories generated and returned.</li>
+                    <li><strong>Auto-Insert or Copy</strong> into form fields or your catalog with one click.</li>
+                </ol>
+            </div>
+            <p style="text-align: center; margin-top: 1.5rem;">
+                <a href="test-listing.html" class="nav-cta" style="display: inline-block; margin-right: 0.5rem;">Test Catalog</a>
+                <a href="mailto:auctologue@auctologue.com?subject=Extension%20invitation%20request" class="nav-cta" style="display: inline-block;">Request an invitation</a>
             </p>
         </section>
-    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2025 Auctologue Catalog Assistant. All rights reserved.</p>
-        <p>
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="mailto:auctologue@auctologue.com">Contact Us</a>
-        </p>
-    </footer>
+        <div style="position: relative; z-index: 1; margin-top: 2rem; padding: 3rem 2rem 0; flex-grow: 1; background: linear-gradient(180deg, var(--dark-bg) 0%, #152238 12%, #1e3a5f 28%, #152238 45%, var(--dark-bg) 100%); min-height: 40vh;">
+            <div style="text-align: center; display: flex; align-items: center; justify-content: center; height: 300px;">
+                <img src="Auctologue_Future_World_Marquee_web.jpg" alt="Auctologue Future World" style="max-width: 100%; height: 100%; width: auto; object-fit: contain;">
+            </div>
+
+        <footer class="footer" style="position: relative; z-index: 1; color: var(--text-secondary); text-align: center; padding: 2.5rem 2rem; margin-top: 0; border-top: 1px solid var(--border-color); font-size: 0.95rem; background: transparent;">
+            <p style="font-style: italic; color: var(--text-muted); max-width: 560px; margin: 0 auto 1rem; line-height: 1.6;">Auctologue is a proud company dedicated to the logic of loops, organizational efficiency, and the repurposing of value.</p>
+            <p>
+                <a href="#home" style="color: var(--primary-blue); text-decoration: none; margin: 0 0.75rem;">Home</a>
+                <a href="privacy-policy.html" style="color: var(--primary-blue); text-decoration: none; margin: 0 0.75rem;">Privacy Policy</a>
+                <a href="mailto:auctologue@auctologue.com" style="color: var(--primary-blue); text-decoration: none; margin: 0 0.75rem;">Contact</a>
+            </p>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">&copy; 2025 Auctologue. All rights reserved.</p>
+        </footer>
+        </div>
+    </main>
+    <script>
+        (function () {
+            history.scrollRestoration = 'manual';
+            function goToTop() {
+                if (window.location.hash) {
+                    history.replaceState(null, '', window.location.pathname + window.location.search);
+                }
+                window.scrollTo(0, 0);
+            }
+            window.addEventListener('load', function () {
+                goToTop();
+                setTimeout(goToTop, 0);
+            });
+            if (document.readyState === 'complete') goToTop();
+
+            document.querySelectorAll('a[href="#home"]').forEach(function (a) {
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+                });
+            });
+
+            var bubble = document.getElementById('aucto-speech-bubble');
+            var heroAucto = document.getElementById('hero-aucto');
+            var wrap = document.querySelector('.nav-logo-wrap');
+            var btn = document.getElementById('aucto-btn');
+            if (!bubble) return;
+            function showBubbleNear(el) {
+                var r = el.getBoundingClientRect();
+                bubble.style.top = (r.top + 8) + 'px';
+                bubble.style.left = (r.right - 95) + 'px';
+                bubble.classList.add('visible');
+            }
+            function hideBubble() {
+                bubble.classList.remove('visible');
+            }
+            if (heroAucto) {
+                heroAucto.style.cursor = 'pointer';
+                heroAucto.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (bubble.classList.contains('visible')) hideBubble();
+                    else showBubbleNear(heroAucto);
+                });
+            }
+            if (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (bubble.classList.contains('visible')) hideBubble();
+                    else showBubbleNear(btn);
+                });
+            }
+            document.addEventListener('click', function (e) {
+                if (!bubble.contains(e.target) && e.target !== heroAucto && !wrap.contains(e.target)) hideBubble();
+            });
+        })();
+    </script>
 </body>
 </html>

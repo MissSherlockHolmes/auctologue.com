@@ -42,11 +42,16 @@
     body{
       font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
       line-height:1.6;
+      margin:0;
+      padding:0;
+      color:var(--text-primary);
+      background-color:var(--dark-bg);
+    }
+
+    .main-wrap {
       max-width:860px;
       margin:0 auto;
       padding:24px;
-      color:var(--text-primary);
-      background-color:var(--dark-bg);
     }
     
     .container {
@@ -65,9 +70,84 @@
     li{color:var(--text-secondary)}
     a{color:var(--primary-blue)}
     a:hover{text-decoration:underline}
+
+    /* Navbar */
+    .navbar {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:1rem;
+      padding:.75rem 1.5rem;
+      background:var(--card-bg);
+      border-bottom:1px solid var(--border-color);
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+    .nav-logo {
+      font-weight:700;
+      font-size:1.25rem;
+      color:var(--text-primary);
+      text-decoration:none;
+    }
+    .nav-logo:hover { color:var(--accent-blue); }
+    .nav-links {
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:.25rem;
+      list-style:none;
+      margin:0;
+      padding:0;
+    }
+    .nav-links a {
+      color:var(--text-secondary);
+      text-decoration:none;
+      padding:.5rem .75rem;
+      border-radius:var(--border-radius);
+      font-size:.95rem;
+    }
+    .nav-links a:hover {
+      color:var(--text-primary);
+      background:rgba(59,130,246,0.1);
+    }
+    .nav-cta {
+      display:inline-block;
+      background:linear-gradient(180deg,var(--primary-blue),var(--dark-blue));
+      color:var(--text-primary);
+      padding:.5rem 1rem;
+      border-radius:var(--border-radius);
+      text-decoration:none;
+      font-weight:600;
+      font-size:.95rem;
+      border:1px solid var(--primary-blue);
+      transition:all .2s ease;
+    }
+    .nav-cta:hover {
+      background:linear-gradient(180deg,var(--dark-blue),var(--primary-blue));
+      box-shadow:0 4px 12px rgba(59,130,246,0.35);
+    }
+    @media (max-width:768px) {
+      .navbar { padding:.6rem 1rem; }
+      .nav-links { order:3; width:100%; justify-content:flex-start; }
+    }
   </style>
 </head>
 <body>
+  <nav class="navbar" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo">Auctologue</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="bespoke.html">Bespoke</a></li>
+      <li><a href="founder.html">Founder</a></li>
+      <li><a href="comparison.html">Comparison</a></li>
+      <li><a href="extension.html">Extension</a></li>
+      <li><a href="test-listing.html">Test Catalog</a></li>
+    </ul>
+    <a href="https://app.auctologue.com/" class="nav-cta" target="_blank" rel="noopener">Open App</a>
+  </nav>
+  <div class="main-wrap">
   <div class="container">
     <h1>Privacy Policy — Auctologue Catalog Assistant</h1>
     <p class="last-updated">Last updated: 13 September 2025</p>
@@ -140,6 +220,7 @@
   <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
     <a href="index.html" style="display: inline-block; background: var(--primary-blue); color: var(--text-primary); padding: 1rem 2rem; border-radius: var(--border-radius); text-decoration: none; font-weight: 600; margin: 0 0.5rem;">← Back to Home</a>
     <a href="https://app.auctologue.com/" target="_blank" style="display: inline-block; background: var(--primary-blue); color: var(--text-primary); padding: 1rem 2rem; border-radius: var(--border-radius); text-decoration: none; font-weight: 600; margin: 0 0.5rem;">Open App</a>
+  </div>
   </div>
   </div>
 </body>
