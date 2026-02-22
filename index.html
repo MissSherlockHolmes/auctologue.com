@@ -43,7 +43,7 @@
             font-family: 'Times New Roman', Times, serif;
             line-height: 1.6;
             color: var(--text-primary);
-            background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark-blue) 4%, #1e3a5f 10%, #152238 18%, var(--dark-bg) 25%);
+            background: linear-gradient(180deg, var(--primary-blue) 0%, var(--primary-blue) 3%, var(--dark-blue) 5%, #1e3a5f 8%, #152238 15%, var(--dark-bg) 18%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -960,7 +960,7 @@
             width: auto;
             height: 26vh;
             object-fit: contain;
-            margin-bottom: 0.5vh;
+            margin-bottom: 0;
             animation: bound 2.4s ease-in-out infinite;
             position: relative;
             z-index: 2;
@@ -971,14 +971,14 @@
             width: 82vmin;
             height: 54vmin;
             max-height: 52vh;
-            margin: 0 auto;
+            margin: -7.5vh auto 0;
             flex-shrink: 0;
         }
 
         .halo-center {
             position: absolute;
             left: 50%;
-            top: 46%;
+            top: 38%;
             transform: translate(-50%, -50%);
             text-align: center;
             pointer-events: none;
@@ -1084,7 +1084,7 @@
 
         /* Arch: left side */
         .halo-bubble.bubble-top-left {
-            left: 0;
+            left: 10%;
             top: 12%;
             transform: translate(-50%, -50%);
         }
@@ -1097,7 +1097,7 @@
 
         /* Arch: right side */
         .halo-bubble.bubble-top-right {
-            right: 0;
+            right: 10%;
             top: 12%;
             left: auto;
             transform: translate(50%, -50%);
@@ -1153,6 +1153,10 @@
             .nav-cta { order: 4; width: 100%; display: none; margin-top: 0.5rem; text-align: center; }
             .navbar.menu-open .nav-cta { display: inline-block; width: auto; margin-top: 0.75rem; }
             .hero-mascot { height: 22vh; }
+            #home {
+                align-items: flex-start;
+                padding-top: 10vh;
+            }
             #home .hero { position: relative; z-index: 2; }
             /* Mobile: flow layout so halo nav doesn’t overlap or feel cramped */
             .halo {
