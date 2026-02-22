@@ -486,22 +486,33 @@
         #founder > *:not(.shark-zone) { position: relative; z-index: 1; }
         .shark-zone .shark {
             position: absolute;
-            width: clamp(200px, 22vw, 280px);
+            width: clamp(280px, 32vw, 420px);
             height: auto;
             opacity: 0;
             will-change: left;
         }
         .shark-zone .shark.entered {
-            opacity: 0.55;
+            opacity: 0.4;
         }
         .shark-zone .shark-flag {
             display: block;
             width: 100%;
+            overflow: visible;
+            /* Padding gives blur room so it doesn't clip to a hard line */
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .shark-zone .shark {
+            overflow: visible;
         }
         .shark-zone .shark-flag img {
             width: 100%;
             height: auto;
             display: block;
+            filter: blur(6px);
+            /* Prevent blur from being clipped (avoids visible line artifact) */
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
         /* One GIF per direction per shark image; no CSS flip */
         /* Swim right: start fully off left, end fully off right (shark width ~22vw) */
@@ -515,10 +526,10 @@
             100% { left: -35%; }
         }
         .shark-zone .shark-right.entered {
-            animation: shark-swim-right 45s linear 1 forwards;
+            animation: shark-swim-right 43.65s linear 1 forwards;
         }
         .shark-zone .shark-left.entered {
-            animation: shark-swim-left 50s linear 1 forwards;
+            animation: shark-swim-left 48.5s linear 1 forwards;
         }
         .shark-zone .shark-1 { top: 12%; animation-delay: 0s; }
         .shark-zone .shark-2 { top: 42%; animation-delay: 8s; }
@@ -626,7 +637,7 @@
 
         .aucto-speech-bubble {
             position: fixed;
-            padding: 0.45rem 1.5rem 0.45rem 0.9rem;
+            padding: 0.45rem 2.5rem 0.45rem 1rem;
             background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
             color: #1e293b;
             border: 1.5px solid #94a3b8;
@@ -690,6 +701,30 @@
         .aucto-bubble-close:hover {
             color: #1e293b;
         }
+        .aucto-bubble-mute {
+            position: absolute;
+            top: 0.2rem;
+            right: 1.25rem;
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 0.75rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0.15rem;
+            margin: 0;
+            border-radius: 2px;
+        }
+        .aucto-bubble-mute:hover {
+            color: #1e293b;
+        }
+        .aucto-bubble-mute.muted {
+            opacity: 0.6;
+        }
+        .scroll-aucto-bubble .aucto-bubble-mute {
+            top: 0.25rem;
+            right: 1.35rem;
+        }
 
         /* Scroll Aucto: appears on left when sections are in view */
         .scroll-aucto {
@@ -719,7 +754,7 @@
         }
         .scroll-aucto-bubble {
             max-width: 200px;
-            padding: 0.5rem 1.5rem 0.5rem 0.85rem;
+            padding: 0.5rem 2.5rem 0.5rem 0.85rem;
             background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
             color: #1e293b;
             border: 1.5px solid #94a3b8;
@@ -1055,7 +1090,7 @@
         @media (max-width: 768px) {
             .scroll-aucto { padding-left: 0.4rem; }
             .scroll-aucto img { width: 90px; }
-            .scroll-aucto-bubble { max-width: 180px; font-size: 0.75rem; padding: 0.45rem 1.25rem 0.45rem 0.7rem; }
+            .scroll-aucto-bubble { max-width: 180px; font-size: 0.75rem; padding: 0.45rem 2.25rem 0.45rem 0.7rem; }
             .scroll-aucto-badge { top: -25%; right: -25%; }
             .scroll-aucto-badge-icon { font-size: 18px; }
         }
@@ -1128,7 +1163,7 @@
             <a href="#home" class="nav-logo" id="nav-logo" aria-label="Home">
                 <span class="nav-logo-text">Auctologue</span>
             </a>
-            <div class="aucto-speech-bubble" id="aucto-speech-bubble" role="tooltip">Hi, I'm Aucto! <button type="button" class="aucto-bubble-close" id="aucto-speech-bubble-close" aria-label="Close">×</button></div>
+            <div class="aucto-speech-bubble" id="aucto-speech-bubble" role="tooltip">Hi, I'm Aucto! <button type="button" class="aucto-bubble-mute" id="aucto-speech-bubble-mute" aria-label="Mute">🔇</button><button type="button" class="aucto-bubble-close" id="aucto-speech-bubble-close" aria-label="Close">×</button></div>
         </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
@@ -1145,7 +1180,7 @@
             <img src="Aucto_Hat_Transparent.png" alt="" id="scroll-aucto-img">
             <span class="scroll-aucto-badge" id="scroll-aucto-badge" aria-hidden="true" aria-label="New message"><span class="scroll-aucto-badge-icon">💡</span></span>
         </div>
-        <div class="scroll-aucto-bubble bubble-closed" id="scroll-aucto-bubble"><span id="scroll-aucto-bubble-text"></span><button type="button" class="aucto-bubble-close" id="scroll-aucto-bubble-close" aria-label="Close">×</button></div>
+        <div class="scroll-aucto-bubble bubble-closed" id="scroll-aucto-bubble"><span id="scroll-aucto-bubble-text"></span><button type="button" class="aucto-bubble-mute" id="scroll-aucto-bubble-mute" aria-label="Mute">🔇</button><button type="button" class="aucto-bubble-close" id="scroll-aucto-bubble-close" aria-label="Close">×</button></div>
     </div>
 
     <main>
@@ -1526,15 +1561,134 @@
                     enterFish();
                     setTimeout(scheduleNext, randomDelaySec() * 1000);
                 }
+                var FISH_STATE_KEY = 'auctologue_fish_state';
+                function saveState() {
+                    try {
+                        var payload = { activeFish: activeFish.map(function(a) {
+                            return { fishIndex: a.fishIndex, startTime: a.startTime, duration: a.duration, route: a.route };
+                        }) };
+                        sessionStorage.setItem(FISH_STATE_KEY, JSON.stringify(payload));
+                    } catch (e) {}
+                }
+                function restoreState() {
+                    try {
+                        var raw = sessionStorage.getItem(FISH_STATE_KEY);
+                        if (!raw) return false;
+                        var payload = JSON.parse(raw);
+                        sessionStorage.removeItem(FISH_STATE_KEY);
+                        var now = Date.now();
+                        var restored = 0;
+                        for (var i = 0; i < (payload.activeFish || []).length; i++) {
+                            var a = payload.activeFish[i];
+                            var elapsed = now - a.startTime;
+                            if (elapsed >= a.duration || elapsed < 0) continue;
+                            var el = zone.querySelector('.fish-' + a.fishIndex);
+                            if (!el) continue;
+                            var isLTR = a.fishIndex % 2 === 1;
+                            var rightImg = el.querySelector('.fish-right');
+                            var leftImg = el.querySelector('.fish-left');
+                            if (rightImg) rightImg.style.opacity = isLTR ? '1' : '0';
+                            if (leftImg) leftImg.style.opacity = isLTR ? '0' : '1';
+                            var progress = elapsed / a.duration;
+                            var pos = positionAt(a.route, progress);
+                            el.style.left = pos.x + '%';
+                            el.style.top = pos.y + '%';
+                            el.style.transform = 'translate(-50%, -50%)';
+                            el.classList.add('entered');
+                            var keyframes = keyframesFromRoute(a.route);
+                            var anim = el.animate(keyframes, { duration: a.duration, fill: 'forwards', easing: 'linear' });
+                            anim.currentTime = elapsed;
+                            activeFish.push({ fishIndex: a.fishIndex, route: a.route, startTime: a.startTime, duration: a.duration });
+                            onScreen.push(a.fishIndex);
+                            counter += 1;
+                            restored += 1;
+                            (function(fishIndex, anim, elCopy) {
+                                anim.onfinish = function() {
+                                    anim.cancel();
+                                    elCopy.classList.remove('entered');
+                                    elCopy.style.left = '';
+                                    elCopy.style.top = '';
+                                    elCopy.style.transform = '';
+                                    var idx = onScreen.indexOf(fishIndex);
+                                    if (idx !== -1) onScreen.splice(idx, 1);
+                                    counter -= 1;
+                                    var ai = -1;
+                                    for (var k = 0; k < activeFish.length; k++) { if (activeFish[k].fishIndex === fishIndex) { ai = k; break; } }
+                                    if (ai >= 0) activeFish.splice(ai, 1);
+                                };
+                            })(a.fishIndex, anim, el);
+                        }
+                        return restored > 0;
+                    } catch (e) { return false; }
+                }
+                window.addEventListener('pagehide', saveState);
+                if (restoreState()) { }
                 setTimeout(scheduleNext, Math.random() * 1500);
+            })();
+
+            (function jellyfishState() {
+                var zone = document.querySelector('#bespoke .jelly-zone');
+                if (!zone) return;
+                var jellies = zone.querySelectorAll('.jellyfish');
+                var JELLY_STATE_KEY = 'auctologue_jellyfish_state';
+                function save() {
+                    try {
+                        var times = [];
+                        for (var i = 0; i < jellies.length; i++) {
+                            var anims = jellies[i].getAnimations();
+                            times.push(anims.length > 0 ? anims[0].currentTime : 0);
+                        }
+                        sessionStorage.setItem(JELLY_STATE_KEY, JSON.stringify(times));
+                    } catch (e) {}
+                }
+                function restore() {
+                    try {
+                        var raw = sessionStorage.getItem(JELLY_STATE_KEY);
+                        if (!raw) return;
+                        var times = JSON.parse(raw);
+                        sessionStorage.removeItem(JELLY_STATE_KEY);
+                        for (var i = 0; i < jellies.length && i < times.length; i++) {
+                            jellies[i].style.animationDelay = (-times[i] / 1000) + 's';
+                        }
+                    } catch (e) {}
+                    return false;
+                }
+                window.addEventListener('pagehide', save);
+                restore();
             })();
 
             (function randomizeAnglerfishEntry() {
                 var zone = document.querySelector('#extension .angler-zone');
                 if (!zone) return;
                 var anglers = zone.querySelectorAll('.anglerfish');
-                for (var i = 0; i < anglers.length; i++) {
-                    anglers[i].style.animationDelay = (Math.random() * 100) + 's';
+                var ANGLER_STATE_KEY = 'auctologue_anglerfish_state';
+                function save() {
+                    try {
+                        var times = [];
+                        for (var i = 0; i < anglers.length; i++) {
+                            var anims = anglers[i].getAnimations();
+                            times.push(anims.length > 0 ? anims[0].currentTime : 0);
+                        }
+                        sessionStorage.setItem(ANGLER_STATE_KEY, JSON.stringify(times));
+                    } catch (e) {}
+                }
+                function restore() {
+                    try {
+                        var raw = sessionStorage.getItem(ANGLER_STATE_KEY);
+                        if (!raw) return false;
+                        var times = JSON.parse(raw);
+                        sessionStorage.removeItem(ANGLER_STATE_KEY);
+                        for (var i = 0; i < anglers.length && i < times.length; i++) {
+                            anglers[i].style.animationDelay = (-times[i] / 1000) + 's';
+                        }
+                        return true;
+                    } catch (e) { return false; }
+                }
+                window.addEventListener('pagehide', save);
+                if (!restore()) {
+                    for (var i = 0; i < anglers.length; i++) {
+                        anglers[i].style.animationDelay = (Math.random() * 100) + 's';
+                    }
                 }
             })();
 
@@ -1542,30 +1696,39 @@
                 var zone = document.querySelector('#founder .shark-zone');
                 if (!zone) return;
                 var maxOnScreen = 2;
-                var activeSet = new Set();
+                var activeSharks = [];
+                var sharkTops = { 1: 12, 2: 42, 3: 58, 4: 78, 5: 42, 6: 65, 7: 8, 8: 48, 9: 85 };
+                var sharkDurations = { right: 43650, left: 48500 };
+                var minVerticalGap = 32;
                 function randomDelayMs() { return (2 + Math.random() * 4) * 1000; }
                 function getAvailable() {
                     var list = [];
                     for (var n = 1; n <= 9; n++) {
-                        if (!activeSet.has(n)) list.push(n);
+                        if (activeSharks.some(function(a) { return a.index === n; })) continue;
+                        var ok = true;
+                        activeSharks.forEach(function(a) {
+                            if (Math.abs(sharkTops[n] - sharkTops[a.index]) < minVerticalGap) ok = false;
+                        });
+                        if (ok) list.push(n);
                     }
                     return list;
                 }
                 function enterShark() {
-                    if (activeSet.size >= maxOnScreen) return;
+                    if (activeSharks.length >= maxOnScreen) return;
                     var available = getAvailable();
                     if (available.length === 0) return;
                     var index = available[Math.floor(Math.random() * available.length)];
                     var el = zone.querySelector('.shark-' + index);
                     if (!el) return;
-                    el.style.left = el.classList.contains('shark-right') ? '-35%' : '135%';
+                    var direction = el.classList.contains('shark-right') ? 'right' : 'left';
+                    el.style.left = direction === 'right' ? '-35%' : '135%';
                     el.classList.add('entered');
-                    activeSet.add(index);
+                    activeSharks.push({ index: index, startTime: Date.now(), direction: direction });
                     function onEnd() {
                         el.removeEventListener('animationend', onEnd);
                         el.classList.remove('entered');
                         el.style.left = '';
-                        activeSet.delete(index);
+                        activeSharks = activeSharks.filter(function(a) { return a.index !== index; });
                         scheduleNext();
                     }
                     el.addEventListener('animationend', onEnd, { once: true });
@@ -1574,6 +1737,45 @@
                     enterShark();
                     setTimeout(scheduleNext, randomDelayMs());
                 }
+                var SHARK_STATE_KEY = 'auctologue_shark_state';
+                function saveSharkState() {
+                    try {
+                        sessionStorage.setItem(SHARK_STATE_KEY, JSON.stringify(activeSharks));
+                    } catch (e) {}
+                }
+                function restoreSharkState() {
+                    try {
+                        var raw = sessionStorage.getItem(SHARK_STATE_KEY);
+                        if (!raw) return;
+                        var saved = JSON.parse(raw);
+                        sessionStorage.removeItem(SHARK_STATE_KEY);
+                        var now = Date.now();
+                        saved.forEach(function(a) {
+                            var elapsed = now - a.startTime;
+                            var duration = sharkDurations[a.direction];
+                            if (elapsed >= duration || elapsed < 0) return;
+                            var el = zone.querySelector('.shark-' + a.index);
+                            if (!el) return;
+                            el.style.left = a.direction === 'right' ? '-35%' : '135%';
+                            el.classList.add('entered');
+                            activeSharks.push({ index: a.index, startTime: a.startTime, direction: a.direction });
+                            requestAnimationFrame(function() {
+                                var anims = el.getAnimations();
+                                if (anims.length > 0) anims[0].currentTime = elapsed;
+                            });
+                            function onEnd() {
+                                el.removeEventListener('animationend', onEnd);
+                                el.classList.remove('entered');
+                                el.style.left = '';
+                                activeSharks = activeSharks.filter(function(x) { return x.index !== a.index; });
+                                scheduleNext();
+                            }
+                            el.addEventListener('animationend', onEnd, { once: true });
+                        });
+                    } catch (e) {}
+                }
+                window.addEventListener('pagehide', saveSharkState);
+                restoreSharkState();
                 setTimeout(function() {
                     enterShark();
                     setTimeout(scheduleNext, randomDelayMs());
@@ -1584,15 +1786,104 @@
             var heroAucto = document.getElementById('hero-aucto');
             var wrap = document.querySelector('.nav-logo-wrap');
             var btn = document.getElementById('aucto-btn');
+            var AUCTO_MUTE_KEY = 'auctologue_aucto_mute';
+            var auctoSounds = {
+                hero: 'Sound_Bytes/ElevenLabs_2026-02-22T18_52_19_Edward - British, Dark, Seductive, Low_pvc_sp98_s30_sb70_se50_b_m2.mp3',
+                hero2: 'Sound_Bytes/ElevenLabs_2026-02-22T19_02_52_Edward - British, Dark, Seductive, Low_pvc_sp98_s30_sb70_se50_b_m2.mp3',
+                bespoke: 'Sound_Bytes/ElevenLabs_2026-02-22T19_41_43_Edward - British, Dark, Seductive, Low_pvc_sp98_s30_sb70_se50_b_m2.mp3',
+                founder: 'Sound_Bytes/ElevenLabs_2026-02-22T18_43_30_Edward - British, Dark, Seductive, Low_pvc_sp112_s30_sb70_se100_b_m2.mp3',
+                comparison: 'Sound_Bytes/ElevenLabs_2026-02-22T18_43_06_Edward - British, Dark, Seductive, Low_pvc_sp112_s30_sb70_se100_b_m2.mp3',
+                extension: 'Sound_Bytes/ElevenLabs_2026-02-22T18_44_28_Edward - British, Dark, Seductive, Low_pvc_sp112_s30_sb70_se100_b_m2.mp3',
+                beta: 'Sound_Bytes/ElevenLabs_2026-02-22T18_45_21_Edward - British, Dark, Seductive, Low_pvc_sp112_s30_sb70_se100_b_m2.mp3'
+            };
+            var auctoMuted = (function() { try { return sessionStorage.getItem(AUCTO_MUTE_KEY) === '1'; } catch (e) { return false; } })();
+            var auctoCurrentAudio = null;
+            function stopAuctoSound() {
+                if (auctoCurrentAudio) {
+                    auctoCurrentAudio.pause();
+                    auctoCurrentAudio.currentTime = 0;
+                    auctoCurrentAudio = null;
+                }
+            }
+            function playAuctoSound(key, onHeroEnded) {
+                stopAuctoSound();
+                if (auctoMuted || !auctoSounds[key]) return;
+                var a = new Audio(auctoSounds[key]);
+                auctoCurrentAudio = a;
+                if (key === 'hero') {
+                    a.addEventListener('ended', function () {
+                        if (auctoMuted) return;
+                        if (typeof onHeroEnded === 'function') {
+                            onHeroEnded();
+                            return;
+                        }
+                        if (auctoSounds.hero2) {
+                            stopAuctoSound();
+                            var a2 = new Audio(auctoSounds.hero2);
+                            auctoCurrentAudio = a2;
+                            a2.play().catch(function () {});
+                        }
+                    }, { once: true });
+                }
+                a.play().catch(function() {});
+            }
+            window.auctoPlay = function(key) {
+                console.log('[auctoPlay] key=', key);
+                stopAuctoSound();
+                try {
+                    if (sessionStorage.getItem(AUCTO_MUTE_KEY) === '1') {
+                        console.log('[auctoPlay] skipped: muted');
+                        return;
+                    }
+                } catch (e) {}
+                var src = auctoSounds[key];
+                if (!src) {
+                    console.log('[auctoPlay] skipped: no src for key');
+                    return;
+                }
+                console.log('[auctoPlay] playing', src);
+                var a = new Audio(src);
+                auctoCurrentAudio = a;
+                a.play().then(function() { console.log('[auctoPlay] play started'); }).catch(function(err) { console.log('[auctoPlay] play failed', err); });
+            };
+            window.auctoStop = stopAuctoSound;
+            function setMuteUI(muted) {
+                document.querySelectorAll('.aucto-bubble-mute').forEach(function(bt) {
+                    if (!bt) return;
+                    bt.textContent = muted ? '🔇' : '🔊';
+                    bt.classList.toggle('muted', muted);
+                    bt.setAttribute('aria-label', muted ? 'Unmute' : 'Mute');
+                });
+            }
+            setMuteUI(auctoMuted);
+            document.querySelectorAll('.aucto-bubble-mute').forEach(function(muteBtn) {
+                muteBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    auctoMuted = !auctoMuted;
+                    try { sessionStorage.setItem(AUCTO_MUTE_KEY, auctoMuted ? '1' : '0'); } catch (err) {}
+                    setMuteUI(auctoMuted);
+                });
+            });
+            window.playAuctoSound = playAuctoSound;
+            window.stopAuctoSound = stopAuctoSound;
             if (!bubble) return;
+            function hideBubble() {
+                bubble.classList.remove('visible');
+                stopAuctoSound();
+            }
+            function onHeroEndedThenPlaySecond() {
+                hideBubble();
+                if (auctoMuted || !auctoSounds.hero2) return;
+                var a2 = new Audio(auctoSounds.hero2);
+                auctoCurrentAudio = a2;
+                a2.play().catch(function () {});
+            }
             function showBubbleNear(el) {
                 var r = el.getBoundingClientRect();
                 bubble.style.top = (r.top + 8) + 'px';
                 bubble.style.left = (r.right - 95) + 'px';
                 bubble.classList.add('visible');
-            }
-            function hideBubble() {
-                bubble.classList.remove('visible');
+                playAuctoSound('hero', onHeroEndedThenPlaySecond);
             }
             if (heroAucto) {
                 heroAucto.style.cursor = 'pointer';
@@ -1611,6 +1902,7 @@
                 });
             }
             document.addEventListener('click', function (e) {
+                if (e.target.closest && e.target.closest('#scroll-aucto')) return;
                 if (!bubble.contains(e.target) && e.target !== heroAucto && !wrap.contains(e.target)) hideBubble();
             });
             var speechBubbleClose = document.getElementById('aucto-speech-bubble-close');
@@ -1621,6 +1913,7 @@
             var scrollBubbleText = document.getElementById('scroll-aucto-bubble-text');
             var scrollBubbleClose = document.getElementById('scroll-aucto-bubble-close');
             var sectionIds = ['bespoke', 'founder', 'comparison', 'extension'];
+            var scrollSequenceKeys = ['bespoke', 'founder', 'comparison', 'extension', 'beta'];
             var sectionMessages = {
                 bespoke: 'This is our full service white glove cataloging solution. We handle the research and the details and you get a ready-to-upload catalog.',
                 founder: 'That\'s Amberleigh. Auctioneer, champion, and the visionary behind Auctologue.',
@@ -1628,6 +1921,15 @@
                 extension: 'Our browser extension. Get titles and descriptions from the page you\'re on, no copy-paste.',
                 beta: 'Curious about joining our beta? Just ask!'
             };
+            function playScrollSectionClip(key) {
+                if (auctoMuted || !auctoSounds[key]) return;
+                stopAuctoSound();
+                var a = new Audio(auctoSounds[key]);
+                auctoCurrentAudio = a;
+                scrollBubbleText.textContent = sectionMessages[key] || '';
+                scrollBubble.setAttribute('data-section-id', key);
+                a.play().catch(function () {});
+            }
             if (scrollAucto && scrollBubble && scrollBubbleText) {
                 var footerEl = document.querySelector('.footer');
                 var scrollAuctoImg = document.getElementById('scroll-aucto-img');
@@ -1657,16 +1959,24 @@
                     if (activeSection) {
                         var id = activeSection.id;
                         currentSectionId = id;
-                        scrollBubbleText.textContent = sectionMessages[id] || '';
+                        if (scrollBubble.classList.contains('bubble-closed')) {
+                            scrollBubbleText.textContent = sectionMessages[id] || '';
+                            scrollBubble.setAttribute('data-section-id', id);
+                        } else if (scrollBubble.getAttribute('data-section-id') !== id) {
+                            playScrollSectionClip(id);
+                        }
                         scrollAucto.classList.add('visible');
                         scrollAucto.style.top = '180px';
                         scrollAucto.style.transform = 'translateY(-50%)';
                         if (scrollAuctoBadge) {
-                            if (scrollBubble.classList.contains('bubble-closed') && !readSectionIds[id]) scrollAuctoBadge.classList.add('badge-show');
+                            var bubbleClosed = scrollBubble.classList.contains('bubble-closed');
+                            var sectionUnread = !readSectionIds[id];
+                            if (bubbleClosed && sectionUnread) scrollAuctoBadge.classList.add('badge-show');
                             else scrollAuctoBadge.classList.remove('badge-show');
                         }
                     } else {
                         currentSectionId = null;
+                        scrollBubble.removeAttribute('data-section-id');
                         scrollAucto.classList.remove('visible');
                         if (scrollAuctoBadge) scrollAuctoBadge.classList.remove('badge-show');
                     }
@@ -1674,14 +1984,17 @@
                 if (scrollBubbleClose) scrollBubbleClose.addEventListener('click', function (e) { e.stopPropagation(); scrollBubble.classList.add('bubble-closed'); scrollAucto.classList.add('bubble-closed'); updateScrollAucto(); });
                 if (scrollAuctoImg) scrollAuctoImg.addEventListener('click', function () {
                     var isClosed = scrollBubble.classList.contains('bubble-closed');
+                    console.log('[Scroll Aucto] click', 'isClosed=', isClosed, 'data-section-id=', scrollBubble.getAttribute('data-section-id'), 'currentSectionId=', currentSectionId);
                     if (isClosed) {
                         scrollBubble.classList.remove('bubble-closed');
                         scrollAucto.classList.remove('bubble-closed');
-                        if (currentSectionId) readSectionIds[currentSectionId] = true;
+                        var soundKey = scrollBubble.getAttribute('data-section-id') || currentSectionId;
+                        if (soundKey) { readSectionIds[soundKey] = true; playScrollSectionClip(soundKey); }
                         if (scrollAuctoBadge) scrollAuctoBadge.classList.remove('badge-show');
                     } else {
                         scrollBubble.classList.add('bubble-closed');
                         scrollAucto.classList.add('bubble-closed');
+                        if (window.auctoStop) window.auctoStop();
                         updateScrollAucto();
                     }
                 });
