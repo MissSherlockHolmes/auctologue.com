@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auctologue</title>
-    <meta name="description" content="Auctologue - The World's First Research-Based Auction Catalog Suite. From our Catalog Assistant extension to bespoke catalog suites, we help auction houses and sellers maximize value and avoid AI pollution." />
+    <meta name="description" content="Auctologue - The World's First Research-Based Auction Catalog Suite. We help auction houses and sellers maximize value with research-grounded cataloging and avoid AI pollution." />
     <meta property="og:title" content="Auctologue" />
     <meta property="og:site_name" content="Auctologue" />
     <meta property="og:type" content="website" />
@@ -17,7 +17,7 @@
     <link rel="apple-touch-icon" href="icon128.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -62,7 +62,6 @@
             --liquid-glass-rim-inset: -5px;
             --liquid-glass-transition: border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
 
-            --hero-slogan-color: #152238;
             --halo-bubble-text: #4a2c32;
 
             /* Hero on painting — navbar blues + white halos on type */
@@ -75,7 +74,6 @@
                 0 2px 6px rgba(255, 255, 255, 0.75),
                 0 0 14px rgba(255, 255, 255, 0.55),
                 0 0 28px rgba(255, 255, 255, 0.35);
-            --beta-plaque-gold: rgba(255, 236, 200, 0.42);
         }
 
         html { scroll-behavior: smooth; font-size: 18px; }
@@ -130,11 +128,26 @@
             margin-right: 0.6rem;
             line-height: 0;
             display: inline-flex;
+            border-radius: 10px;
+        }
+        .aucto-btn:focus-visible {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 3px;
         }
         .aucto-btn img {
             height: 52px;
             width: auto;
             vertical-align: middle;
+            display: block;
+        }
+        .aucto-btn:active img {
+            transform: scale(0.94);
+            transition: transform 0.1s ease;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .aucto-btn:active img {
+                transform: none;
+            }
         }
         .nav-logo img {
             height: 52px;
@@ -203,35 +216,6 @@
             gap: 0.6rem;
             flex-shrink: 0;
         }
-        /* Glass plaque — light touch so .nav-cta reads as the only solid CTA block */
-        .beta-postit {
-            position: static;
-            flex-shrink: 0;
-            width: auto;
-            min-width: 4.75rem;
-            max-width: 6.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.38rem 0.55rem;
-            background: rgba(255, 255, 255, 0.04);
-            color: #fff8ec;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            font-weight: 500;
-            font-size: clamp(0.6rem, 1.15vw, 0.74rem);
-            line-height: 1.2;
-            text-align: center;
-            letter-spacing: 0.03em;
-            border-radius: 8px;
-            border: 1px solid var(--beta-plaque-gold);
-            box-shadow:
-                0 2px 12px rgba(0, 0, 0, 0.18),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px) saturate(1.05);
-            -webkit-backdrop-filter: blur(10px) saturate(1.05);
-            pointer-events: none;
-        }
-
         .nav-hamburger {
             display: none;
             flex-direction: column;
@@ -449,6 +433,10 @@
         .scroll-aucto.bubble-closed .scroll-aucto-badge.badge-show {
             display: flex;
         }
+        /* Footer / post–bio: scroll Aucto shows mascot only (no beta bubble, no new clip). */
+        .scroll-aucto.scroll-aucto--below-bio .scroll-aucto-bubble {
+            display: none !important;
+        }
         .scroll-aucto-bubble::before {
             content: '';
             position: absolute;
@@ -549,10 +537,10 @@
 
         .auctologue-wordmark.hero-wordmark {
             margin: 0 0 clamp(0.5rem, 2vh, 1.25rem);
-            color: var(--dark-blue);
+            color: var(--hero-nav-blue);
             text-shadow:
                 0 1px 0 rgba(255, 255, 255, 0.12),
-                0 2px 22px rgba(37, 99, 235, 0.22);
+                0 2px 22px rgba(30, 58, 95, 0.28);
             opacity: 0;
             animation: hero-wordmark-in 1.1s ease-out 0.2s forwards;
         }
@@ -571,11 +559,129 @@
         .hero-aucto-stage {
             position: relative;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: clamp(1.65rem, 4.2vh, 2.85rem);
             perspective: 900px;
             perspective-origin: 50% 40%;
-            min-height: clamp(8rem, 28vh, 14rem);
+            min-height: clamp(19.5rem, 54vh, 29rem);
+        }
+
+        .hero-slogan {
+            /* Liquid-glass plaque: no border or rim (avoids a hard outline); long radial mask = soft feathered edge */
+            --liquid-glass-backdrop-blur: 22px;
+            --liquid-glass-backdrop-brightness: 1.04;
+            --liquid-glass-backdrop-saturate: 1.03;
+            --liquid-glass-surface-tint: rgba(255, 255, 255, 0.01);
+            position: relative;
+            z-index: 1;
+            margin: 0;
+            max-width: min(40rem, 94vw);
+            padding: clamp(0.7rem, 1.6vh, 1.05rem) clamp(1.1rem, 3.5vw, 1.65rem);
+            box-sizing: border-box;
+            font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+            font-size: clamp(1.05rem, 2.85vmin, 1.42rem);
+            font-weight: 700;
+            font-optical-sizing: auto;
+            letter-spacing: 0.015em;
+            line-height: 1.5;
+            text-align: center;
+            color: var(--hero-nav-blue);
+            border-radius: var(--border-radius-lg);
+            border: none;
+            background: var(--liquid-glass-surface-tint);
+            isolation: isolate;
+            overflow: hidden;
+            -webkit-backdrop-filter:
+                blur(var(--liquid-glass-backdrop-blur))
+                brightness(var(--liquid-glass-backdrop-brightness))
+                saturate(var(--liquid-glass-backdrop-saturate))
+                contrast(var(--liquid-glass-backdrop-contrast));
+            backdrop-filter:
+                blur(var(--liquid-glass-backdrop-blur))
+                brightness(var(--liquid-glass-backdrop-brightness))
+                saturate(var(--liquid-glass-backdrop-saturate))
+                contrast(var(--liquid-glass-backdrop-contrast));
+            box-shadow:
+                0 10px 36px rgba(0, 0, 0, 0.12),
+                inset 0 0 32px 20px rgba(255, 255, 255, 0.03),
+                inset 0 0 48px 28px rgba(0, 0, 0, 0.04);
+            -webkit-mask-image: radial-gradient(
+                ellipse 104% 132% at 50% 50%,
+                #000 0%,
+                #000 36%,
+                rgba(0, 0, 0, 0.94) 46%,
+                rgba(0, 0, 0, 0.72) 58%,
+                rgba(0, 0, 0, 0.42) 71%,
+                rgba(0, 0, 0, 0.18) 84%,
+                rgba(0, 0, 0, 0.06) 93%,
+                transparent 100%
+            );
+            mask-image: radial-gradient(
+                ellipse 104% 132% at 50% 50%,
+                #000 0%,
+                #000 36%,
+                rgba(0, 0, 0, 0.94) 46%,
+                rgba(0, 0, 0, 0.72) 58%,
+                rgba(0, 0, 0, 0.42) 71%,
+                rgba(0, 0, 0, 0.18) 84%,
+                rgba(0, 0, 0, 0.06) 93%,
+                transparent 100%
+            );
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+            text-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.12),
+                0 2px 22px rgba(30, 58, 95, 0.28);
+        }
+
+        .hero-bubble-row {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(1rem, 3vw, 1.75rem);
+            max-width: min(54rem, 96vw);
+            margin: clamp(1.15rem, 3.6vh, 2.65rem) 0 0;
+            padding: 0;
+        }
+
+        .hero-bubble-row .halo-bubble {
+            font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+            font-weight: 600;
+            font-optical-sizing: auto;
+            letter-spacing: 0.04em;
+            line-height: 1.15;
+            color: rgba(255, 255, 255, 0.97);
+            text-shadow:
+                0 1px 2px rgba(11, 18, 32, 0.65),
+                0 0 12px rgba(11, 18, 32, 0.25);
+        }
+
+        .hero-bubble-row .halo-bubble:visited {
+            color: rgba(255, 255, 255, 0.97);
+        }
+
+        .hero-bubble-row .halo-bubble--bullet {
+            --liquid-glass-backdrop-blur: 12px;
+            --liquid-glass-surface-tint: rgba(255, 255, 255, 0.006);
+            --liquid-glass-border: rgba(255, 255, 255, 0.1);
+            --liquid-glass-shadow-drop:
+                0 10px 28px rgba(0, 0, 0, 0.2),
+                0 4px 12px rgba(0, 0, 0, 0.12);
+            --liquid-glass-shadow-inset-light: inset 2px 3px 8px rgba(255, 255, 255, 0.04);
+            --liquid-glass-shadow-inset-dark: inset -2px -2px 6px rgba(0, 0, 0, 0.1);
+            width: clamp(6.35rem, 18.5vmin, 8.5rem);
+            height: clamp(6.35rem, 18.5vmin, 8.5rem);
+            min-width: 6.35rem;
+            min-height: 6.35rem;
+            font-size: clamp(0.98rem, 2.75vmin, 1.22rem);
+            padding: 0.48em;
         }
 
         .hero-smoke {
@@ -681,6 +787,110 @@
             animation: hero-aucto-from-depth 2.15s cubic-bezier(0.22, 0.82, 0.28, 1) 0.15s both;
         }
 
+        /* Tip anchored on the mascot; motion is translate from off-stage to (0,0). */
+        @keyframes hero-aucto-demo-cursor {
+            0% {
+                opacity: 0;
+                transform: translate(clamp(2.75rem, 22vw, 6rem), clamp(2.25rem, 18vh, 5rem)) scale(1);
+            }
+            6% {
+                opacity: 1;
+            }
+            32% {
+                transform: translate(0, 0) scale(1);
+            }
+            38% {
+                transform: translate(0, 0) scale(0.85);
+            }
+            44% {
+                transform: translate(0, 0) scale(1);
+            }
+            58% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            72% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(clamp(2.75rem, 22vw, 6rem), clamp(2.25rem, 18vh, 5rem)) scale(1);
+            }
+        }
+        @keyframes hero-aucto-demo-click-ring {
+            0%, 36% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.3);
+            }
+            38% {
+                opacity: 0.55;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            48% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(2.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.3);
+            }
+        }
+        .hero-aucto-hint-wrap {
+            position: relative;
+            display: inline-flex;
+            flex-shrink: 0;
+            z-index: 2;
+        }
+        .hero-aucto-hint-wrap .aucto-demo-cursor {
+            position: absolute;
+            left: 50%;
+            top: 34%;
+            margin-left: -5px;
+            margin-top: -4px;
+            z-index: 6;
+            width: clamp(28px, 5vmin, 42px);
+            height: clamp(28px, 5vmin, 42px);
+            pointer-events: none;
+            opacity: 0;
+            filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.45)) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
+            transform-origin: 5px 4px;
+            animation: hero-aucto-demo-cursor 4.2s cubic-bezier(0.33, 0.9, 0.42, 1) 2;
+            animation-delay: 2.35s;
+            animation-fill-mode: both;
+        }
+        .hero-aucto-hint-wrap .aucto-demo-cursor svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .hero-aucto-hint-wrap::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 34%;
+            width: clamp(14px, 3vmin, 20px);
+            height: clamp(14px, 3vmin, 20px);
+            margin: 0;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+            animation: hero-aucto-demo-click-ring 4.2s ease-out 2;
+            animation-delay: 2.35s;
+            animation-fill-mode: both;
+        }
+        .hero-aucto-hint-wrap:not(.aucto-cursor-demo-finished):is(:hover, :focus-within) .aucto-demo-cursor,
+        .hero-aucto-hint-wrap:not(.aucto-cursor-demo-finished):is(:hover, :focus-within)::after {
+            visibility: hidden;
+        }
+        .hero-aucto-hint-wrap.aucto-cursor-demo-finished .aucto-demo-cursor,
+        .hero-aucto-hint-wrap.aucto-cursor-demo-finished::after {
+            animation: none !important;
+            opacity: 0 !important;
+            visibility: hidden;
+        }
+
         @media (prefers-reduced-motion: reduce) {
             .auctologue-wordmark.hero-wordmark {
                 animation: none;
@@ -691,6 +901,10 @@
                 animation: none;
                 transform: none;
                 filter: none;
+            }
+            .hero-aucto-hint-wrap .aucto-demo-cursor,
+            .hero-aucto-hint-wrap::after {
+                display: none;
             }
             .hero-smoke-cloud--a,
             .hero-smoke-cloud--b,
@@ -736,6 +950,20 @@
         .page-section .section-subtitle { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 1.5rem; text-align: center; }
         .page-section .section-card h3 { text-align: center; }
         .page-section .founder-headshot-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; }
+
+        /* Comparison table: use more of the card interior without changing page layout */
+        #comparison .section-card {
+            padding: 2.75rem clamp(1.1rem, 3.5vw, 1.65rem);
+        }
+        .comparison-table-wrap {
+            width: 100%;
+            min-width: 0;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.35rem 1.35rem;
+            line-height: 1.65;
+        }
 
         .halo-wing {
             position: relative;
@@ -1058,7 +1286,7 @@
                 height: clamp(5.75rem, 20vh, 9.5rem);
             }
             .hero-aucto-stage {
-                min-height: clamp(7rem, 24vh, 12rem);
+                min-height: clamp(20rem, 54vh, 27rem);
             }
             #home {
                 align-items: flex-start;
@@ -1067,7 +1295,9 @@
             #home .hero { position: relative; z-index: 2; }
             .page-section { padding: 3rem 1rem; }
             .page-section .section-card { padding: 1.5rem 1.5rem; }
+            #comparison .section-card { padding: 1.6rem 1rem; }
             #founder .founder-headshot-wrap { justify-content: center; flex-direction: column; align-items: center; text-align: center; }
+            .footer-aucto-band p { text-align: center; }
         }
 
     </style>
@@ -1090,14 +1320,13 @@
         </button>
         <ul class="nav-links" id="nav-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#bespoke">Bespoke</a></li>
+            <li><a href="#features">Features</a></li>
             <li><a href="#comparison">Comparison</a></li>
+            <li><a href="#watch">Watch</a></li>
             <li><a href="#founder">Founder</a></li>
-            <li><a href="#extension">Extension</a></li>
         </ul>
         <div class="nav-cta-wrap">
-            <span class="beta-postit" aria-hidden="true">Join Beta<br>Program!</span>
-            <a href="https://app.auctologue.com/" class="nav-cta" target="_blank" rel="noopener">Open App</a>
+            <a href="https://app.auctologue.com/" class="nav-cta" target="_blank" rel="noopener">Open WebApp</a>
         </div>
     </nav>
 
@@ -1119,11 +1348,11 @@
                 <nav class="halo-wing halo-wing--left" aria-label="Product highlights, left">
                     <ul class="halo-col">
                         <li class="halo-row">
-                            <a href="#bespoke" class="halo-bubble halo-bubble--bullet">Bespoke</a>
+                            <a href="#features" class="halo-bubble halo-bubble--bullet">Features</a>
                             <p class="halo-feature"><strong>Research-Grounded Accuracy:</strong> Auctologue is not an AI description generator, it actually identifies items via precise database lookups and grounded research, achieving an unparalleled accuracy rate.</p>
                         </li>
                         <li class="halo-row">
-                            <a href="#founder" class="halo-bubble halo-bubble--bullet">Founder</a>
+                            <a href="#watch" class="halo-bubble halo-bubble--bullet">Watch</a>
                             <p class="halo-feature"><strong>Integrated Image Processing:</strong> Paying customers receive unlimited image processing, including automatic background removal and precision object centering, for a professional gallery aesthetic.</p>
                         </li>
                     </ul>
@@ -1135,8 +1364,8 @@
                             <a href="#comparison" class="halo-bubble halo-bubble--bullet">Comparison</a>
                         </li>
                         <li class="halo-row halo-row--mirror">
-                            <p class="halo-feature"><strong>Superior Processing Speed:</strong> Our proprietary technology operates at 10x the speed of the leading competitor, drastically reducing the time from asset intake to a completed catalog.</p>
-                            <a href="#extension" class="halo-bubble halo-bubble--bullet">Extension</a>
+                            <p class="halo-feature"><strong>Superior Processing Speed:</strong> Our custom workflow processes thousands of lots per hour, more than 10x the speed of the leading competitor, drastically reducing the time from asset intake to a completed catalog.</p>
+                            <a href="#founder" class="halo-bubble halo-bubble--bullet">Founder</a>
                         </li>
                     </ul>
                 </nav>
@@ -1151,60 +1380,116 @@
                             <span class="hero-smoke-cloud hero-smoke-cloud--c"></span>
                             <span class="hero-smoke-cloud hero-smoke-cloud--d"></span>
                         </div>
-                        <img src="Aucto_Hat_Transparent.png" alt="Aucto" class="hero-mascot hero-mascot--entrance" id="hero-aucto" width="320" height="320" decoding="async">
+                        <span class="hero-aucto-hint-wrap">
+                            <img src="Aucto_Hat_Transparent.png" alt="Aucto" class="hero-mascot hero-mascot--entrance" id="hero-aucto" width="320" height="320" decoding="async">
+                            <span class="aucto-demo-cursor" aria-hidden="true">
+                                <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M4 2 L4 22 L10.2 14.8 L14.2 24.5 L17.2 23 L13.2 13.5 L22 13.5 L4 2 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="1.25" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                        </span>
+                        <p class="hero-slogan">The World&rsquo;s First Research-Based Auction Cataloging Suite</p>
+                        <nav class="hero-bubble-row" aria-label="Page sections">
+                            <a href="#features" class="halo-bubble halo-bubble--bullet">Features</a>
+                            <a href="#comparison" class="halo-bubble halo-bubble--bullet">Comparison</a>
+                            <a href="#watch" class="halo-bubble halo-bubble--bullet">Watch</a>
+                            <a href="#founder" class="halo-bubble halo-bubble--bullet">Founder</a>
+                        </nav>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="bespoke" class="page-section">
-            <h2>Bespoke Cataloging</h2>
-            <p class="section-subtitle" style="color: var(--text-secondary); margin-bottom: 1rem;">Managed by Experts. Enhanced by Technology.</p>
+        <section id="features" class="page-section">
+            <h2>Features</h2>
+            <p class="section-subtitle" style="color: var(--text-secondary); margin-bottom: 1rem;">Research. Speed. Accuracy.</p>
             <div class="section-card">
-                <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 1.35rem; color: var(--accent-blue); margin-bottom: 1rem;">The Professional Standard</h3>
-                <p>Stop losing revenue to generic descriptions. Backed by decades of auction industry experience, Auctologue Bespoke provides the academic rigor and search-driven identification your lots deserve. We don&rsquo;t just &ldquo;list&rdquo; items. We identify maker-marks, brand details and item specifics that are often missed.</p>
-    </div>
-            <div class="section-card">
-                <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 1.35rem; color: var(--accent-blue); margin-bottom: 1rem;">The Auctologue Advantage</h3>
                 <ul style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
-                    <li><strong>Deep Industry Expertise:</strong> Every catalog is overseen by professionals who understand the nuances of the secondary market.</li>
-                    <li><strong>Research-First Methodology:</strong> We use proprietary search algorithms to find details that AI and LLMs don&rsquo;t have access to. We cross-reference global databases and auction archives to ensure your descriptions stand up to collector scrutiny.</li>
-                    <li><strong>Seamless Integration:</strong> Receive a clean, revenue-optimized CSV ready to upload to your auction platform.</li>
+                    <li><strong>Research-Grounded Accuracy:</strong> Auctologue is not an AI description generator, it actually identifies items via precise database lookups and grounded research, achieving an unparalleled accuracy rate.</li>
+                    <li><strong>Integrated Image Processing:</strong> Paying customers receive unlimited image processing, including automatic background removal and precision object centering, for a professional gallery aesthetic.</li>
+                    <li><strong>Photos Only, Zero Keyword Input:</strong> Simply upload your images and our system identifies and catalogs every item automatically with no keywords or description typing required.</li>
+                    <li><strong>Superior Processing Speed:</strong> Our custom workflow processes thousands of lots per hour, more than 10x the speed of the leading competitor, drastically reducing the time from asset intake to a completed catalog.</li>
                 </ul>
-        </div>
-            <div class="section-card">
-                <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 1.35rem; color: var(--accent-blue); margin-bottom: 1rem;">How It Works</h3>
-                <ol style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
-                    <li><strong>Direct Upload:</strong> Send your raw auction photos to our secure portal.</li>
-                    <li><strong>Research &amp; Review:</strong> Our team cross-references global databases and auction archives; every catalog is overseen by industry professionals.</li>
-                    <li><strong>Revenue-Ready:</strong> Receive a formatted CSV optimized for SEO and ready for instant upload to your bidding platform.</li>
-                </ol>
-    </div>
-            <p style="text-align: center; color: var(--text-primary); font-weight: 500;">Stop settling for &ldquo;good enough.&rdquo; Leverage years of experience to protect your hammer prices.</p>
+            </div>
         </section>
 
         <section id="comparison" class="page-section">
             <h2>The Auctologue Difference</h2>
             <div class="section-card">
                 <div class="comparison-table-wrap" style="overflow-x: auto;">
-                    <table class="comparison-table" style="width: 100%; border-collapse: collapse; color: var(--text-secondary);">
+                    <table class="comparison-table" style="width: 100%; border-collapse: collapse; table-layout: fixed; color: var(--text-secondary);">
+                        <colgroup>
+                            <col style="width: 26%;" />
+                            <col style="width: 37%;" />
+                            <col style="width: 37%;" />
+                        </colgroup>
                         <thead>
                             <tr style="border-bottom: 2px solid var(--border-color);">
-                                <th style="text-align: center; padding: 0.75rem; font-family: 'Times New Roman', Times, serif;">Image</th>
-                                <th style="text-align: center; padding: 0.75rem; font-family: 'Times New Roman', Times, serif;">Gemini</th>
-                                <th style="text-align: center; padding: 0.75rem; font-family: 'Times New Roman', Times, serif; border-left: 2px solid rgba(234, 179, 8, 0.5);">Auctologue</th>
+                                <th style="text-align: center; font-family: 'Times New Roman', Times, serif;">Image</th>
+                                <th style="text-align: center; font-family: 'Times New Roman', Times, serif;">Generic AI Description</th>
+                                <th style="text-align: center; font-family: 'Times New Roman', Times, serif; border-left: 2px solid rgba(234, 179, 8, 0.5);">Auctologue</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr style="border-bottom: 1px solid var(--border-color);">
-                                <td style="padding: 0.75rem; vertical-align: top; text-align: center;">[Thumbnail]</td>
-                                <td style="padding: 0.75rem; vertical-align: top;">&ldquo;Old wooden chair, possibly 19th century. Simple design.&rdquo;</td>
-                                <td style="padding: 0.75rem; vertical-align: top; border-left: 2px solid rgba(234, 179, 8, 0.5); background: rgba(234, 179, 8, 0.06);">Early 19th-century American Shaker side chair, maple and cherry. Features original rush seat and distinctive tilter mechanism. Attributed to the Mount Lebanon community.</td>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <img src="comparison-stemware-thumb.png" alt="Crystal stemware with silver-tone rim detail" width="160" height="120" decoding="async" style="max-width: min(128px, 32vw); height: auto; display: inline-block; vertical-align: middle; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
+                                </td>
+                                <td style="text-align: center; vertical-align: middle; font-family: 'Times New Roman', Times, serif;"><strong>33 Vintage Stemware with Silver Rims</strong></td>
+                                <td style="text-align: center; vertical-align: middle; border-left: 2px solid rgba(234, 179, 8, 0.5); background: rgba(234, 179, 8, 0.06); font-family: 'Times New Roman', Times, serif;"><strong>Lenox Montclair Platinum Rim Crystal Stemware Collection</strong></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <img src="comparison-chrysanthemum-stone-thumb.png" alt="Polished black chrysanthemum stone with white radial pattern on a carved wood stand" width="160" height="120" decoding="async" style="max-width: min(128px, 32vw); height: auto; display: inline-block; vertical-align: middle; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
+                                </td>
+                                <td style="text-align: center; vertical-align: middle; font-family: 'Times New Roman', Times, serif;"><strong>Polished Fossil Stone With Stand</strong></td>
+                                <td style="text-align: center; vertical-align: middle; border-left: 2px solid rgba(234, 179, 8, 0.5); background: rgba(234, 179, 8, 0.06); font-family: 'Times New Roman', Times, serif;"><strong>Polished Chrysanthemum Stone On Carved Wood Base</strong></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <img src="comparison-punch-bowl-harvest-grape-thumb.png" alt="Indiana Glass Harvest Grape iridescent lime carnival glass punch bowl with ladle and cups" width="160" height="120" decoding="async" style="max-width: min(128px, 32vw); height: auto; display: inline-block; vertical-align: middle; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
+                                </td>
+                                <td style="text-align: center; vertical-align: middle; font-family: 'Times New Roman', Times, serif;"><strong>Iridescent Green Glass Punch Bowl Set with Cups and Ladle</strong></td>
+                                <td style="text-align: center; vertical-align: middle; border-left: 2px solid rgba(234, 179, 8, 0.5); background: rgba(234, 179, 8, 0.06); font-family: 'Times New Roman', Times, serif;"><strong>Indiana Glass Harvest Grape Iridescent Lime Carnival Glass Punch Set</strong></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <img src="comparison-stoneware-crock-crown-5-thumb.png" alt="Antique cream stoneware crock with blue crown mark and numeral 5, worn glaze" width="160" height="120" decoding="async" style="max-width: min(128px, 32vw); height: auto; display: inline-block; vertical-align: middle; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
+                                </td>
+                                <td style="text-align: center; vertical-align: middle; font-family: 'Times New Roman', Times, serif;"><strong>Stoneware Crock with Crown '5' Mark</strong></td>
+                                <td style="text-align: center; vertical-align: middle; border-left: 2px solid rgba(234, 179, 8, 0.5); background: rgba(234, 179, 8, 0.06); font-family: 'Times New Roman', Times, serif;"><strong>Antique Robinson Ransbottom Blue Crown 5 Gallon Stoneware Crock</strong></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <img src="comparison-lenox-holiday-iced-tea-thumb.png" alt="Four Lenox Holiday stemmed glasses with holly and berry band and gold rim" width="160" height="120" decoding="async" style="max-width: min(128px, 32vw); height: auto; display: inline-block; vertical-align: middle; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
+                                </td>
+                                <td style="text-align: center; vertical-align: middle; font-family: 'Times New Roman', Times, serif;"><strong>Four Hand-Painted Holiday Wine Glasses</strong></td>
+                                <td style="text-align: center; vertical-align: middle; border-left: 2px solid rgba(234, 179, 8, 0.5); background: rgba(234, 179, 8, 0.06); font-family: 'Times New Roman', Times, serif;"><strong>Lenox Holiday Dimension 14 Ounce Iced Tea Glasses Set</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <img src="comparison-imperial-amber-lacy-edge-bowl-thumb.png" alt="Amber glass pedestal compote with openwork lacy rim and fluted stem" width="160" height="120" decoding="async" style="max-width: min(128px, 32vw); height: auto; display: inline-block; vertical-align: middle; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: var(--shadow);">
+                                </td>
+                                <td style="text-align: center; vertical-align: middle; font-family: 'Times New Roman', Times, serif;"><strong>Amber Glass Pedestal Compote Bowl with Openwork Edge</strong></td>
+                                <td style="text-align: center; vertical-align: middle; border-left: 2px solid rgba(234, 179, 8, 0.5); background: rgba(234, 179, 8, 0.06); font-family: 'Times New Roman', Times, serif;"><strong>Imperial Glass Amber Lacy Edge Pedestal Fruit Bowl</strong></td>
                             </tr>
                         </tbody>
                     </table>
         </div>
     </div>
+        </section>
+
+        <section id="watch" class="page-section">
+            <h2>Watch</h2>
+            <p class="section-subtitle" style="color: var(--text-secondary); margin-bottom: 1rem;">See Auctologue in action.</p>
+            <div class="section-card watch-video-card" style="padding: 0; overflow: hidden; border-radius: var(--border-radius-lg); border: 1px solid var(--border-color); background: var(--card-bg); max-width: min(56rem, 100%); margin: 0 auto;">
+                <!-- YouTube: replace VIDEO_ID and uncomment iframe; remove .watch-video-placeholder -->
+                <div class="watch-video-placeholder" style="aspect-ratio: 16 / 9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; background: linear-gradient(180deg, var(--card-bg-alt) 0%, var(--card-bg) 100%); color: var(--text-muted); text-align: center; padding: 2rem 1.5rem;">
+                    <span style="font-size: 2.5rem; line-height: 1; opacity: 0.5;" aria-hidden="true">▶</span>
+                    <p style="margin: 0; font-family: 'Inter', system-ui, sans-serif; font-size: 0.95rem;">YouTube embed placeholder</p>
+                    <p style="margin: 0; font-size: 0.85rem; max-width: 28rem; line-height: 1.5;">Paste your video ID into an iframe: <code style="color: var(--accent-blue); font-size: 0.8rem;">youtube.com/embed/<strong>VIDEO_ID</strong></code></p>
+                </div>
+            </div>
         </section>
 
         <section id="founder" class="page-section">
@@ -1223,42 +1508,15 @@
             </div>
         </section>
 
-        <section id="extension" class="page-section">
-            <h2>Catalog Assistant</h2>
-            <p class="section-subtitle" style="color: var(--text-secondary); margin-bottom: 0.5rem;">A browser extension that transforms manual cataloging into automated efficiency.</p>
-            <div style="text-align: center; margin-bottom: 1.5rem;">
-                <img src="Aucto_in_a_Chair_web.jpg" alt="Aucto in a Chair" style="max-width: min(400px, 90%); height: auto; border-radius: var(--border-radius); box-shadow: var(--shadow); border: 1px solid var(--border-color);">
-            </div>
-            <div class="section-card">
-                <p>For decades, auction houses, estate sellers, and catalog managers have faced the same challenge: turning a room full of items into an organized catalog that bidders and buyers can understand. The process has traditionally involved long hours of manual work, in addition to photographing each object: typing out titles, researching descriptions, and copy-pasting details from one window to another.</p>
-            </div>
-            <div class="section-card">
-                <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 1.35rem; color: var(--accent-blue); margin-bottom: 1rem;">Our Solution</h3>
-                <p>Auctologue Catalog Assistant was created to relieve this burden. The extension automatically retrieves images from the page you are viewing, transmits them securely to our processing system, and returns professional titles, descriptions, and suggested categories in seconds, no switching between windows, no extra typing, no endless copy-paste.</p>
-            </div>
-            <div class="section-card">
-                <h3 style="font-family: 'Times New Roman', Times, serif; font-size: 1.35rem; color: var(--accent-blue); margin-bottom: 1rem;">How It Works</h3>
-                <ol style="color: var(--text-secondary); padding-left: 1.5rem; line-height: 1.8;">
-                    <li><strong>Install &amp; Open</strong> the extension and open the page with items you want to catalog.</li>
-                    <li><strong>Auto-Detection</strong> of images on the page.</li>
-                    <li><strong>Secure Processing</strong> by our system.</li>
-                    <li><strong>Instant Results</strong>: titles, descriptions, and categories generated and returned.</li>
-                    <li><strong>Auto-Insert or Copy</strong> into form fields or your catalog with one click.</li>
-                </ol>
-            </div>
-            <p style="text-align: center; margin-top: 1.5rem;">
-                <a href="test-listing.html" class="nav-cta" style="display: inline-block; margin-right: 0.5rem;">Test Catalog</a>
-                <a href="mailto:auctologue@auctologue.com?subject=Extension%20invitation%20request" class="nav-cta" style="display: inline-block;">Request an invitation</a>
-            </p>
-        </section>
-
         <div style="position: relative; z-index: 1; margin-top: 2rem; padding: 3rem 2rem 0; flex-grow: 1; background: linear-gradient(180deg, var(--dark-bg) 0%, #152238 12%, #1e3a5f 28%, #152238 45%, var(--dark-bg) 100%); min-height: 40vh;">
-            <div style="text-align: center; display: flex; align-items: center; justify-content: center; height: 300px;">
-                <img src="Auctologue_Future_World_Marquee_web.jpg" alt="Auctologue Future World" style="max-width: 100%; height: 100%; width: auto; object-fit: contain;">
+            <div class="footer-aucto-band" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(1.5rem, 4vw, 3rem); max-width: min(56rem, 100%); margin: 0 auto;">
+                <div style="flex: 0 1 min(22rem, 100%); text-align: center;">
+                    <img src="Aucto_in_a_Chair_web.jpg" alt="Aucto in a chair" style="max-width: 100%; height: auto; border-radius: var(--border-radius); box-shadow: var(--shadow); border: 1px solid var(--border-color);">
+                </div>
+                <p style="flex: 1 1 min(16rem, 100%); font-style: italic; color: var(--text-muted); margin: 0; line-height: 1.65; text-align: left; max-width: 36rem;">Auctologue is a proud company dedicated to logic, organizational efficiency, and the circular economy.</p>
             </div>
 
-        <footer class="footer" style="position: relative; z-index: 1; color: var(--text-secondary); text-align: center; padding: 2.5rem 2rem; margin-top: 0; border-top: 1px solid var(--border-color); font-size: 0.95rem; background: transparent;">
-            <p style="font-style: italic; color: var(--text-muted); max-width: 560px; margin: 0 auto 1rem; line-height: 1.6;">Auctologue is a proud company dedicated to the logic of loops, organizational efficiency, and the repurposing of value.</p>
+        <footer class="footer" style="position: relative; z-index: 1; color: var(--text-secondary); text-align: center; padding: 2.5rem 2rem; margin-top: 1.5rem; border-top: 1px solid var(--border-color); font-size: 0.95rem; background: transparent;">
             <p>
                 <a href="#home" style="color: var(--primary-blue); text-decoration: none; margin: 0 0.75rem;">Home</a>
                 <a href="privacy-policy.html" style="color: var(--primary-blue); text-decoration: none; margin: 0 0.75rem;">Privacy Policy</a>
@@ -1317,19 +1575,39 @@
                 }
             })();
 
+            (function heroAuctoCursorDemoOnce() {
+                var hintWrap = document.querySelector('.hero-aucto-hint-wrap');
+                var demoCursor = hintWrap && hintWrap.querySelector('.aucto-demo-cursor');
+                if (!hintWrap || !demoCursor) return;
+                function lockDemo() {
+                    hintWrap.classList.add('aucto-cursor-demo-finished');
+                }
+                try {
+                    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                        lockDemo();
+                        return;
+                    }
+                } catch (e) {}
+                demoCursor.addEventListener('animationend', function (e) {
+                    if (e.animationName !== 'hero-aucto-demo-cursor') return;
+                    lockDemo();
+                });
+            })();
+
             var bubble = document.getElementById('aucto-speech-bubble');
             var heroAucto = document.getElementById('hero-aucto');
             var wrap = document.querySelector('.nav-logo-wrap');
             var btn = document.getElementById('aucto-btn');
             var AUCTO_MUTE_KEY = 'auctologue_aucto_mute';
+            var introCommercial = 'Sound_Bytes/Auctologue-intro-commercial.mp3';
             var auctoSounds = {
                 hero: 'Sound_Bytes/ElevenLabs_2026-02-22T18_52_19_Edward - British, Dark, Seductive, Low_pvc_sp98_s30_sb70_se50_b_m2.mp3',
                 hero2: 'Sound_Bytes/ElevenLabs_2026-02-22T19_02_52_Edward - British, Dark, Seductive, Low_pvc_sp98_s30_sb70_se50_b_m2.mp3',
-                bespoke: 'Sound_Bytes/ElevenLabs_2026-02-22T19_41_43_Edward - British, Dark, Seductive, Low_pvc_sp98_s30_sb70_se50_b_m2.mp3',
+                features: introCommercial,
                 founder: 'Sound_Bytes/ElevenLabs_2026-02-22T18_43_30_Edward - British, Dark, Seductive, Low_pvc_sp112_s30_sb70_se100_b_m2.mp3',
-                comparison: 'Sound_Bytes/ElevenLabs_2026-02-22T18_43_06_Edward - British, Dark, Seductive, Low_pvc_sp112_s30_sb70_se100_b_m2.mp3',
-                extension: 'Sound_Bytes/ElevenLabs_2026-02-22T18_44_28_Edward - British, Dark, Seductive, Low_pvc_sp112_s30_sb70_se100_b_m2.mp3',
-                beta: 'Sound_Bytes/ElevenLabs_2026-02-22T18_45_21_Edward - British, Dark, Seductive, Low_pvc_sp112_s30_sb70_se100_b_m2.mp3'
+                comparison: introCommercial,
+                watch: introCommercial,
+                beta: introCommercial
             };
             var auctoMuted = (function() { try { return sessionStorage.getItem(AUCTO_MUTE_KEY) !== '0'; } catch (e) { return true; } })();
             var auctoCurrentAudio = null;
@@ -1445,22 +1723,25 @@
             var scrollBubble = document.getElementById('scroll-aucto-bubble');
             var scrollBubbleText = document.getElementById('scroll-aucto-bubble-text');
             var scrollBubbleClose = document.getElementById('scroll-aucto-bubble-close');
-            var sectionIds = ['bespoke', 'founder', 'comparison', 'extension'];
-            var scrollSequenceKeys = ['bespoke', 'founder', 'comparison', 'extension', 'beta'];
+            var sectionIds = ['features', 'comparison', 'watch', 'founder'];
+            var scrollSequenceKeys = ['features', 'comparison', 'watch', 'founder', 'beta'];
             var sectionMessages = {
-                bespoke: 'This is our full service white glove cataloging solution. We handle the research and the details and you get a ready-to-upload catalog.',
+                features: 'Research-grounded cataloging: database-backed identification, pro image processing, and speed that generic tools can\'t match.',
                 founder: 'That\'s Amberleigh. Auctioneer, champion, and the visionary behind Auctologue.',
                 comparison: 'We catch what generic tools and tired catalogers miss. Maker-marks, brand details, the stuff that matters.',
-                extension: 'Our browser extension. Get titles and descriptions from the page you\'re on, no copy-paste.',
+                watch: 'Watch Auctologue in action—video coming to this section soon.',
                 beta: 'Curious about joining our beta? Just ask!'
             };
-            function playScrollSectionClip(key) {
-                if (auctoMuted || !auctoSounds[key]) return;
+            var scrollSameIntroSections = { features: true, comparison: true, watch: true };
+            function playScrollSectionClip(key, options) {
+                options = options || {};
+                var skipAudio = options.skipAudio === true;
+                scrollBubbleText.textContent = sectionMessages[key] || '';
+                scrollBubble.setAttribute('data-section-id', key);
+                if (skipAudio || auctoMuted || !auctoSounds[key]) return;
                 stopAuctoSound();
                 var a = new Audio(auctoSounds[key]);
                 auctoCurrentAudio = a;
-                scrollBubbleText.textContent = sectionMessages[key] || '';
-                scrollBubble.setAttribute('data-section-id', key);
                 a.play().catch(function () {});
             }
             if (scrollAucto && scrollBubble && scrollBubbleText) {
@@ -1492,20 +1773,35 @@
                     if (activeSection) {
                         var id = activeSection.id;
                         currentSectionId = id;
-                        if (scrollBubble.classList.contains('bubble-closed')) {
-                            scrollBubbleText.textContent = sectionMessages[id] || '';
-                            scrollBubble.setAttribute('data-section-id', id);
-                        } else if (scrollBubble.getAttribute('data-section-id') !== id) {
-                            playScrollSectionClip(id);
-                        }
-                        scrollAucto.classList.add('visible');
-                        scrollAucto.style.top = '180px';
-                        scrollAucto.style.transform = 'translateY(-50%)';
-                        if (scrollAuctoBadge) {
-                            var bubbleClosed = scrollBubble.classList.contains('bubble-closed');
-                            var sectionUnread = !readSectionIds[id];
-                            if (bubbleClosed && sectionUnread) scrollAuctoBadge.classList.add('badge-show');
-                            else scrollAuctoBadge.classList.remove('badge-show');
+                        if (id === 'beta') {
+                            scrollAucto.classList.add('scroll-aucto--below-bio');
+                            scrollBubble.classList.add('bubble-closed');
+                            scrollAucto.classList.add('bubble-closed');
+                            scrollBubble.setAttribute('data-section-id', 'beta');
+                            if (scrollAuctoBadge) scrollAuctoBadge.classList.remove('badge-show');
+                            scrollAucto.classList.add('visible');
+                            scrollAucto.style.top = '180px';
+                            scrollAucto.style.transform = 'translateY(-50%)';
+                        } else {
+                            scrollAucto.classList.remove('scroll-aucto--below-bio');
+                            if (scrollBubble.classList.contains('bubble-closed')) {
+                                scrollBubbleText.textContent = sectionMessages[id] || '';
+                                scrollBubble.setAttribute('data-section-id', id);
+                            } else if (scrollBubble.getAttribute('data-section-id') !== id) {
+                                var prevScrollId = scrollBubble.getAttribute('data-section-id');
+                                var skipAudio =
+                                    !!(prevScrollId && scrollSameIntroSections[prevScrollId] && scrollSameIntroSections[id]);
+                                playScrollSectionClip(id, { skipAudio: skipAudio });
+                            }
+                            scrollAucto.classList.add('visible');
+                            scrollAucto.style.top = '180px';
+                            scrollAucto.style.transform = 'translateY(-50%)';
+                            if (scrollAuctoBadge) {
+                                var bubbleClosed = scrollBubble.classList.contains('bubble-closed');
+                                var sectionUnread = !readSectionIds[id];
+                                if (bubbleClosed && sectionUnread) scrollAuctoBadge.classList.add('badge-show');
+                                else scrollAuctoBadge.classList.remove('badge-show');
+                            }
                         }
                     } else {
                         currentSectionId = null;
@@ -1516,6 +1812,7 @@
                 }
                 if (scrollBubbleClose) scrollBubbleClose.addEventListener('click', function (e) { e.stopPropagation(); scrollBubble.classList.add('bubble-closed'); scrollAucto.classList.add('bubble-closed'); updateScrollAucto(); });
                 if (scrollAuctoImg) scrollAuctoImg.addEventListener('click', function () {
+                    if (currentSectionId === 'beta') return;
                     var isClosed = scrollBubble.classList.contains('bubble-closed');
                     console.log('[Scroll Aucto] click', 'isClosed=', isClosed, 'data-section-id=', scrollBubble.getAttribute('data-section-id'), 'currentSectionId=', currentSectionId);
                     if (isClosed) {
