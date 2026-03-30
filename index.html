@@ -940,6 +940,48 @@
             scroll-margin-top: 5rem;
             border-top: 2px solid var(--accent-blue);
         }
+
+        /* Watch: headline stays column-width; player breaks out as a real stage (not a card thumbnail) */
+        #watch.page-section {
+            max-width: none;
+            width: 100%;
+            padding-left: clamp(1rem, 4vw, 2.5rem);
+            padding-right: clamp(1rem, 4vw, 2.5rem);
+        }
+
+        #watch .watch-section-intro {
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .watch-player-stage {
+            width: 100%;
+            max-width: min(1200px, 100%);
+            margin: 0.5rem auto 0;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            background: #0a0a0c;
+            box-shadow:
+                var(--shadow),
+                0 0 0 1px rgba(255, 255, 255, 0.06);
+        }
+
+        .watch-player-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+
+        .watch-player-frame iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
         .page-section h2 {
             font-family: 'Times New Roman', Times, serif;
             font-size: clamp(1.75rem, 4vw, 2.5rem);
@@ -1497,14 +1539,20 @@
         </section>
 
         <section id="watch" class="page-section">
-            <h2>Watch</h2>
-            <p class="section-subtitle" style="color: var(--text-secondary); margin-bottom: 1rem;">See Auctologue in action.</p>
-            <div class="section-card watch-video-card" style="padding: 0; overflow: hidden; border-radius: var(--border-radius-lg); border: 1px solid var(--border-color); background: var(--card-bg); max-width: min(56rem, 100%); margin: 0 auto;">
-                <!-- YouTube: replace VIDEO_ID and uncomment iframe; remove .watch-video-placeholder -->
-                <div class="watch-video-placeholder" style="aspect-ratio: 16 / 9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; background: linear-gradient(180deg, var(--card-bg-alt) 0%, var(--card-bg) 100%); color: var(--text-muted); text-align: center; padding: 2rem 1.5rem;">
-                    <span style="font-size: 2.5rem; line-height: 1; opacity: 0.5;" aria-hidden="true">▶</span>
-                    <p style="margin: 0; font-family: 'Inter', system-ui, sans-serif; font-size: 0.95rem;">YouTube embed placeholder</p>
-                    <p style="margin: 0; font-size: 0.85rem; max-width: 28rem; line-height: 1.5;">Paste your video ID into an iframe: <code style="color: var(--accent-blue); font-size: 0.8rem;">youtube.com/embed/<strong>VIDEO_ID</strong></code></p>
+            <div class="watch-section-intro">
+                <h2>Watch</h2>
+                <p class="section-subtitle" style="color: var(--text-secondary); margin-bottom: 1rem;">See Auctologue in action.</p>
+            </div>
+            <div class="watch-player-stage" role="region" aria-label="Auctologue product video">
+                <div class="watch-player-frame">
+                    <iframe
+                        src="https://www.youtube.com/embed/H1hS1EcX-a0?rel=0"
+                        title="Auctologue — watch on YouTube"
+                        width="1280"
+                        height="720"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen></iframe>
                 </div>
             </div>
         </section>
@@ -1746,7 +1794,7 @@
                 features: 'Research-grounded cataloging: database-backed identification, pro image processing, and speed that generic tools can\'t match.',
                 founder: 'That\'s Amberleigh. Auctioneer, champion, and the visionary behind Auctologue.',
                 comparison: 'We catch what generic tools and tired catalogers miss. Maker-marks, brand details, the stuff that matters.',
-                watch: 'Watch Auctologue in action—video coming to this section soon.',
+                watch: 'There’s a walkthrough in this section—scroll up and hit play on the video.',
                 beta: 'Curious about joining our beta? Just ask!'
             };
             var scrollSameIntroSections = { features: true, comparison: true, watch: true };
