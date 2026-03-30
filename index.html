@@ -561,7 +561,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            /* Bubbles are outside this box on ≥769px (absolute to #home); centering the shorter stack pushed mascot+slogan down */
+            justify-content: flex-start;
             gap: clamp(1.65rem, 4.2vh, 2.85rem);
             perspective: 900px;
             perspective-origin: 50% 40%;
@@ -638,17 +639,31 @@
                 0 2px 22px rgba(30, 58, 95, 0.28);
         }
 
+        /* Sits after .home-content in DOM: on wide viewports anchor to #home bottom (painting) not slogan stack */
         .hero-bubble-row {
             position: relative;
-            z-index: 1;
+            z-index: 3;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
             gap: clamp(1rem, 3vw, 1.75rem);
             max-width: min(54rem, 96vw);
-            margin: clamp(1.15rem, 3.6vh, 2.65rem) 0 0;
-            padding: 0;
+            margin: clamp(1.15rem, 3.6vh, 2.65rem) auto 0;
+            padding: 0 clamp(0.75rem, 2.5vw, 1.75rem);
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 769px) {
+            #home .hero-bubble-row {
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                bottom: max(clamp(3.85rem, 12vh, 7.75rem), env(safe-area-inset-bottom, 0px));
+                width: fit-content;
+                max-width: min(54rem, calc(100% - 2 * clamp(0.65rem, 2.5vw, 1.35rem)));
+            }
         }
 
         .hero-bubble-row .halo-bubble {
@@ -1287,6 +1302,8 @@
             }
             .hero-aucto-stage {
                 min-height: clamp(20rem, 54vh, 27rem);
+                /* Bubbles follow in document flow; pin stack to bottom of stage so gap to row matches pre-refactor */
+                justify-content: flex-end;
             }
             #home {
                 align-items: flex-start;
@@ -1389,15 +1406,15 @@
                             </span>
                         </span>
                         <p class="hero-slogan">The World&rsquo;s First Research-Based Auction Cataloging Suite</p>
-                        <nav class="hero-bubble-row" aria-label="Page sections">
-                            <a href="#features" class="halo-bubble halo-bubble--bullet">Features</a>
-                            <a href="#comparison" class="halo-bubble halo-bubble--bullet">Comparison</a>
-                            <a href="#watch" class="halo-bubble halo-bubble--bullet">Watch</a>
-                            <a href="#founder" class="halo-bubble halo-bubble--bullet">Founder</a>
-                        </nav>
                     </div>
                 </div>
             </div>
+            <nav class="hero-bubble-row" aria-label="Page sections">
+                <a href="#features" class="halo-bubble halo-bubble--bullet">Features</a>
+                <a href="#comparison" class="halo-bubble halo-bubble--bullet">Comparison</a>
+                <a href="#watch" class="halo-bubble halo-bubble--bullet">Watch</a>
+                <a href="#founder" class="halo-bubble halo-bubble--bullet">Founder</a>
+            </nav>
         </section>
 
         <section id="features" class="page-section">
