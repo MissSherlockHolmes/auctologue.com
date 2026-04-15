@@ -2,226 +2,324 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Privacy Policy — Auctologue Catalog Assistant</title>
-  <meta name="description" content="Auctologue Catalog Assistant is a powerful tool for auction houses looking to streamline their cataloging process. Our tech stack automatically generates professional titles, descriptions, and categories from product images, saving hours of manual work and reducing cataloging errors." />
-  <meta property="og:title" content="Auctologue Catalog Assistant" />
-  <meta property="og:site_name" content="Auctologue" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="Auctologue Catalog Assistant is a powerful tool for auction houses looking to streamline their cataloging process. Our tech stack automatically generates professional titles, descriptions, and categories from product images, saving hours of manual work and reducing cataloging errors." />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image" content="icon128.png" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Auctologue Catalog Assistant" />
-  <meta name="twitter:description" content="Auctologue Catalog Assistant is a powerful tool for auction houses looking to streamline their cataloging process. Our tech stack automatically generates professional titles, descriptions, and categories from product images, saving hours of manual work and reducing cataloging errors." />
-  <meta name="twitter:image" content="icon128.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Auctologue</title>
+  <meta name="description" content="Privacy Policy for Auctologue Catalog Assistant." />
   <meta name="theme-color" content="#0b1220" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="icon128.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="icon128.png">
-  <link rel="apple-touch-icon" href="icon128.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="icon128.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="icon128.png" />
+  <link rel="apple-touch-icon" href="icon128.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet" />
   <style>
     :root {
       --primary-blue: #3b82f6;
       --dark-blue: #2563eb;
       --accent-blue: #60a5fa;
       --brand-blue: #93c5fd;
-      --dark-bg: #0b1220;
-      --card-bg: #111827;
-      --card-bg-alt: #0f172a;
       --text-primary: #e5e7eb;
       --text-secondary: #cbd5e1;
       --text-muted: #94a3b8;
-      --border-color: #1f2937;
-      --border-light: #334155;
-      --shadow: 0 10px 30px rgba(0,0,0,0.35);
-      --border-radius: 10px;
-      --border-radius-lg: 16px;
-    }
-    
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
-      line-height:1.6;
-      margin:0;
-      padding:0;
-      color:var(--text-primary);
-      background-color:var(--dark-bg);
+      --bg: #0b1220;
+      --border: #1f2937;
+      --panel: #111827;
+      --radius: 18px;
+      --max: 1120px;
+      --link-color: #93c5fd;
+      --page-bg: radial-gradient(circle at 8% 0%, rgba(59, 130, 246, 0.22), transparent 42%), radial-gradient(circle at 92% 12%, rgba(59, 130, 246, 0.15), transparent 38%), linear-gradient(180deg, #162744 0%, #111f35 26%, #0f1a2d 55%, var(--bg) 100%);
+      --nav-bg: #1b3760;
     }
 
-    .main-wrap {
-      max-width:860px;
-      margin:0 auto;
-      padding:24px;
-    }
-    
-    .container {
-      background:var(--card-bg);
-      padding:3rem;
-      border-radius:var(--border-radius-lg);
-      box-shadow:var(--shadow);
-      border:1px solid var(--border-color);
-    }
-    
-    h1{color:var(--primary-blue);margin-bottom:.2rem}
-    .last-updated{color:var(--text-muted);font-style:italic;margin-bottom:1.25rem}
-    h2{margin-top:1.5rem;color:var(--text-primary)}
-    ul{padding-left:1.2rem}
-    p{color:var(--text-secondary)}
-    li{color:var(--text-secondary)}
-    a{color:var(--primary-blue)}
-    a:hover{text-decoration:underline}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Navbar */
-    .navbar {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      gap:1rem;
-      padding:.75rem 1.5rem;
-      background:var(--card-bg);
-      border-bottom:1px solid var(--border-color);
-      position:sticky;
-      top:0;
-      z-index:100;
+    body {
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text-primary);
+      background: var(--page-bg);
+      line-height: 1.6;
     }
-    .nav-logo {
-      font-weight:700;
-      font-size:1.25rem;
-      color:var(--text-primary);
-      text-decoration:none;
+    a,
+    a:visited {
+      color: var(--link-color);
     }
-    .nav-logo:hover { color:var(--accent-blue); }
-    .nav-links {
-      display:flex;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:.25rem;
-      list-style:none;
-      margin:0;
-      padding:0;
+    a:hover {
+      color: var(--accent-blue);
     }
-    .nav-links a {
-      color:var(--text-secondary);
-      text-decoration:none;
-      padding:.5rem .75rem;
-      border-radius:var(--border-radius);
-      font-size:.95rem;
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px 80px;
     }
-    .nav-links a:hover {
-      color:var(--text-primary);
-      background:rgba(59,130,246,0.1);
+
+    .topbar {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding-left: 20px;
+      padding-right: 20px;
+      background: var(--nav-bg);
+      opacity: 1;
     }
-    .nav-cta {
-      display:inline-block;
-      background:linear-gradient(180deg,var(--primary-blue),var(--dark-blue));
-      color:var(--text-primary);
-      padding:.5rem 1rem;
-      border-radius:var(--border-radius);
-      text-decoration:none;
-      font-weight:600;
-      font-size:.95rem;
-      border:1px solid var(--primary-blue);
-      transition:all .2s ease;
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: "Pinyon Script", cursive;
+      font-size: clamp(1.9rem, 2.8vw, 2.4rem);
+      text-decoration: none;
+      color: var(--text-primary);
+      line-height: 1;
     }
-    .nav-cta:hover {
-      background:linear-gradient(180deg,var(--dark-blue),var(--primary-blue));
-      box-shadow:0 4px 12px rgba(59,130,246,0.35);
+
+    .brand img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
     }
-    @media (max-width:768px) {
-      .navbar { padding:.6rem 1rem; }
-      .nav-links { order:3; width:100%; justify-content:flex-start; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+
+    .nav a.active {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .nav .app-btn {
+      border: 1px solid rgba(147, 197, 253, 0.4);
+      border-radius: 12px;
+      padding: 8px 16px;
+      font-weight: 500;
+      background: linear-gradient(180deg, var(--primary-blue), var(--dark-blue));
+      color: #f8fafc;
+    }
+
+    .hero {
+      text-align: center;
+      padding-top: clamp(34px, 9vw, 92px);
+      padding-bottom: 30px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 6.5vw, 3.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--text-secondary);
+      font-size: clamp(0.96rem, 2.1vw, 1.05rem);
+    }
+
+    .policy-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: clamp(1rem, 2.8vw, 1.8rem);
+    }
+
+    .policy-card h2 {
+      margin-top: 1.4rem;
+      margin-bottom: 0.6rem;
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      line-height: 1.3;
+    }
+
+    .policy-card h2:first-of-type { margin-top: 0; }
+    .policy-card h3 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.02rem;
+      color: var(--text-primary);
+    }
+
+    .policy-card p {
+      color: var(--text-secondary);
+      margin-bottom: 0.9rem;
+    }
+
+    .policy-card ul {
+      margin: 0 0 1rem 1.2rem;
+      color: var(--text-secondary);
+    }
+
+    .policy-card li { margin-bottom: 0.45rem; }
+    .policy-card strong { color: var(--text-primary); }
+    .policy-card a { color: var(--brand-blue); text-decoration: none; }
+    .policy-card a:hover { text-decoration: underline; }
+
+    .last-updated {
+      color: var(--text-muted);
+      margin-bottom: 1.1rem;
+      font-size: 0.92rem;
+    }
+
+    .policy-actions {
+      text-align: center;
+      margin-top: 1.3rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 0.65rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #060b13;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      border: 1px solid #233048;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 14px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 760px) {
+      .topbar {
+        min-height: auto;
+        padding-top: 12px;
+        padding-bottom: 4px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav {
+        justify-content: flex-start;
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <nav class="navbar" aria-label="Main navigation">
-    <a href="index.html" class="nav-logo">Auctologue</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="bespoke.html">Bespoke</a></li>
-      <li><a href="founder.html">Founder</a></li>
-      <li><a href="comparison.html">Comparison</a></li>
-      <li><a href="https://app.auctologue.com/">Webapp</a></li>
-      <li><a href="test-listing.html">Test Catalog</a></li>
-    </ul>
-    <a href="https://app.auctologue.com/" class="nav-cta" target="_blank" rel="noopener">Open App</a>
-  </nav>
-  <div class="main-wrap">
-  <div class="container">
-    <h1>Privacy Policy — Auctologue Catalog Assistant</h1>
-    <p class="last-updated">Last updated: 13 September 2025</p>
+  <div class="wrap">
+    <header class="topbar">
+      <a href="index.html" class="brand"><img src="Aucto_Hat_Transparent.png" alt="Aucto" />Auctologue</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="plans.html">Plans</a>
+        <a href="features.html">Features</a>
+        <a href="about.html">About</a>
+        <a href="privacy-policy.html" class="active">Privacy &amp; Terms</a>
+        <a href="https://app.auctologue.com/" class="app-btn" target="_blank" rel="noopener">Open WebApp</a>
+      </nav>
+    </header>
 
-  <h2>1. Information Collected</h2>
-  <p><strong>This webapp collects the following types of data:</strong></p>
-  <ul>
-    <li><strong>Images</strong> that you choose to process through the webapp.</li>
-    <li><strong>Text and page content</strong> that you explicitly submit for processing.</li>
-    <li><strong>Generated content</strong> such as titles, descriptions, or categories created by our service.</li>
-    <li><strong>Authentication data</strong> such as session tokens stored locally in your browser to enable access.</li>
-    <li><strong>Usage data</strong> and diagnostic information related to performance, feature use, and error events.</li>
-  </ul>
+    <section class="hero">
+      <h1>Privacy Policy</h1>
+      <p>Auctologue Catalog Assistant</p>
+    </section>
 
-  <h2>2. Purpose of Processing</h2>
-  <p><strong>All collected data is used exclusively for the following purposes:</strong></p>
-  <ul>
-    <li><strong>Automated Analysis:</strong> Images and text are sent to our servers for processing by automated analysis systems (machine learning models) to generate product titles, descriptions, and categories.</li>
-    <li><strong>Service Delivery:</strong> Generating and improving catalog outputs you request through our automated analysis systems.</li>
-    <li><strong>Performance Optimization:</strong> Caching items to allow recognition and faster regeneration of previously processed material.</li>
-    <li><strong>Authentication:</strong> Ensuring secure and consistent user authentication and session management.</li>
-    <li><strong>Service Improvement:</strong> Monitoring, maintaining, and improving the stability and quality of the webapp and its related services.</li>
-  </ul>
-  
-  <h3>🔒 Data Usage Commitment</h3>
-  <p>
-    <strong>We do NOT:</strong> Sell your data, share it with unrelated third parties, use it for advertising, or track your browsing outside of this webapp.
-  </p>
+    <article class="policy-card">
+      <p class="last-updated">Last updated: 13 September 2025</p>
 
-  <h2>3. Storage, Security, and Sharing</h2>
-  <ul>
-    <li>Information may be stored on our secure servers for as long as reasonably necessary to support the features of the webapp.</li>
-    <li>Authentication tokens are stored only on your device and expire or are removed when you log out or clear webapp data.</li>
-    <li>All data transmission is protected by HTTPS. Industry-standard measures are applied to safeguard stored data.</li>
-    <li><strong>Information Sharing:</strong> Certain data (such as images and text you explicitly submit) may be securely transmitted to contracted service providers (such as cloud-based machine learning platforms) for processing. These providers act as processors on our behalf and are not permitted to use your data for advertising or unrelated purposes.</li>
-  </ul>
+      <h2>1. Information Collected</h2>
+      <p><strong>This webapp collects the following types of data:</strong></p>
+      <ul>
+        <li><strong>Images</strong> that you choose to process through the webapp.</li>
+        <li><strong>Text and page content</strong> that you explicitly submit for processing.</li>
+        <li><strong>Generated content</strong> such as titles, descriptions, or categories created by our service.</li>
+        <li><strong>Authentication data</strong> such as session tokens stored locally in your browser to enable access.</li>
+        <li><strong>Usage data</strong> and diagnostic information related to performance, feature use, and error events.</li>
+      </ul>
 
-  <h2>4. Retention</h2>
-  <p>Data retention periods vary based on the type of information and operational needs:</p>
-  <ul>
-    <li><strong>Images and generated content:</strong> Retained as long as reasonably necessary to provide good service and enable faster re-identification of previously processed items.</li>
-    <li><strong>Authentication tokens:</strong> Stored locally on your device until you log out of the webapp.</li>
-    <li><strong>Usage data:</strong> Retained for service improvement and operational purposes, generally for several months, and longer if needed for operational or legal requirements.</li>
-  </ul>
-  <p>Because temporary storage and caching are integral to the webapp's functionality, individual opt-out of storage is not available. Users who prefer not to have data stored in this way may choose not to use the webapp.</p>
-  
-  <h2>5. User Consent and Control</h2>
-  <p><strong>Consent Requirements:</strong></p>
-  <ul>
-    <li>You must explicitly consent to data collection before using the webapp's core features.</li>
-    <li>Consent is obtained through a prominent modal dialog that clearly explains what data will be collected.</li>
-    <li>You can withdraw consent at any time by logging out of the webapp or clearing webapp data.</li>
-    <li>Without consent, the webapp will not collect or process any personal data.</li>
-  </ul>
-  
-  <p><strong>Your Rights:</strong></p>
-  <ul>
-    <li>Request access to the data we maintain in connection with your account.</li>
-    <li>Request deletion of data associated with your account, subject to technical and legal constraints.</li>
-    <li>Clear local data by logging out of the webapp, or clearing webapp storage from your browser.</li>
-    <li>Opt out of data collection by not using the webapp's automated analysis features.</li>
-  </ul>
+      <h2>2. Purpose of Processing</h2>
+      <p><strong>All collected data is used exclusively for the following purposes:</strong></p>
+      <ul>
+        <li><strong>Automated Analysis:</strong> Images and text are sent to our servers for processing by automated analysis systems (machine learning models) to generate product titles, descriptions, and categories.</li>
+        <li><strong>Service Delivery:</strong> Generating and improving catalog outputs you request through our automated analysis systems.</li>
+        <li><strong>Performance Optimization:</strong> Caching items to allow recognition and faster regeneration of previously processed material.</li>
+        <li><strong>Authentication:</strong> Ensuring secure and consistent user authentication and session management.</li>
+        <li><strong>Service Improvement:</strong> Monitoring, maintaining, and improving the stability and quality of the webapp and its related services.</li>
+      </ul>
 
-  <h2>6. Service Scope</h2>
-  <p>The webapp may evolve over time. Features, storage practices, and processing methods may change as necessary to improve functionality or to comply with applicable law. Any material changes will be reflected in this policy and, where appropriate, communicated via the webapp or our website.</p>
+      <h3>Data Usage Commitment</h3>
+      <p><strong>We do NOT:</strong> sell your data, share it with unrelated third parties, use it for advertising, or track your browsing outside of this webapp.</p>
 
-  <h2>7. Contact</h2>
-  <p>For any privacy-related requests, please contact: <a href="mailto:privacy@auctologue.com">privacy@auctologue.com</a></p>
-  
-  <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
-    <a href="index.html" style="display: inline-block; background: var(--primary-blue); color: var(--text-primary); padding: 1rem 2rem; border-radius: var(--border-radius); text-decoration: none; font-weight: 600; margin: 0 0.5rem;">← Back to Home</a>
-    <a href="https://app.auctologue.com/" target="_blank" style="display: inline-block; background: var(--primary-blue); color: var(--text-primary); padding: 1rem 2rem; border-radius: var(--border-radius); text-decoration: none; font-weight: 600; margin: 0 0.5rem;">Open App</a>
-  </div>
-  </div>
+      <h2>3. Storage, Security, and Sharing</h2>
+      <ul>
+        <li>Information may be stored on our secure servers for as long as reasonably necessary to support the features of the webapp.</li>
+        <li>Authentication tokens are stored only on your device and expire or are removed when you log out or clear webapp data.</li>
+        <li>All data transmission is protected by HTTPS. Industry-standard measures are applied to safeguard stored data.</li>
+        <li><strong>Information Sharing:</strong> Certain data (such as images and text you explicitly submit) may be securely transmitted to contracted service providers (such as cloud-based machine learning platforms) for processing. These providers act as processors on our behalf and are not permitted to use your data for advertising or unrelated purposes.</li>
+      </ul>
+
+      <h2>4. Retention</h2>
+      <p>Data retention periods vary based on the type of information and operational needs:</p>
+      <ul>
+        <li><strong>Images and generated content:</strong> retained as long as reasonably necessary to provide good service and enable faster re-identification of previously processed items.</li>
+        <li><strong>Authentication tokens:</strong> stored locally on your device until you log out of the webapp.</li>
+        <li><strong>Usage data:</strong> retained for service improvement and operational purposes, generally for several months, and longer if needed for operational or legal requirements.</li>
+      </ul>
+      <p>Because temporary storage and caching are integral to the webapp's functionality, individual opt-out of storage is not available. Users who prefer not to have data stored in this way may choose not to use the webapp.</p>
+
+      <h2>5. User Consent and Control</h2>
+      <p><strong>Consent Requirements:</strong></p>
+      <ul>
+        <li>You must explicitly consent to data collection before using the webapp's core features.</li>
+        <li>Consent is obtained through a prominent modal dialog that clearly explains what data will be collected.</li>
+        <li>You can withdraw consent at any time by logging out of the webapp or clearing webapp data.</li>
+        <li>Without consent, the webapp will not collect or process any personal data.</li>
+      </ul>
+
+      <p><strong>Your Rights:</strong></p>
+      <ul>
+        <li>Request access to the data we maintain in connection with your account.</li>
+        <li>Request deletion of data associated with your account, subject to technical and legal constraints.</li>
+        <li>Clear local data by logging out of the webapp, or clearing webapp storage from your browser.</li>
+        <li>Opt out of data collection by not using the webapp's automated analysis features.</li>
+      </ul>
+
+      <h2>6. Service Scope</h2>
+      <p>The webapp may evolve over time. Features, storage practices, and processing methods may change as necessary to improve functionality or to comply with applicable law. Any material changes will be reflected in this policy and, where appropriate, communicated via the webapp or our website.</p>
+
+      <h2>7. Contact</h2>
+      <p>For any privacy-related requests, please contact: <a href="mailto:privacy@auctologue.com">privacy@auctologue.com</a></p>
+
+      <div class="policy-actions">
+        <a href="index.html" class="btn">Back to Home</a>
+        <a href="https://app.auctologue.com/" class="btn" target="_blank" rel="noopener">Open WebApp</a>
+      </div>
+    </article>
+
+    <footer class="footer">Privacy &amp; Terms</footer>
   </div>
 </body>
 </html>
