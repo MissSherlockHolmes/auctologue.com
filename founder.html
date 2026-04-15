@@ -250,10 +250,18 @@
         }
 
         .nav-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
             font-weight: 700;
             font-size: 1.25rem;
             color: var(--text-primary);
             text-decoration: none;
+        }
+        .nav-logo img {
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
         }
 
         .nav-logo:hover {
@@ -323,16 +331,13 @@
 </head>
 <body>
     <nav class="navbar" aria-label="Main navigation">
-        <a href="index.html" class="nav-logo">Auctologue</a>
+        <a href="index.html" class="nav-logo"><img src="Aucto_Hat_Transparent.png" alt="Aucto" />Auctologue</a>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="bespoke.html">Bespoke</a></li>
-            <li><a href="founder.html">Founder</a></li>
-            <li><a href="comparison.html">Comparison</a></li>
-            <li><a href="extension.html">Extension</a></li>
-            <li><a href="test-listing.html">Test Catalog</a></li>
+            <li><a href="index.html">Overview</a></li>
+            <li><a href="plans.html">Plans</a></li>
+            <li><a href="features.html">Features</a></li>
         </ul>
-        <a href="https://app.auctologue.com/" class="nav-cta" target="_blank" rel="noopener">Open App</a>
+        <a href="https://app.auctologue.com/" class="nav-cta" target="_blank" rel="noopener">Open WebApp</a>
     </nav>
 
     <header class="header-image">
@@ -362,7 +367,7 @@
 
         <div class="nav-buttons">
             <a href="index.html" class="btn">← Home</a>
-            <a href="https://app.auctologue.com/" class="btn btn-outline" target="_blank" rel="noopener">Open App</a>
+            <a href="https://app.auctologue.com/" class="btn btn-outline" target="_blank" rel="noopener">Open WebApp</a>
         </div>
     </main>
 
