@@ -58,9 +58,10 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      margin-right: calc(50% - 50vw);
+      /* Full-bleed within .wrap without 100vw (avoids horizontal scroll on mobile). */
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      margin-right: -20px;
       padding-left: 20px;
       padding-right: 20px;
       background: var(--nav-bg);
@@ -176,7 +177,7 @@
 
     .feature-row {
       display: grid;
-      grid-template-columns: minmax(230px, 360px) minmax(0, 620px);
+      grid-template-columns: minmax(0, min(360px, 100%)) minmax(0, 620px);
       gap: 48px;
       align-items: center;
       justify-content: space-between;
@@ -345,6 +346,58 @@
     .photo-progress .status-updated {
       animation: statusLate 4.2s linear infinite;
     }
+    .photo-progress span[data-photo-step] {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .photo-progress span[data-photo-step]:focus-visible {
+      outline: 2px solid var(--brand-blue);
+      outline-offset: 2px;
+    }
+
+    /* User-picked stage: hold layer state until page scroll resumes autoplay */
+    .photo-process.is-step-frozen .photo-scene.is-active .photo-layer-original,
+    .photo-process.is-step-frozen .photo-scene.is-active .photo-layer-removed,
+    .photo-process.is-step-frozen .photo-scene.is-active .photo-layer-updated {
+      animation: none !important;
+    }
+    .photo-process.is-step-frozen .photo-scene.is-active .photo-layer-removed img,
+    .photo-process.is-step-frozen .photo-scene.is-active .photo-layer-updated img {
+      animation: none !important;
+    }
+    .photo-process.is-step-frozen .photo-scene.is-active .photo-wipe {
+      animation: none !important;
+      opacity: 0;
+      transform: translateX(-120%);
+    }
+
+    .photo-process[data-freeze-step="original"] .photo-scene.is-active .photo-layer-original { opacity: 1; }
+    .photo-process[data-freeze-step="original"] .photo-scene.is-active .photo-layer-removed { opacity: 0; }
+    .photo-process[data-freeze-step="original"] .photo-scene.is-active .photo-layer-updated { opacity: 0; }
+
+    .photo-process[data-freeze-step="removed"] .photo-scene.is-active .photo-layer-original { opacity: 0; }
+    .photo-process[data-freeze-step="removed"] .photo-scene.is-active .photo-layer-removed { opacity: 1; }
+    .photo-process[data-freeze-step="removed"] .photo-scene.is-active .photo-layer-updated { opacity: 0; }
+
+    .photo-process[data-freeze-step="updated"] .photo-scene.is-active .photo-layer-original { opacity: 0; }
+    .photo-process[data-freeze-step="updated"] .photo-scene.is-active .photo-layer-removed { opacity: 0; }
+    .photo-process[data-freeze-step="updated"] .photo-scene.is-active .photo-layer-updated { opacity: 1; }
+
+    .photo-process[data-freeze-step="original"] .photo-scene.is-active .photo-layer-original img,
+    .photo-process[data-freeze-step="removed"] .photo-scene.is-active .photo-layer-removed img,
+    .photo-process[data-freeze-step="updated"] .photo-scene.is-active .photo-layer-updated img {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .photo-process.is-step-frozen .photo-progress span[data-photo-step] {
+      animation: none !important;
+      opacity: 0.45;
+    }
+    .photo-process[data-freeze-step="original"] .photo-progress .status-original { opacity: 1; }
+    .photo-process[data-freeze-step="removed"] .photo-progress .status-removed { opacity: 1; }
+    .photo-process[data-freeze-step="updated"] .photo-progress .status-updated { opacity: 1; }
+
     .frame.frame-identify {
       border: 1px solid var(--border);
       padding: 12px;
@@ -843,8 +896,21 @@
     }
 
     @media (max-width: 980px) {
-      .feature-row { grid-template-columns: 1fr; gap: 14px; }
-      .frame { max-width: 100%; }
+      /* minmax(0, 1fr) lets dense media shrink instead of forcing overflow. */
+      .feature-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+      }
+      .feature-row > * {
+        min-width: 0;
+      }
+      .frame {
+        max-width: 100%;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        justify-self: stretch;
+      }
       .cards, .quote-row { grid-template-columns: 1fr; }
       .topbar { min-height: auto; padding-top: 12px; padding-bottom: 4px; flex-direction: column; align-items: flex-start; }
       .nav { justify-content: flex-start; width: 100%; }
@@ -932,7 +998,7 @@
           <h3>Fully integrated image processing</h3>
           <p>Paying customers get unlimited automated image processing, including background removal and precision object centering for a polished gallery look.</p>
         </div>
-        <div class="frame frame-photo-process" role="img" aria-label="Animated photo processing workflow">
+        <div class="frame frame-photo-process" role="region" aria-label="Photo processing demo. Tap a stage to hold it; scroll the page to resume.">
           <div class="photo-process" data-photo-process>
             <div class="photo-stage">
             <figure class="photo-scene is-active">
@@ -1098,10 +1164,10 @@
               </figcaption>
             </figure>
             </div>
-            <div class="photo-progress" aria-hidden="true">
-              <span class="status-original">Original</span>
-              <span class="status-removed">Background removed</span>
-              <span class="status-updated">Background updated</span>
+            <div class="photo-progress" role="group" aria-label="Processing stages">
+              <span class="status-original" role="button" tabindex="0" data-photo-step="original">Original</span>
+              <span class="status-removed" role="button" tabindex="0" data-photo-step="removed">Background removed</span>
+              <span class="status-updated" role="button" tabindex="0" data-photo-step="updated">Background updated</span>
             </div>
           </div>
         </div>
@@ -1252,6 +1318,13 @@
       var roots = Array.prototype.slice.call(document.querySelectorAll('[data-photo-process]'));
       if (!roots.length) return;
 
+      function resumeAllFrozenOnScroll() {
+        roots.forEach(function (root) {
+          if (typeof root.__photoResume === 'function') root.__photoResume();
+        });
+      }
+      window.addEventListener('scroll', resumeAllFrozenOnScroll, { passive: true });
+
       roots.forEach(function (root) {
         var scenes = Array.prototype.slice.call(root.querySelectorAll('.photo-scene')).filter(function (scene) {
           return scene.querySelectorAll('.photo-layer img').length === 3;
@@ -1260,20 +1333,85 @@
 
         var current = 0;
         var sceneDurationMs = 4200;
+        var sceneTimer = null;
 
         function activate(index) {
           scenes[current].classList.remove('is-active');
           current = index;
           var next = scenes[current];
-          // Restart CSS keyframes each cycle for a clean transition.
           void next.offsetWidth;
           next.classList.add('is-active');
         }
 
+        function restartActiveSceneKeyframes() {
+          var activeScene = scenes[current];
+          activeScene.classList.remove('is-active');
+          void activeScene.offsetWidth;
+          activeScene.classList.add('is-active');
+        }
+
+        function startRotation() {
+          stopRotation();
+          sceneTimer = setInterval(function rotate() {
+            activate((current + 1) % scenes.length);
+          }, sceneDurationMs);
+        }
+
+        function stopRotation() {
+          if (sceneTimer) {
+            clearInterval(sceneTimer);
+            sceneTimer = null;
+          }
+        }
+
+        function setPillPressed(step) {
+          var pills = root.querySelectorAll('.photo-progress [data-photo-step]');
+          pills.forEach(function (pill) {
+            pill.setAttribute('aria-pressed', pill.getAttribute('data-photo-step') === step ? 'true' : 'false');
+          });
+        }
+
+        function clearPillPressed() {
+          root.querySelectorAll('.photo-progress [data-photo-step]').forEach(function (pill) {
+            pill.removeAttribute('aria-pressed');
+          });
+        }
+
+        function freezeAtStep(step) {
+          stopRotation();
+          root.classList.add('is-step-frozen');
+          root.setAttribute('data-freeze-step', step);
+          setPillPressed(step);
+        }
+
+        function resumeIfFrozen() {
+          if (!root.classList.contains('is-step-frozen')) return;
+          root.classList.remove('is-step-frozen');
+          root.removeAttribute('data-freeze-step');
+          clearPillPressed();
+          restartActiveSceneKeyframes();
+          startRotation();
+        }
+
+        root.__photoResume = resumeIfFrozen;
+
         scenes[0].classList.add('is-active');
-        setInterval(function rotate() {
-          activate((current + 1) % scenes.length);
-        }, sceneDurationMs);
+        startRotation();
+
+        root.querySelectorAll('.photo-progress [data-photo-step]').forEach(function (pill) {
+          function pick() {
+            var step = pill.getAttribute('data-photo-step');
+            if (!step) return;
+            freezeAtStep(step);
+          }
+          pill.addEventListener('click', pick);
+          pill.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              pick();
+            }
+          });
+        });
       });
     })();
 
