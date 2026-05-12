@@ -226,6 +226,12 @@
       touch-action: none;
       scrollbar-width: none;
     }
+    .frame-scroll.is-interactive {
+      pointer-events: auto;
+      user-select: text;
+      touch-action: pan-y;
+      -webkit-overflow-scrolling: touch;
+    }
     .frame-scroll::-webkit-scrollbar {
       display: none;
     }
@@ -492,6 +498,17 @@
       font-weight: 600;
       margin-bottom: 5px;
       animation: identifyPulse 0.9s ease-in-out infinite;
+      overflow: hidden;
+      max-height: 3rem;
+      opacity: 1;
+      transition: opacity 0.22s ease, max-height 0.28s ease, margin-bottom 0.28s ease;
+    }
+    .identify-kicker.is-concealed {
+      opacity: 0;
+      max-height: 0;
+      margin-bottom: 0;
+      animation: none;
+      pointer-events: none;
     }
     .identify-title {
       color: var(--text-primary);
@@ -1290,28 +1307,99 @@
       var box = document.querySelector('.frame-scroll');
       var tableEl = box && box.querySelector('.difference-table');
       var body = tableEl && tableEl.querySelector('tbody');
-      if (!box) return;
-      if (!tableEl || !body) return;
+      if (!box || !tableEl || !body) return;
 
-      // Duplicate content once for seamless loop.
+      var hoverTarget = box.closest('.frame.frame-table') || box.parentElement;
+
       var original = body.innerHTML;
       var originalBodyHeight = body.scrollHeight;
       body.innerHTML += original;
 
-      var speed = 0.28; // px per frame
-      requestAnimationFrame(function start() {
-        var loopHeight = originalBodyHeight || (body.scrollHeight / 2);
-        if (!loopHeight || loopHeight <= box.clientHeight) return;
+      var loopHeight = originalBodyHeight || (body.scrollHeight / 2);
+      if (!loopHeight || loopHeight <= box.clientHeight) return;
 
-        var y = 0;
-        function tick() {
-          y += speed;
-          if (y >= loopHeight) y -= loopHeight;
-          box.scrollTop = y;
-          requestAnimationFrame(tick);
+      var speed = 0.28;
+      var y = 0;
+      var rafId = null;
+      var cursorInside = false;
+      var docProbeArmed = false;
+
+      function mod(n, m) {
+        var r = n % m;
+        return r < 0 ? r + m : r;
+      }
+
+      function syncYFromScroll() {
+        y = mod(box.scrollTop, loopHeight);
+      }
+
+      function disarmDocProbe() {
+        if (!docProbeArmed) return;
+        docProbeArmed = false;
+        document.removeEventListener('pointermove', docPointerMove, true);
+      }
+
+      function docPointerMove(e) {
+        if (!cursorInside) return;
+        if (e.pointerType === 'touch') return;
+        var el = document.elementFromPoint(e.clientX, e.clientY);
+        if (el && hoverTarget.contains(el)) return;
+        leavePanel();
+      }
+
+      function armDocProbe() {
+        if (docProbeArmed) return;
+        docProbeArmed = true;
+        document.addEventListener('pointermove', docPointerMove, true);
+      }
+
+      function stopAutoscroll() {
+        if (rafId != null) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
         }
-        requestAnimationFrame(tick);
+      }
+
+      function step() {
+        y += speed;
+        if (y >= loopHeight) y -= loopHeight;
+        box.scrollTop = y;
+        rafId = requestAnimationFrame(step);
+      }
+
+      function startAutoscroll() {
+        if (rafId != null || cursorInside) return;
+        rafId = requestAnimationFrame(step);
+      }
+
+      function enterPanel() {
+        stopAutoscroll();
+        cursorInside = true;
+        box.classList.add('is-interactive');
+        armDocProbe();
+      }
+
+      function leavePanel() {
+        disarmDocProbe();
+        if (!cursorInside) return;
+        cursorInside = false;
+        box.classList.remove('is-interactive');
+        syncYFromScroll();
+        startAutoscroll();
+      }
+
+      hoverTarget.addEventListener('pointerenter', function (e) {
+        if (e.pointerType === 'touch') return;
+        enterPanel();
       });
+      hoverTarget.addEventListener('mouseenter', enterPanel);
+      hoverTarget.addEventListener('pointerleave', function (e) {
+        if (e.pointerType === 'touch') return;
+        leavePanel();
+      });
+      hoverTarget.addEventListener('mouseleave', leavePanel);
+
+      startAutoscroll();
     })();
 
     (function runPhotoProcessingAnimation() {
@@ -1330,6 +1418,44 @@
           return scene.querySelectorAll('.photo-layer img').length === 3;
         });
         if (!scenes.length) return;
+
+        var hoverTarget = root.closest('.frame.frame-photo-process') || root.parentElement;
+        var hoverInside = false;
+        var docProbeArmed = false;
+
+        function disarmPhotoHoverProbe() {
+          if (!docProbeArmed) return;
+          docProbeArmed = false;
+          document.removeEventListener('pointermove', docPhotoHoverMove, true);
+        }
+
+        function docPhotoHoverMove(e) {
+          if (!hoverInside) return;
+          if (e.pointerType === 'touch') return;
+          var el = document.elementFromPoint(e.clientX, e.clientY);
+          if (el && hoverTarget.contains(el)) return;
+          leavePhotoHover();
+        }
+
+        function armPhotoHoverProbe() {
+          if (docProbeArmed) return;
+          docProbeArmed = true;
+          document.addEventListener('pointermove', docPhotoHoverMove, true);
+        }
+
+        function enterPhotoHover() {
+          hoverInside = true;
+          armPhotoHoverProbe();
+        }
+
+        function leavePhotoHover() {
+          disarmPhotoHoverProbe();
+          if (!hoverInside) return;
+          hoverInside = false;
+          if (root.classList.contains('is-step-frozen')) return;
+          activate((current + 1) % scenes.length);
+          startRotation();
+        }
 
         var current = 0;
         var sceneDurationMs = 4200;
@@ -1353,6 +1479,7 @@
         function startRotation() {
           stopRotation();
           sceneTimer = setInterval(function rotate() {
+            if (hoverInside) return;
             activate((current + 1) % scenes.length);
           }, sceneDurationMs);
         }
@@ -1412,6 +1539,17 @@
             }
           });
         });
+
+        hoverTarget.addEventListener('pointerenter', function (e) {
+          if (e.pointerType === 'touch') return;
+          enterPhotoHover();
+        });
+        hoverTarget.addEventListener('mouseenter', enterPhotoHover);
+        hoverTarget.addEventListener('pointerleave', function (e) {
+          if (e.pointerType === 'touch') return;
+          leavePhotoHover();
+        });
+        hoverTarget.addEventListener('mouseleave', leavePhotoHover);
       });
     })();
 
@@ -1419,11 +1557,26 @@
       var root = document.querySelector('[data-identify-process]');
       if (!root) return;
 
+      var hoverTarget = root.closest('.frame.frame-identify') || root;
+
       var imageEl = root.querySelector('.identify-image');
       var titleEl = root.querySelector('.identify-title');
       var descEl = root.querySelector('.identify-description');
       var flashEl = root.querySelector('.identify-speedline');
+      var kickerEl = root.querySelector('.identify-kicker');
       if (!imageEl || !titleEl || !descEl || !flashEl) return;
+
+      function showKicker() {
+        if (!kickerEl) return;
+        kickerEl.classList.remove('is-concealed');
+        kickerEl.removeAttribute('aria-hidden');
+      }
+
+      function hideKicker() {
+        if (!kickerEl) return;
+        kickerEl.classList.add('is-concealed');
+        kickerEl.setAttribute('aria-hidden', 'true');
+      }
 
       var items = [
         { image: 'Photos_Demo_Vid/22-1.jpg', title: 'Capodimonte Italian Porcelain Floral Sculpture On Branch', description: 'A Capodimonte porcelain sculpture featuring two cream-colored blossoms with yellow and red stamens. The flowers are set amidst green foliage on a textured branch base with a marked underside.' },
@@ -1442,6 +1595,54 @@
       var intervalMs = 2800;
       var laserMs = 1000;
       var typeTimer = null;
+      var cycleTimer = null;
+      var docProbeArmed = false;
+      /* While true, in-flight render() timeouts and typing still finish; cycle skips advancing. */
+      var cursorInside = false;
+
+      function tick() {
+        if (cursorInside) return;
+        idx = (idx + 1) % items.length;
+        render(items[idx]);
+      }
+
+      function beginCycle() {
+        if (cycleTimer) clearInterval(cycleTimer);
+        cycleTimer = setInterval(tick, intervalMs);
+      }
+
+      function disarmDocProbe() {
+        if (!docProbeArmed) return;
+        docProbeArmed = false;
+        document.removeEventListener('pointermove', docPointerMove, true);
+      }
+
+      function docPointerMove(e) {
+        if (!cursorInside) return;
+        if (e.pointerType === 'touch') return;
+        var el = document.elementFromPoint(e.clientX, e.clientY);
+        if (el && hoverTarget.contains(el)) return;
+        releaseHold();
+      }
+
+      function armDocProbe() {
+        if (docProbeArmed) return;
+        docProbeArmed = true;
+        document.addEventListener('pointermove', docPointerMove, true);
+      }
+
+      function enterHold() {
+        cursorInside = true;
+        armDocProbe();
+      }
+
+      function releaseHold() {
+        disarmDocProbe();
+        if (!cursorInside) return;
+        cursorInside = false;
+        tick();
+        beginCycle();
+      }
 
       function typeFast(text) {
         if (typeTimer) {
@@ -1449,6 +1650,10 @@
           typeTimer = null;
         }
         titleEl.textContent = '';
+        if (!text.length) {
+          if (descEl.textContent.trim()) hideKicker();
+          return;
+        }
         var i = 0;
         typeTimer = setInterval(function tick() {
           i += 2;
@@ -1457,11 +1662,13 @@
             clearInterval(typeTimer);
             typeTimer = null;
             titleEl.textContent = text;
+            if (descEl.textContent.trim()) hideKicker();
           }
         }, 10);
       }
 
       function render(item) {
+        showKicker();
         imageEl.classList.add('is-fading');
         titleEl.classList.add('is-fading');
         descEl.classList.add('is-fading');
@@ -1484,17 +1691,33 @@
           };
         }, 120);
         setTimeout(function showTextAfterScan() {
-          typeFast(item.title);
           descEl.textContent = item.description;
+          typeFast(item.title);
           titleEl.classList.remove('is-fading');
           descEl.classList.remove('is-fading');
         }, laserMs + 40);
       }
 
-      setInterval(function cycle() {
-        idx = (idx + 1) % items.length;
-        render(items[idx]);
-      }, intervalMs);
+      hoverTarget.addEventListener('pointerenter', function (e) {
+        if (e.pointerType === 'touch') return;
+        enterHold();
+      });
+      hoverTarget.addEventListener('mouseenter', function () {
+        enterHold();
+      });
+      hoverTarget.addEventListener('pointerleave', function (e) {
+        if (e.pointerType === 'touch') return;
+        releaseHold();
+      });
+      hoverTarget.addEventListener('mouseleave', function () {
+        releaseHold();
+      });
+
+      if (kickerEl && titleEl.textContent.trim() && descEl.textContent.trim()) {
+        hideKicker();
+      }
+
+      beginCycle();
     })();
 
     (function runThroughputPanel() {
