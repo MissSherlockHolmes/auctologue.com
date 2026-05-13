@@ -58,9 +58,10 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      margin-right: calc(50% - 50vw);
+      /* Full-bleed within .wrap without 100vw (avoids horizontal scroll on mobile). */
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      margin-right: -20px;
       padding-left: 20px;
       padding-right: 20px;
       background: var(--nav-bg);
@@ -176,7 +177,7 @@
 
     .feature-row {
       display: grid;
-      grid-template-columns: minmax(230px, 360px) minmax(0, 620px);
+      grid-template-columns: minmax(0, min(360px, 100%)) minmax(0, 620px);
       gap: 48px;
       align-items: center;
       justify-content: space-between;
@@ -224,6 +225,12 @@
       user-select: none;
       touch-action: none;
       scrollbar-width: none;
+    }
+    .frame-scroll.is-interactive {
+      pointer-events: auto;
+      user-select: text;
+      touch-action: pan-y;
+      -webkit-overflow-scrolling: touch;
     }
     .frame-scroll::-webkit-scrollbar {
       display: none;
@@ -345,6 +352,58 @@
     .photo-progress .status-updated {
       animation: statusLate 4.2s linear infinite;
     }
+    .photo-progress span[data-photo-step] {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .photo-progress span[data-photo-step]:focus-visible {
+      outline: 2px solid var(--brand-blue);
+      outline-offset: 2px;
+    }
+
+    /* User-picked stage: hold layer state until page scroll resumes autoplay */
+    .photo-process.is-step-frozen .photo-scene.is-active .photo-layer-original,
+    .photo-process.is-step-frozen .photo-scene.is-active .photo-layer-removed,
+    .photo-process.is-step-frozen .photo-scene.is-active .photo-layer-updated {
+      animation: none !important;
+    }
+    .photo-process.is-step-frozen .photo-scene.is-active .photo-layer-removed img,
+    .photo-process.is-step-frozen .photo-scene.is-active .photo-layer-updated img {
+      animation: none !important;
+    }
+    .photo-process.is-step-frozen .photo-scene.is-active .photo-wipe {
+      animation: none !important;
+      opacity: 0;
+      transform: translateX(-120%);
+    }
+
+    .photo-process[data-freeze-step="original"] .photo-scene.is-active .photo-layer-original { opacity: 1; }
+    .photo-process[data-freeze-step="original"] .photo-scene.is-active .photo-layer-removed { opacity: 0; }
+    .photo-process[data-freeze-step="original"] .photo-scene.is-active .photo-layer-updated { opacity: 0; }
+
+    .photo-process[data-freeze-step="removed"] .photo-scene.is-active .photo-layer-original { opacity: 0; }
+    .photo-process[data-freeze-step="removed"] .photo-scene.is-active .photo-layer-removed { opacity: 1; }
+    .photo-process[data-freeze-step="removed"] .photo-scene.is-active .photo-layer-updated { opacity: 0; }
+
+    .photo-process[data-freeze-step="updated"] .photo-scene.is-active .photo-layer-original { opacity: 0; }
+    .photo-process[data-freeze-step="updated"] .photo-scene.is-active .photo-layer-removed { opacity: 0; }
+    .photo-process[data-freeze-step="updated"] .photo-scene.is-active .photo-layer-updated { opacity: 1; }
+
+    .photo-process[data-freeze-step="original"] .photo-scene.is-active .photo-layer-original img,
+    .photo-process[data-freeze-step="removed"] .photo-scene.is-active .photo-layer-removed img,
+    .photo-process[data-freeze-step="updated"] .photo-scene.is-active .photo-layer-updated img {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .photo-process.is-step-frozen .photo-progress span[data-photo-step] {
+      animation: none !important;
+      opacity: 0.45;
+    }
+    .photo-process[data-freeze-step="original"] .photo-progress .status-original { opacity: 1; }
+    .photo-process[data-freeze-step="removed"] .photo-progress .status-removed { opacity: 1; }
+    .photo-process[data-freeze-step="updated"] .photo-progress .status-updated { opacity: 1; }
+
     .frame.frame-identify {
       border: 1px solid var(--border);
       padding: 12px;
@@ -439,6 +498,17 @@
       font-weight: 600;
       margin-bottom: 5px;
       animation: identifyPulse 0.9s ease-in-out infinite;
+      overflow: hidden;
+      max-height: 3rem;
+      opacity: 1;
+      transition: opacity 0.22s ease, max-height 0.28s ease, margin-bottom 0.28s ease;
+    }
+    .identify-kicker.is-concealed {
+      opacity: 0;
+      max-height: 0;
+      margin-bottom: 0;
+      animation: none;
+      pointer-events: none;
     }
     .identify-title {
       color: var(--text-primary);
@@ -843,8 +913,21 @@
     }
 
     @media (max-width: 980px) {
-      .feature-row { grid-template-columns: 1fr; gap: 14px; }
-      .frame { max-width: 100%; }
+      /* minmax(0, 1fr) lets dense media shrink instead of forcing overflow. */
+      .feature-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+      }
+      .feature-row > * {
+        min-width: 0;
+      }
+      .frame {
+        max-width: 100%;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        justify-self: stretch;
+      }
       .cards, .quote-row { grid-template-columns: 1fr; }
       .topbar { min-height: auto; padding-top: 12px; padding-bottom: 4px; flex-direction: column; align-items: flex-start; }
       .nav { justify-content: flex-start; width: 100%; }
@@ -932,7 +1015,7 @@
           <h3>Fully integrated image processing</h3>
           <p>Paying customers get unlimited automated image processing, including background removal and precision object centering for a polished gallery look.</p>
         </div>
-        <div class="frame frame-photo-process" role="img" aria-label="Animated photo processing workflow">
+        <div class="frame frame-photo-process" role="region" aria-label="Photo processing demo. Tap a stage to hold it; scroll the page to resume.">
           <div class="photo-process" data-photo-process>
             <div class="photo-stage">
             <figure class="photo-scene is-active">
@@ -1098,10 +1181,10 @@
               </figcaption>
             </figure>
             </div>
-            <div class="photo-progress" aria-hidden="true">
-              <span class="status-original">Original</span>
-              <span class="status-removed">Background removed</span>
-              <span class="status-updated">Background updated</span>
+            <div class="photo-progress" role="group" aria-label="Processing stages">
+              <span class="status-original" role="button" tabindex="0" data-photo-step="original">Original</span>
+              <span class="status-removed" role="button" tabindex="0" data-photo-step="removed">Background removed</span>
+              <span class="status-updated" role="button" tabindex="0" data-photo-step="updated">Background updated</span>
             </div>
           </div>
         </div>
@@ -1224,33 +1307,111 @@
       var box = document.querySelector('.frame-scroll');
       var tableEl = box && box.querySelector('.difference-table');
       var body = tableEl && tableEl.querySelector('tbody');
-      if (!box) return;
-      if (!tableEl || !body) return;
+      if (!box || !tableEl || !body) return;
 
-      // Duplicate content once for seamless loop.
+      var hoverTarget = box.closest('.frame.frame-table') || box.parentElement;
+
       var original = body.innerHTML;
       var originalBodyHeight = body.scrollHeight;
       body.innerHTML += original;
 
-      var speed = 0.28; // px per frame
-      requestAnimationFrame(function start() {
-        var loopHeight = originalBodyHeight || (body.scrollHeight / 2);
-        if (!loopHeight || loopHeight <= box.clientHeight) return;
+      var loopHeight = originalBodyHeight || (body.scrollHeight / 2);
+      if (!loopHeight || loopHeight <= box.clientHeight) return;
 
-        var y = 0;
-        function tick() {
-          y += speed;
-          if (y >= loopHeight) y -= loopHeight;
-          box.scrollTop = y;
-          requestAnimationFrame(tick);
+      var speed = 0.28;
+      var y = 0;
+      var rafId = null;
+      var cursorInside = false;
+      var docProbeArmed = false;
+
+      function mod(n, m) {
+        var r = n % m;
+        return r < 0 ? r + m : r;
+      }
+
+      function syncYFromScroll() {
+        y = mod(box.scrollTop, loopHeight);
+      }
+
+      function disarmDocProbe() {
+        if (!docProbeArmed) return;
+        docProbeArmed = false;
+        document.removeEventListener('pointermove', docPointerMove, true);
+      }
+
+      function docPointerMove(e) {
+        if (!cursorInside) return;
+        if (e.pointerType === 'touch') return;
+        var el = document.elementFromPoint(e.clientX, e.clientY);
+        if (el && hoverTarget.contains(el)) return;
+        leavePanel();
+      }
+
+      function armDocProbe() {
+        if (docProbeArmed) return;
+        docProbeArmed = true;
+        document.addEventListener('pointermove', docPointerMove, true);
+      }
+
+      function stopAutoscroll() {
+        if (rafId != null) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
         }
-        requestAnimationFrame(tick);
+      }
+
+      function step() {
+        y += speed;
+        if (y >= loopHeight) y -= loopHeight;
+        box.scrollTop = y;
+        rafId = requestAnimationFrame(step);
+      }
+
+      function startAutoscroll() {
+        if (rafId != null || cursorInside) return;
+        rafId = requestAnimationFrame(step);
+      }
+
+      function enterPanel() {
+        stopAutoscroll();
+        cursorInside = true;
+        box.classList.add('is-interactive');
+        armDocProbe();
+      }
+
+      function leavePanel() {
+        disarmDocProbe();
+        if (!cursorInside) return;
+        cursorInside = false;
+        box.classList.remove('is-interactive');
+        syncYFromScroll();
+        startAutoscroll();
+      }
+
+      hoverTarget.addEventListener('pointerenter', function (e) {
+        if (e.pointerType === 'touch') return;
+        enterPanel();
       });
+      hoverTarget.addEventListener('mouseenter', enterPanel);
+      hoverTarget.addEventListener('pointerleave', function (e) {
+        if (e.pointerType === 'touch') return;
+        leavePanel();
+      });
+      hoverTarget.addEventListener('mouseleave', leavePanel);
+
+      startAutoscroll();
     })();
 
     (function runPhotoProcessingAnimation() {
       var roots = Array.prototype.slice.call(document.querySelectorAll('[data-photo-process]'));
       if (!roots.length) return;
+
+      function resumeAllFrozenOnScroll() {
+        roots.forEach(function (root) {
+          if (typeof root.__photoResume === 'function') root.__photoResume();
+        });
+      }
+      window.addEventListener('scroll', resumeAllFrozenOnScroll, { passive: true });
 
       roots.forEach(function (root) {
         var scenes = Array.prototype.slice.call(root.querySelectorAll('.photo-scene')).filter(function (scene) {
@@ -1258,22 +1419,137 @@
         });
         if (!scenes.length) return;
 
+        var hoverTarget = root.closest('.frame.frame-photo-process') || root.parentElement;
+        var hoverInside = false;
+        var docProbeArmed = false;
+
+        function disarmPhotoHoverProbe() {
+          if (!docProbeArmed) return;
+          docProbeArmed = false;
+          document.removeEventListener('pointermove', docPhotoHoverMove, true);
+        }
+
+        function docPhotoHoverMove(e) {
+          if (!hoverInside) return;
+          if (e.pointerType === 'touch') return;
+          var el = document.elementFromPoint(e.clientX, e.clientY);
+          if (el && hoverTarget.contains(el)) return;
+          leavePhotoHover();
+        }
+
+        function armPhotoHoverProbe() {
+          if (docProbeArmed) return;
+          docProbeArmed = true;
+          document.addEventListener('pointermove', docPhotoHoverMove, true);
+        }
+
+        function enterPhotoHover() {
+          hoverInside = true;
+          armPhotoHoverProbe();
+        }
+
+        function leavePhotoHover() {
+          disarmPhotoHoverProbe();
+          if (!hoverInside) return;
+          hoverInside = false;
+          if (root.classList.contains('is-step-frozen')) return;
+          activate((current + 1) % scenes.length);
+          startRotation();
+        }
+
         var current = 0;
         var sceneDurationMs = 4200;
+        var sceneTimer = null;
 
         function activate(index) {
           scenes[current].classList.remove('is-active');
           current = index;
           var next = scenes[current];
-          // Restart CSS keyframes each cycle for a clean transition.
           void next.offsetWidth;
           next.classList.add('is-active');
         }
 
+        function restartActiveSceneKeyframes() {
+          var activeScene = scenes[current];
+          activeScene.classList.remove('is-active');
+          void activeScene.offsetWidth;
+          activeScene.classList.add('is-active');
+        }
+
+        function startRotation() {
+          stopRotation();
+          sceneTimer = setInterval(function rotate() {
+            if (hoverInside) return;
+            activate((current + 1) % scenes.length);
+          }, sceneDurationMs);
+        }
+
+        function stopRotation() {
+          if (sceneTimer) {
+            clearInterval(sceneTimer);
+            sceneTimer = null;
+          }
+        }
+
+        function setPillPressed(step) {
+          var pills = root.querySelectorAll('.photo-progress [data-photo-step]');
+          pills.forEach(function (pill) {
+            pill.setAttribute('aria-pressed', pill.getAttribute('data-photo-step') === step ? 'true' : 'false');
+          });
+        }
+
+        function clearPillPressed() {
+          root.querySelectorAll('.photo-progress [data-photo-step]').forEach(function (pill) {
+            pill.removeAttribute('aria-pressed');
+          });
+        }
+
+        function freezeAtStep(step) {
+          stopRotation();
+          root.classList.add('is-step-frozen');
+          root.setAttribute('data-freeze-step', step);
+          setPillPressed(step);
+        }
+
+        function resumeIfFrozen() {
+          if (!root.classList.contains('is-step-frozen')) return;
+          root.classList.remove('is-step-frozen');
+          root.removeAttribute('data-freeze-step');
+          clearPillPressed();
+          restartActiveSceneKeyframes();
+          startRotation();
+        }
+
+        root.__photoResume = resumeIfFrozen;
+
         scenes[0].classList.add('is-active');
-        setInterval(function rotate() {
-          activate((current + 1) % scenes.length);
-        }, sceneDurationMs);
+        startRotation();
+
+        root.querySelectorAll('.photo-progress [data-photo-step]').forEach(function (pill) {
+          function pick() {
+            var step = pill.getAttribute('data-photo-step');
+            if (!step) return;
+            freezeAtStep(step);
+          }
+          pill.addEventListener('click', pick);
+          pill.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              pick();
+            }
+          });
+        });
+
+        hoverTarget.addEventListener('pointerenter', function (e) {
+          if (e.pointerType === 'touch') return;
+          enterPhotoHover();
+        });
+        hoverTarget.addEventListener('mouseenter', enterPhotoHover);
+        hoverTarget.addEventListener('pointerleave', function (e) {
+          if (e.pointerType === 'touch') return;
+          leavePhotoHover();
+        });
+        hoverTarget.addEventListener('mouseleave', leavePhotoHover);
       });
     })();
 
@@ -1281,11 +1557,26 @@
       var root = document.querySelector('[data-identify-process]');
       if (!root) return;
 
+      var hoverTarget = root.closest('.frame.frame-identify') || root;
+
       var imageEl = root.querySelector('.identify-image');
       var titleEl = root.querySelector('.identify-title');
       var descEl = root.querySelector('.identify-description');
       var flashEl = root.querySelector('.identify-speedline');
+      var kickerEl = root.querySelector('.identify-kicker');
       if (!imageEl || !titleEl || !descEl || !flashEl) return;
+
+      function showKicker() {
+        if (!kickerEl) return;
+        kickerEl.classList.remove('is-concealed');
+        kickerEl.removeAttribute('aria-hidden');
+      }
+
+      function hideKicker() {
+        if (!kickerEl) return;
+        kickerEl.classList.add('is-concealed');
+        kickerEl.setAttribute('aria-hidden', 'true');
+      }
 
       var items = [
         { image: 'Photos_Demo_Vid/22-1.jpg', title: 'Capodimonte Italian Porcelain Floral Sculpture On Branch', description: 'A Capodimonte porcelain sculpture featuring two cream-colored blossoms with yellow and red stamens. The flowers are set amidst green foliage on a textured branch base with a marked underside.' },
@@ -1304,6 +1595,54 @@
       var intervalMs = 2800;
       var laserMs = 1000;
       var typeTimer = null;
+      var cycleTimer = null;
+      var docProbeArmed = false;
+      /* While true, in-flight render() timeouts and typing still finish; cycle skips advancing. */
+      var cursorInside = false;
+
+      function tick() {
+        if (cursorInside) return;
+        idx = (idx + 1) % items.length;
+        render(items[idx]);
+      }
+
+      function beginCycle() {
+        if (cycleTimer) clearInterval(cycleTimer);
+        cycleTimer = setInterval(tick, intervalMs);
+      }
+
+      function disarmDocProbe() {
+        if (!docProbeArmed) return;
+        docProbeArmed = false;
+        document.removeEventListener('pointermove', docPointerMove, true);
+      }
+
+      function docPointerMove(e) {
+        if (!cursorInside) return;
+        if (e.pointerType === 'touch') return;
+        var el = document.elementFromPoint(e.clientX, e.clientY);
+        if (el && hoverTarget.contains(el)) return;
+        releaseHold();
+      }
+
+      function armDocProbe() {
+        if (docProbeArmed) return;
+        docProbeArmed = true;
+        document.addEventListener('pointermove', docPointerMove, true);
+      }
+
+      function enterHold() {
+        cursorInside = true;
+        armDocProbe();
+      }
+
+      function releaseHold() {
+        disarmDocProbe();
+        if (!cursorInside) return;
+        cursorInside = false;
+        tick();
+        beginCycle();
+      }
 
       function typeFast(text) {
         if (typeTimer) {
@@ -1311,6 +1650,10 @@
           typeTimer = null;
         }
         titleEl.textContent = '';
+        if (!text.length) {
+          if (descEl.textContent.trim()) hideKicker();
+          return;
+        }
         var i = 0;
         typeTimer = setInterval(function tick() {
           i += 2;
@@ -1319,11 +1662,13 @@
             clearInterval(typeTimer);
             typeTimer = null;
             titleEl.textContent = text;
+            if (descEl.textContent.trim()) hideKicker();
           }
         }, 10);
       }
 
       function render(item) {
+        showKicker();
         imageEl.classList.add('is-fading');
         titleEl.classList.add('is-fading');
         descEl.classList.add('is-fading');
@@ -1346,17 +1691,33 @@
           };
         }, 120);
         setTimeout(function showTextAfterScan() {
-          typeFast(item.title);
           descEl.textContent = item.description;
+          typeFast(item.title);
           titleEl.classList.remove('is-fading');
           descEl.classList.remove('is-fading');
         }, laserMs + 40);
       }
 
-      setInterval(function cycle() {
-        idx = (idx + 1) % items.length;
-        render(items[idx]);
-      }, intervalMs);
+      hoverTarget.addEventListener('pointerenter', function (e) {
+        if (e.pointerType === 'touch') return;
+        enterHold();
+      });
+      hoverTarget.addEventListener('mouseenter', function () {
+        enterHold();
+      });
+      hoverTarget.addEventListener('pointerleave', function (e) {
+        if (e.pointerType === 'touch') return;
+        releaseHold();
+      });
+      hoverTarget.addEventListener('mouseleave', function () {
+        releaseHold();
+      });
+
+      if (kickerEl && titleEl.textContent.trim() && descEl.textContent.trim()) {
+        hideKicker();
+      }
+
+      beginCycle();
     })();
 
     (function runThroughputPanel() {

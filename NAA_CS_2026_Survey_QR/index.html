@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NAA CS 2026 Survey — QR — Auctologue</title>
+  <meta name="description" content="Scan to open the NAA CS 2026 survey." />
+  <link rel="canonical" href="https://auctologue.com/NAA_CS_2026_Survey_QR" />
+  <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../icon128.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --text-primary: #e5e7eb;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --bg: #0b1220;
+      --max: 1120px;
+      --page-bg: radial-gradient(circle at 8% 0%, rgba(59, 130, 246, 0.22), transparent 42%), radial-gradient(circle at 92% 12%, rgba(59, 130, 246, 0.15), transparent 38%), linear-gradient(180deg, #162744 0%, #111f35 26%, #0f1a2d 55%, var(--bg) 100%);
+      --nav-bg: #1b3760;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text-primary);
+      background: var(--page-bg);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    .topbar {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      margin-right: -20px;
+      padding: 12px 20px 16px;
+      background: var(--nav-bg);
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: "Pinyon Script", cursive;
+      font-size: clamp(1.9rem, 2.8vw, 2.4rem);
+      color: var(--text-primary);
+      line-height: 1;
+      user-select: none;
+    }
+
+    .brand-mark img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+    }
+
+    /* Matches index.html hero headline pattern: plain · laser-green · gradient */
+    .hero {
+      text-align: center;
+      padding-top: clamp(34px, 9vw, 92px);
+      padding-bottom: 40px;
+    }
+
+    .hero.hero--qr {
+      padding-bottom: clamp(48px, 10vw, 88px);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 8.2vw, 4.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero .gradient {
+      background: linear-gradient(90deg, #4ade80 0%, #60a5fa 55%, #818cf8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero .laser-green {
+      color: #4ade80;
+      text-shadow: 0 0 10px rgba(74, 222, 128, 0.6), 0 0 20px rgba(34, 197, 94, 0.4);
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto 26px;
+      color: var(--text-secondary);
+      font-size: clamp(1rem, 2.2vw, 1.1rem);
+    }
+
+    .qr-stack-wrap {
+      display: flex;
+      justify-content: center;
+      line-height: 0;
+    }
+
+    .qr-stack {
+      position: relative;
+      display: inline-block;
+      line-height: 0;
+      filter: drop-shadow(0 16px 40px rgba(2, 6, 23, 0.45));
+    }
+
+    .qr-stack #qr-host canvas,
+    .qr-stack #qr-host img {
+      display: block;
+      width: min(88vw, 400px) !important;
+      height: min(88vw, 400px) !important;
+      border-radius: 4px;
+    }
+
+    .qr-stack #qr-host table {
+      border-collapse: collapse;
+      width: min(88vw, 400px) !important;
+      height: min(88vw, 400px) !important;
+    }
+
+    /*
+      Near the practical limit for ECC H (~30–32% of module area): largest readable logo
+      while keeping scans reliable. Square badge, zero inset so the art meets the white box.
+    */
+    .qr-logo-wrap {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 32%;
+      aspect-ratio: 1;
+      padding: 0;
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(15, 23, 42, 0.08),
+        0 3px 12px rgba(15, 23, 42, 0.2);
+      pointer-events: none;
+      box-sizing: border-box;
+    }
+
+    .qr-logo-wrap img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .qr-fallback {
+      display: none;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-top: 1rem;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .qr-fallback.is-visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand-mark">
+        <img src="../Aucto_Hat_Transparent.png" alt="" width="64" height="64" decoding="async" />
+        <span>Auctologue</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero hero--qr">
+        <h1>Scan. <span class="laser-green">Survey.</span> <span class="gradient">Win.</span></h1>
+        <p>Point your camera at the code to open the survey.</p>
+        <div class="qr-stack-wrap">
+          <div class="qr-stack">
+            <div id="qr-host"></div>
+            <div class="qr-logo-wrap" aria-hidden="true">
+              <img src="../Aucto_Hat_Transparent.png" alt="" width="128" height="128" decoding="async" />
+            </div>
+          </div>
+        </div>
+        <p class="qr-fallback" id="qr-fallback" role="status"></p>
+      </section>
+    </main>
+  </div>
+
+  <!-- Encoded URL must match the live survey route (see NAA_CS_2026_Survey/index.html canonical). -->
+  <script>
+    window.__NAA_SURVEY_URL__ = "https://auctologue.com/NAA_CS_2026_Survey";
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    (function () {
+      var PRODUCTION_SURVEY = "https://auctologue.com/NAA_CS_2026_Survey";
+      var raw = String(window.__NAA_SURVEY_URL__ || PRODUCTION_SURVEY).trim().replace(/\/+$/, "");
+      var surveyUrl = /^https:\/\/auctologue\.com\/NAA_CS_2026_Survey$/.test(raw) ? raw : PRODUCTION_SURVEY;
+      var host = document.getElementById("qr-host");
+      var fallback = document.getElementById("qr-fallback");
+
+      function fail(msg) {
+        if (fallback) {
+          fallback.textContent = msg;
+          fallback.classList.add("is-visible");
+        }
+      }
+
+      if (!host) {
+        fail("QR target is missing.");
+        return;
+      }
+
+      if (typeof QRCode === "undefined") {
+        fail("QR library failed to load.");
+        return;
+      }
+
+      try {
+        host.innerHTML = "";
+        new QRCode(host, {
+          text: surveyUrl,
+          width: 768,
+          height: 768,
+          colorDark: "#0b1220",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+      } catch (e) {
+        fail("QR could not be generated.");
+      }
+    })();
+  </script>
+</body>
+</html>
