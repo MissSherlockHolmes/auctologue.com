@@ -2,6 +2,15 @@
 
 This repository contains the source code for the Auctologue website. It is built using plain HTML/CSS and powered by [Eleventy (11ty)](https://www.11ty.dev/) for static site generation, which allows us to host a fully integrated, on-brand blog using [Decap CMS](https://decapcms.org/).
 
+## Blog Architecture & Build Details
+
+The blog integration was custom-built to ensure perfect brand continuity, lightning-fast loading speeds, and robust security. It leverages a modern "Jamstack" approach:
+
+*   **Eleventy (11ty):** The core static site generator. It takes the plain HTML files in the `src/` directory and compiles them into a finalized website in the `_site/` folder during the build process. We chose Eleventy because it's lightweight, incredibly fast, and works seamlessly with standard HTML without requiring complex Javascript frameworks.
+*   **Decap CMS (formerly Netlify CMS):** This is the program that provides the private `/admin` dashboard. It is an open-source, Git-based content management system. Instead of storing your posts in a vulnerable database (like WordPress), Decap CMS saves your blog posts as Markdown files (`.md`) directly into your GitHub repository. 
+*   **Netlify Identity:** This handles the secure login system for the `/admin` dashboard, verifying authorized users without needing a custom backend server.
+*   **RSS Plugin (`@11ty/eleventy-plugin-rss`):** This Eleventy plugin automates the creation of the `feed.xml` file, which is formatted according to standard web syndication protocols so platforms like LinkedIn can parse your posts correctly.
+
 ## How to Create and Edit Blog Posts
 
 You do not need to edit code to publish new blog posts. You have a private, user-friendly dashboard built right into the website.
