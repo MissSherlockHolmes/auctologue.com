@@ -792,6 +792,23 @@
 
     .card p { color: var(--text-secondary); font-size: 0.96rem; }
 
+    .sources-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px 24px;
+    }
+    .sources-list-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      font-size: 0.96rem;
+      color: var(--text-secondary);
+    }
+    .sources-list-item strong {
+      color: var(--text-primary);
+    }
+
     .quote-row {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -969,6 +986,7 @@
         <div class="feature-copy">
           <h3>Research-grounded identification</h3>
           <p>Auctologue is not a generic AI description generator. It identifies lots through database-backed lookups and grounded research so listings are reliable.</p>
+          <a href="#sources" style="display: inline-block; margin-top: 12px; font-size: 0.9rem; font-weight: 500;">See our sources &rarr;</a>
         </div>
         <div class="frame frame-table" role="region" aria-label="The Auctologue Difference comparison table">
           <div class="frame-scroll">
@@ -1245,6 +1263,51 @@
               <p class="throughput-stage">Describe</p>
               <p class="throughput-stage">Export</p>
             </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <h2 id="sources" class="section-title use-cases-title" style="scroll-margin-top: 100px;">Where our research comes from</h2>
+    <section class="cards" style="grid-template-columns: 1fr; max-width: 860px; margin: 0 auto;">
+      <article class="card">
+        <p style="margin-bottom: 16px;">Auctologue grounds its identification in real-world data. Here is a breakdown of the primary source categories used across our research queries:</p>
+        <div class="sources-list" style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="sources-list-item">
+            <span><strong>eBay Ecosystem</strong> <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 6px;">Ex: ebay.com, ebay.ca, ebay.co.uk</span></span>
+            <strong style="color: var(--brand-blue);">35.5%</strong>
+          </div>
+          <div class="sources-list-item">
+            <span><strong>Etsy</strong> <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 6px;">etsy.com</span></span>
+            <strong style="color: var(--brand-blue);">15.2%</strong>
+          </div>
+          <div class="sources-list-item">
+            <span><strong>Retail & Marketplaces</strong> <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 6px;">Ex: walmart.com, target.com, poshmark.com</span></span>
+            <strong style="color: var(--brand-blue);">9.5%</strong>
+          </div>
+          <div class="sources-list-item">
+            <span><strong>Other Specialty</strong> <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 6px;">Ex: offerup.com, metmuseum.org, collectorsweekly.com</span></span>
+            <strong style="color: var(--brand-blue);">6.0%</strong>
+          </div>
+          <div class="sources-list-item">
+            <span><strong>Auction Houses & Platforms</strong> <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 6px;">Ex: chairish.com, invaluable.com, liveauctioneers.com</span></span>
+            <strong style="color: var(--brand-blue);">5.5%</strong>
+          </div>
+          <div class="sources-list-item">
+            <span><strong>Social & Community</strong> <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 6px;">Ex: facebook.com, instagram.com, reddit.com</span></span>
+            <strong style="color: var(--brand-blue);">5.0%</strong>
+          </div>
+          <div class="sources-list-item">
+            <span><strong>Amazon</strong> <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 6px;">Ex: amazon.com, amazon.ca</span></span>
+            <strong style="color: var(--brand-blue);">4.6%</strong>
+          </div>
+          <div class="sources-list-item">
+            <span><strong>Antiques & Collectibles</strong> <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 6px;">Ex: replacements.com, rubylane.com, picclick.com</span></span>
+            <strong style="color: var(--brand-blue);">4.5%</strong>
+          </div>
+          <div class="sources-list-item" style="border-bottom: none; padding-bottom: 0;">
+            <span><strong>Other</strong> <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 6px;">Remaining domains, real estate, and reference sites</span></span>
+            <strong style="color: var(--brand-blue);">14.2%</strong>
           </div>
         </div>
       </article>
