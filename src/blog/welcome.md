@@ -1,7 +1,7 @@
 ---
 title: Welcome to the Auctologue Blog
 date: 2026-05-26
-featuredImage: ""
+featuredImage: /img/uploads/aucto_hat_transparent.png
 summary: Here you will find the new Auctologue blog where we will share auction
   industry stories, technical tutorials, and product updates.
 ---
