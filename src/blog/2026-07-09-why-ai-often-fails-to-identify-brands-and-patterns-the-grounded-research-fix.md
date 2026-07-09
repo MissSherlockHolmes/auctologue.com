@@ -1,7 +1,7 @@
 ---
 title: "Why AI Often Fails to Identify Brands and Patterns: The Grounded Research Fix"
-date: 2026-07-09T08:00:00.000-04:00
-featuredImage: https://api.auctologue.com/img/26d789c238a0cbe9813742b0c9094bb83e333b0b81e37778a56d61ba4b4655bb.jpg
+date: 2026-07-09T08:13:00.000-04:00
+featuredImage: https://api.auctologue.com/img/f5d5aaf1f124f4a7f3be07112ae0ce1dc16cf88be8301ce15cfac5a35e545683.jpg?v=1770932843.820626
 summary: AI is actually many things, but today what we refer to as "AI" has come
   to mean "Large Language Models (LLMs)". LLMs are, as the name suggests,
   primarily based on common language patterns, choosing the next word using
@@ -18,7 +18,7 @@ In the race to utilize artificial intelligence, many modern cataloging tools boa
 Large Language Models (standard software) are trained on massive text databases. When shown an image, the AI recognizes many aspects within a picture mathematically, but it doesn't actually compare with past sales data or similar items to confirm what the item really is. Consequently, for less standard LLMs either generalise the items in the image (ex: Floral China Plate vs Mikasa Meadow Serenade Fine Bone China 14" Dinner Plate), or they output incorrect information (ex: wrong pattern name, downgrading a rare pattern to a more common one).
 In a professional auction, writing a the wrong brand name is a recipe for legal liability, buyer disputes, costly chargebacks, and damaged reputation. Writing no brand name at all prevents interested bidders from finding what they want, and fails to maximize value for the seller. 
 ![Indiana Glass Ruby Compote](https://api.auctologue.com/img/26d789c238a0cbe9813742b0c9094bb83e333b0b81e37778a56d61ba4b4655bb.jpg)
-**Figure 4.1:** Make No Mistake: Auctologue finds this Indiana Ruby Flash Glass Diamond Point Compote and calls it like it is. 
+**Figure 1:** Make No Mistake: Auctologue finds this Indiana Ruby Flash Glass Diamond Point Compote and calls it like it is. 
 
 ## 2. What is Grounded Research?
 
