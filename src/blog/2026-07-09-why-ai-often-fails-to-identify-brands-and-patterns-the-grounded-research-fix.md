@@ -1,7 +1,7 @@
 ---
 title: "Why AI Often Fails to Identify Brands and Patterns: The Grounded Research Fix"
 date: 2026-07-09T08:13:00.000-04:00
-featuredImage: https://api.auctologue.com/img/f5d5aaf1f124f4a7f3be07112ae0ce1dc16cf88be8301ce15cfac5a35e545683.jpg?v=1770932843.820626
+featuredImage: https://api.auctologue.com/img/f5d5aaf1f124f4a7f3be07112ae0ce1dc16cf88be8301ce15cfac5a35e545683.jpg
 summary: AI is actually many things, but today what we refer to as "AI" has come
   to mean "Large Language Models (LLMs)". LLMs are, as the name suggests,
   primarily based on common language patterns, choosing the next word using
