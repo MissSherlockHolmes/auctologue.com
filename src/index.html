@@ -148,6 +148,14 @@
       font-size: clamp(1rem, 2.2vw, 1.1rem);
     }
 
+    .hero .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+    }
+
     .hero .cta {
       display: inline-block;
       background: #060b13;
@@ -157,6 +165,46 @@
       padding: 12px 26px;
       font-weight: 600;
       font-size: 0.98rem;
+    }
+
+    .hero .cta-secondary {
+      display: inline-block;
+      background: transparent;
+      color: var(--text-primary);
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 11px 24px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      border: 1px solid rgba(147, 197, 253, 0.45);
+    }
+    .hero .cta-secondary:hover {
+      border-color: var(--accent-blue);
+      color: #fff;
+    }
+
+    .hero .cta-watch {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: #4ade80;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 11px 24px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      border: 1px solid rgba(74, 222, 128, 0.65);
+    }
+    .hero .cta-watch:hover {
+      border-color: #4ade80;
+      color: #86efac;
+      background: rgba(74, 222, 128, 0.08);
+    }
+    .hero .cta-watch svg {
+      width: 1.05em;
+      height: 1.05em;
+      flex-shrink: 0;
     }
 
     .section-title {
@@ -977,7 +1025,14 @@
     <section class="hero">
       <h1>Real. <span class="laser-green">Fast.</span> <span class="gradient">Accurate.</span></h1>
       <p>For auction houses and secondhand goods sellers who need speed, accuracy, and confidence.</p>
-      <a href="https://app.auctologue.com/" class="cta">Try Auctologue</a>
+      <div class="cta-row">
+        <a href="https://app.auctologue.com/" class="cta">Try Auctologue</a>
+        <a href="compare.html" class="cta-secondary">Compare Competitors</a>
+        <a href="https://www.youtube.com/watch?v=H1hS1EcX-a0" class="cta-watch" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.14v13.72L19 12 8 5.14z"/></svg>
+          Watch Now
+        </a>
+      </div>
     </section>
 
     <h2 class="section-title">The world’s first research-based cataloging suite.</h2>

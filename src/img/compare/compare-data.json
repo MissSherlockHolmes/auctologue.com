@@ -1,0 +1,976 @@
+{
+  "competitors": {
+    "gavelist": {
+      "id": "gavelist",
+      "label": "Gavelist"
+    },
+    "auctionWriter": {
+      "id": "auctionWriter",
+      "label": "AuctionWriter"
+    }
+  },
+  "lots": [
+    {
+      "lot": "2",
+      "auctologue": {
+        "lot": "2",
+        "title": "Vintage Capodimonte Style Porcelain Relief Wall Plaques Pair",
+        "description": "A pair of vintage mid-century Capodimonte-style bisque porcelain 3D relief plaques. Each piece features a highly detailed, classical depiction of romantic lovers in embrace, mounted on a green textured fabric backing and set within ornate, gilded scrollwork frames.",
+        "image": "img/compare/auctologue/2.jpg",
+        "highlightTerms": [
+          "Capodimonte"
+        ]
+      },
+      "gavelist": {
+        "lot": "2",
+        "title": "Pair Gilt Framed Figural Wall Plaques",
+        "description": "Pair Of Ornate Gilt Framed Wall Plaques, Featuring Classical Figural Reliefs Of Lovers, Velvet Backing, Intricate Scrollwork Frames.",
+        "image": "img/compare/competitor/2.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Capodimonte"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "2",
+        "title": "Gilded Frames with 3D Romantic Relief Panels",
+        "description": "Ornately designed gilded frames featuring three-dimensional reliefs of romantic figures. The reliefs depict delicately detailed scenes with floral accents and flowing garments. The frames have intricate floral and scroll motifs and are gold-toned. Measurements and maker are unspecified.",
+        "image": "img/compare/competitor/2.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Capodimonte"
+        ],
+        "awLot": "1"
+      }
+    },
+    {
+      "lot": "10",
+      "auctologue": {
+        "lot": "10",
+        "title": "Vintage Chinese Carved Faux Cinnabar Red Resin Eight Immortals Figurine",
+        "description": "A carved Chinese red resin sculptural group in the faux-cinnabar style, depicting the Eight Immortals seated in a dragon boat or vessel beneath a stylized pine tree canopy, set upon a conforming openwork carved base.",
+        "image": "img/compare/auctologue/10.jpg",
+        "highlightTerms": [
+          "Eight Immortals",
+          "Cinnabar"
+        ]
+      },
+      "gavelist": {
+        "lot": "10",
+        "title": "Cinnabar Style Resin Scholar Grouping",
+        "description": "Cinnabar Style Resin Figural Grouping, Depicting Scholars In A Garden Setting, Intricate Carved Detail, Pierced Base.",
+        "image": "img/compare/competitor/10.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Eight Immortals"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "10",
+        "title": "Carved Red Resin Sculpture with Figures and Tree",
+        "description": "A red resin sculpture depicting a detailed scene of multiple figures gathered under a tree canopy. The intricately carved scene features dynamic textures and depicts the figures in various poses. The sculpture stands on an ornate base with additional carved details. Condition appears intact with no visible signs of damage or repairs.",
+        "image": "img/compare/competitor/10.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Cinnabar",
+          "Eight Immortals"
+        ],
+        "awLot": "2"
+      }
+    },
+    {
+      "lot": "12",
+      "auctologue": {
+        "lot": "12",
+        "title": "Polished Chrysanthemum Stone Specimen on Wooden Base Display",
+        "description": "A polished Chrysanthemum stone specimen featuring a distinct white radiating burst pattern resembling a flower on a dark ground. The stone is mounted on a custom dark-finished carved wooden display stand.",
+        "image": "img/compare/auctologue/12.jpg",
+        "highlightTerms": [
+          "Chrysanthemum"
+        ]
+      },
+      "gavelist": {
+        "lot": "12",
+        "title": "Chrysanthemum Stone Specimen On Stand",
+        "description": "Polished Chrysanthemum Stone Specimen, Natural Floral Pattern, Mounted On A Carved Wooden Display Stand.",
+        "image": "img/compare/competitor/12.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "12",
+        "title": "Fossilized Sea Lily on Custom Wooden Stand",
+        "description": "Fossilized sea lily specimen showcased on a polished, dark wooden stand. The fossil reveals intricate natural details of the ancient marine life form, set against a smooth, dark background. The wooden base provides a stable and elegant display. Ideal for collectors of natural history specimens or decorative displays.",
+        "image": "img/compare/competitor/12.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Chrysanthemum"
+        ],
+        "awLot": "3"
+      }
+    },
+    {
+      "lot": "14",
+      "auctologue": {
+        "lot": "14",
+        "title": "Chinese Carved Red Cinnabar Lacquer Lidded Ginger Jar",
+        "description": "A Chinese carved red cinnabar lacquer lidded ginger jar. The exterior features deeply carved high-relief decoration of chrysanthemums, foliage, and ornamental rocks set against a geometric diaper-pattern background. The matching domed lid is carved with coordinating floral and scroll motifs.",
+        "image": "img/compare/auctologue/14.jpg",
+        "highlightTerms": [
+          "Cinnabar"
+        ]
+      },
+      "gavelist": {
+        "lot": "14",
+        "title": "Cinnabar Style Resin Ginger Jar",
+        "description": "Cinnabar Style Resin Ginger Jar, Intricate Floral And Foliage Relief Carving, Removable Lid.",
+        "image": "img/compare/competitor/14.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "14",
+        "title": "Chinese Red Cinnabar Lacquer Jar with Lid",
+        "description": "Chinese cinnabar lacquer jar featuring detailed floral and bird carvings over a textured background. The piece includes a fitted lid with additional intricate carvings. Lacquered in deep red, this item reflects traditional craftsmanship techniques. Condition and dimensions are not specified.",
+        "image": "img/compare/competitor/14.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": [],
+        "awLot": "4"
+      }
+    },
+    {
+      "lot": "19",
+      "auctologue": {
+        "lot": "19",
+        "title": "Vintage Blue Willow Pattern Transferware Ceramic Soup Bowl Plate",
+        "description": "A vintage transferware earthenware bowl decorated in the traditional Blue Willow pattern, showcasing the classic cobalt blue oriental landscape scene on a white glazed ground.",
+        "image": "img/compare/auctologue/19.jpg",
+        "highlightTerms": [
+          "Blue Willow"
+        ]
+      },
+      "gavelist": {
+        "lot": "19",
+        "title": "Blue Willow Pattern Serving Bowl",
+        "description": "Blue Willow Pattern Serving Bowl, Traditional Chinoiserie Design, Scalloped Rim.",
+        "image": "img/compare/competitor/19.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "19",
+        "title": "Blue and White Willow Pattern Ceramic Plate",
+        "description": "Blue and white ceramic plate featuring a traditional willow pattern design. The plate exhibits detailed oriental motifs, including pagodas, trees, and bridges. The craftsmanship highlights a classic transferware technique. Suitable for decorative display or serving purposes. The overall condition is good with no visible chips or cracks.",
+        "image": "img/compare/competitor/19.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": [],
+        "awLot": "5"
+      }
+    },
+    {
+      "lot": "20",
+      "auctologue": {
+        "lot": "20",
+        "title": "Vintage Hand Blown Art Glass Swirl Bud Vase",
+        "description": "A vintage hand-blown heavy art glass squat vase featuring a multi-color swirl pattern in shades of blue, brown, white, and green with a flared rim.",
+        "image": "img/compare/auctologue/20.jpg",
+        "highlightTerms": []
+      },
+      "gavelist": {
+        "lot": "20",
+        "title": "Art Glass Swirled Ribbed Vase",
+        "description": "Art Glass Vase, Swirled Ribbed Design, Multicolor Striped Pattern.",
+        "image": "img/compare/competitor/20.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "20",
+        "title": "Multicolored Handblown Glass Vase with Swirling Pattern",
+        "description": "Handblown glass vase featuring a swirling multicolored design with blue, brown, green, and white hues. The vase showcases a rounded body and a wide flared neck. Crafted with notable craftsmanship, it appears free of visible cracks or chips. This decorative piece highlights vibrant patterns and expert glassblowing techniques.",
+        "image": "img/compare/competitor/20.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": [],
+        "awLot": "6"
+      }
+    },
+    {
+      "lot": "22",
+      "auctologue": {
+        "lot": "22",
+        "title": "Vintage Capodimonte Porcellane Aita Italian Porcelain Flower Branch Figurine",
+        "description": "A vintage Italian Capodimonte porcelain figurine by Porcellane Aita, depicting two pale yellow blossoms with red and yellow stamens on a textured brown branch with green leaves and an emerging bud. The underside is marked with the maker's stamp reading \"Capodimonte N porcellane Aita Made in Italy.",
+        "image": "img/compare/auctologue/22.jpg",
+        "highlightTerms": [
+          "Capodimonte",
+          "Aita"
+        ]
+      },
+      "gavelist": {
+        "lot": "22",
+        "title": "Capodimonte Porcelain Floral Sculpture",
+        "description": "Capodimonte Porcelain Floral Sculpture, Hand-Painted Flowers On Branch, Marked Italy.",
+        "image": "img/compare/competitor/22.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Aita"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "22",
+        "title": "Capodimonte Porcelain Floral Sculpture by Aita, Made in Italy",
+        "description": "Capodimonte porcelain sculpture designed by Aita, featuring two delicately crafted flowers with green leaves on a textured branch. The piece is labeled with 'Capodimonte - Made in Italy' and 'A-porcellane Aita.' Made from fine porcelain, it showcases detailed craftsmanship and is in good condition with no visible chips or cracks.",
+        "image": "img/compare/competitor/22.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": [],
+        "awLot": "7"
+      }
+    },
+    {
+      "lot": "23",
+      "auctologue": {
+        "lot": "23",
+        "title": "Vintage Lenox Porcelain Carousel Elephant Figurine On Wooden Base",
+        "description": "A vintage Lenox \"The Elephant\" carousel figurine, originally issued circa 1989. The hand-painted bisque porcelain figure features an ornate saddle decorated with colorful motifs and gold-plated accents, mounted on a brass-plated pole set into a polished circular wooden base.",
+        "image": "img/compare/auctologue/23.jpg",
+        "highlightTerms": [
+          "Lenox"
+        ]
+      },
+      "gavelist": {
+        "lot": "23",
+        "title": "Decorative Carousel Elephant Figurine",
+        "description": "Decorative Carousel Elephant Figurine, Ornate Saddle, Gold-Tone Accents, Wood Base.",
+        "image": "img/compare/competitor/23.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Lenox"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "23",
+        "title": "Porcelain Elephant Figurine on Wooden Base",
+        "description": "Polychrome porcelain elephant figurine featuring vibrant decorative details, standing on an attached dark wooden base. The elephant is adorned with colorful saddle-like designs and gold-tone accents, with one foot placed on a painted drum. In very good condition with no visible cracks or chips.",
+        "image": "img/compare/competitor/23.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Lenox"
+        ],
+        "awLot": "8"
+      }
+    },
+    {
+      "lot": "24",
+      "auctologue": {
+        "lot": "24",
+        "title": "Vintage Royal Doulton Elaine Porcelain Figurine HN 2791",
+        "description": "A vintage Royal Doulton porcelain figurine titled \"Elaine\", model HN 2791. Originally designed by Valerie Annand and issued starting in 1980, the piece features a lady in a flowing white and lavender dress holding a matching hand fan.",
+        "image": "img/compare/auctologue/24.jpg",
+        "highlightTerms": [
+          "Royal Doulton",
+          "HN 2791",
+          "Elaine"
+        ]
+      },
+      "gavelist": {
+        "lot": "24",
+        "title": "Royal Doulton Porcelain Figurine Lady w/ Fan",
+        "description": "Royal Doulton Porcelain Figurine, Lady w/ Fan, Hand-Painted Details, Elegant Pose.",
+        "image": "img/compare/competitor/24.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Elaine"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "24",
+        "title": "Porcelain Figurine of Woman with Fan",
+        "description": "Porcelain figurine depicting a woman wearing a flowing dress, holding a fan in one hand and the hem of her dress in the other. The figurine showcases soft pastel tones and a glossy finish. Likely a decorative or collectible item for display purposes. Dimensions and maker’s details are unspecified.",
+        "image": "img/compare/competitor/24.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Royal Doulton",
+          "Elaine"
+        ],
+        "awLot": "9"
+      }
+    },
+    {
+      "lot": "30",
+      "auctologue": {
+        "lot": "30",
+        "title": "Antique 1923 L.V. Aronson Arab Scholar Patinated Metal Bookends",
+        "description": "Pair of vintage L.V. Aronson (Ronson) patinated metal bookends, designed in 1923. Each bookend features a detailed, three-dimensional figure of an Arab scholar wearing a turban, seated and reading an open book, mounted on a rectangular base detailed with a repeating geometric border.",
+        "image": "img/compare/auctologue/30.jpg",
+        "highlightTerms": [
+          "L.V. Aronson"
+        ]
+      },
+      "gavelist": {
+        "lot": "30",
+        "title": "Pair Of Bronze-Tone Scholar Bookends",
+        "description": "Pair Of Bronze-Tone Bookends, Depicting Seated Scholars Reading, Ornate Base Detail.",
+        "image": "img/compare/competitor/30.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "L.V. Aronson"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "30",
+        "title": "Bronze Scholar Bookend Sculptures",
+        "description": "Bronze bookends depicting seated scholars reading books. Each piece showcases detailed craftsmanship, with intricately carved figures wearing robes and turbans, seated on square bases ornamented with patterned borders. Both sculptures show a uniform dark bronze patina with some minimal surface wear consistent with age. Ideal as decorative or functional pieces.",
+        "image": "img/compare/competitor/30.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "L.V. Aronson"
+        ],
+        "awLot": "10"
+      }
+    },
+    {
+      "lot": "33",
+      "auctologue": {
+        "lot": "33",
+        "title": "Vintage Indiana Glass Harvest Grape Princess Green Carnival Glass Punch Set",
+        "description": "A vintage Indiana Glass Company punch set in the iridescent \"Princess Green\" Harvest Grape pattern. The lot includes one large punch bowl featuring a scalloped rim, molded grape and vine motifs, and a paneled base, paired with ten matching punch cups with molded leaf designs and integrated handles. Additionally includes clear plastic cup hangers and one green ladle.",
+        "image": "img/compare/auctologue/33.jpg",
+        "highlightTerms": [
+          "Indiana Glass"
+        ]
+      },
+      "gavelist": {
+        "lot": "33",
+        "title": "Indiana Glass Harvest Green Punch Bowl Set",
+        "description": "Indiana Glass Harvest Pattern Punch Bowl Set, Iridescent Green Carnival Glass, Includes Bowl, Cups, And Ladle.",
+        "image": "img/compare/competitor/33.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "33",
+        "title": "Iridescent Green Carnival Glass Punch Bowl Set with Cups",
+        "description": "A vintage iridescent green carnival glass punch bowl set, featuring a punch bowl with a grapevine pattern and a matching set of 12 cups. The set exhibits a vivid color and a decorative design typical of carnival glassware. Includes a coordinating glass ladle. The punch bowl features a flared design with a scalloped edge, and the cups match with curved handles and the same grapevine motif. Condition appears excellent with no noted chips or cracks.",
+        "image": "img/compare/competitor/33.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Indiana Glass"
+        ],
+        "awLot": "11"
+      }
+    },
+    {
+      "lot": "40",
+      "auctologue": {
+        "lot": "40",
+        "title": "Vintage Lenox Versailles Cream Porcelain Gold Trim Footed Vase",
+        "description": "A vintage Lenox \"Versailles\" porcelain vase featuring a creamy ivory glaze. The body is decorated with relief-carved paneled foliate motifs and shells, flanked by ribbed bands at the collar and footed base. Embellished with 24-karat gold trim at the rims. Made in the USA. Approximately 8 3/4 inches tall.",
+        "image": "img/compare/auctologue/40.jpg",
+        "highlightTerms": [
+          "Versailles",
+          "Lenox"
+        ]
+      },
+      "gavelist": {
+        "lot": "40",
+        "title": "Lenox Footed Porcelain Vase Gilt Trim",
+        "description": "Lenox Footed Vase, Cream Porcelain, Gilt Trim, Embossed Neoclassical Motif.",
+        "image": "img/compare/competitor/40.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Versailles"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "40",
+        "title": "Cream-Colored Ceramic Vase with Embossed Details",
+        "description": "A cream-colored ceramic vase featuring embossed floral and decorative patterns. The vase has a flared rim accented with a gold trim, sitting on small feet for stability. Condition appears good with no visible chips or cracks, though the surface shows minor wear consistent with age or use.",
+        "image": "img/compare/competitor/40.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Lenox",
+          "Versailles"
+        ],
+        "awLot": "12"
+      }
+    },
+    {
+      "lot": "41",
+      "auctologue": {
+        "lot": "41",
+        "title": "Vintage Fenton Charleton Rose Hand Painted Ruffled Gold Crest Compote",
+        "description": "A vintage Fenton hand-painted milk glass footed compote bowl in the Charleton Rose pattern, featuring a ruffled rim accented with gold trim and hand-decorated floral motifs.",
+        "image": "img/compare/auctologue/41.jpg",
+        "highlightTerms": [
+          "Charleton",
+          "Fenton"
+        ]
+      },
+      "gavelist": {
+        "lot": "41",
+        "title": "Milk Glass Floral Compote",
+        "description": "Milk Glass Compote, Ruffled Edge, Hand-Painted Floral Motif, Gilt Trim.",
+        "image": "img/compare/competitor/41.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Fenton",
+          "Charleton"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "41",
+        "title": "Pedestal Ruffled Edge Porcelain Bowl with Floral Design",
+        "description": "A porcelain pedestal bowl featuring a ruffled edge accented with gold trim. The bowl is adorned with a hand-painted floral motif, including pink roses and blue flowers with green foliage. The base is decorated with subtle gold embellishments. The craftsmanship includes intricate details and delicate design.",
+        "image": "img/compare/competitor/41.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Fenton",
+          "Charleton"
+        ],
+        "awLot": "13"
+      }
+    },
+    {
+      "lot": "48",
+      "auctologue": {
+        "lot": "48",
+        "title": "Antique Bohemian Ruby Red Flashed Frosted Bird Vases Pair",
+        "description": "A matching pair of Bohemian hand-blown glass vases featuring ruby red flashed and frosted glass. Each baluster-form vase is decorated with etched bird, floral, and bow motifs.",
+        "image": "img/compare/auctologue/48.jpg",
+        "highlightTerms": [
+          "Bohemian"
+        ]
+      },
+      "gavelist": {
+        "lot": "48",
+        "title": "Pair Bohemian Ruby Overlay Vases",
+        "description": "Pair Of Bohemian Glass Vases, Ruby Red Overlay, Frosted Finish, Floral And Bird Motif.",
+        "image": "img/compare/competitor/48.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "48",
+        "title": "Bohemian Style Ruby Glass Vases",
+        "description": "A matched pair of Bohemian-style vases featuring ruby flash glass with intricate floral and ribbon cut designs. The tapered forms flare into wide rims, with clear and ruby accents on the etched surfaces. These decorative vases are in good condition with minimal wear noted. Approximate height and dimensions are unspecified.",
+        "image": "img/compare/competitor/48.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": [],
+        "awLot": "14"
+      }
+    },
+    {
+      "lot": "53",
+      "auctologue": {
+        "lot": "53",
+        "title": "Vintage 1986 Franklin Mint Le Cordon Bleu Porcelain Lemon Mold",
+        "description": "A vintage 1986 Franklin Mint Le Cordon Bleu glazed porcelain decorative mold, featuring a high-relief design of lemons, white blossoms, and green foliage in a French Country style.",
+        "image": "img/compare/auctologue/53.jpg",
+        "highlightTerms": [
+          "Le Cordon Bleu",
+          "Franklin Mint"
+        ]
+      },
+      "gavelist": {
+        "lot": "53",
+        "title": "Ceramic Lemon Covered Dish",
+        "description": "Ceramic Lemon Motif Covered Dish, Embossed Fruit And Floral Design.",
+        "image": "img/compare/competitor/53.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Franklin Mint",
+          "Le Cordon Bleu"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "53",
+        "title": "Ceramic Cake Dome with Lemon and Flower Motif",
+        "description": "Decorative ceramic cake dome featuring a raised design of lemons and flowers in bright yellow, white, and green hues. The dome has an embossed scalloped shape and additional painted detailing around its base. It is suitable for covering cakes or pastries and serves both functional and decorative purposes. Condition is not specified.",
+        "image": "img/compare/competitor/53.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Franklin Mint",
+          "Le Cordon Bleu"
+        ],
+        "awLot": "15"
+      }
+    },
+    {
+      "lot": "54",
+      "auctologue": {
+        "lot": "54",
+        "title": "Vintage Stangl Pottery Trenton NJ Gold Glaze Pitcher and Bowl Set",
+        "description": "A vintage two-piece art pottery set by Stangl Pottery of Trenton, New Jersey, featuring model number 5002. This set comprises a handled pitcher and a coordinating wide, scalloped bowl, both finished in a highly textured glaze with metallic gold and slate-blue tones. Stamped on the underside with the Stangl Pottery maker's mark and marked \"Patent Pending.",
+        "image": "img/compare/auctologue/54.jpg",
+        "highlightTerms": [
+          "Stangl"
+        ]
+      },
+      "gavelist": {
+        "lot": "54",
+        "title": "Stangl Pottery Pitcher And Bowl Set",
+        "description": "Stangl Pottery Pitcher And Bowl Set, Gold And Blue Metallic Glaze, Pattern 5002.",
+        "image": "img/compare/competitor/54.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "54",
+        "title": "Stangl Pottery Plate and Pitcher Set with Gold Accents",
+        "description": "Stangl Pottery plate and pitcher set, featuring a speckled glaze with gold accents. The plate, with a scalloped border, and the pitcher, with a ribbed texture and spout, are stamped 'Stangl Pottery, Trenton, NJ, Patent Pending,' with model number 5002 visible. Made in the USA. Both items appear handcrafted with unique glazed finishes.",
+        "image": "img/compare/competitor/54.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": [],
+        "awLot": "16"
+      }
+    },
+    {
+      "lot": "67",
+      "auctologue": {
+        "lot": "67",
+        "title": "NAO by Lladro Girl at the Fountain Porcelain Figurine No 136",
+        "description": "A vintage NAO by Lladro Spanish porcelain figurine, model number 136, titled \"Girl at the Fountain.\" The piece depicts a young woman wearing a headscarf filling a two-handled water urn at a stone well, with an additional jug resting at her feet. The figurine is finished in a characteristic soft pastel glaze.",
+        "image": "img/compare/auctologue/67.jpg",
+        "highlightTerms": [
+          "Lladro",
+          "NAO"
+        ]
+      },
+      "gavelist": {
+        "lot": "67",
+        "title": "Lladro Porcelain Girl At Well Figurine",
+        "description": "Lladro Porcelain Figurine, Girl At Well, Hand-Painted, Glazed Finish.",
+        "image": "img/compare/competitor/67.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "NAO"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "67",
+        "title": "Porcelain Figurine of Woman at a Fountain",
+        "description": "Porcelain figurine depicting a woman in traditional attire standing by a fountain. She is shown holding a water jug with additional pottery details at her side. The piece features soft, pastel colors and gloss finishing. Maker details and dimensions are not specified, and the condition appears to be good with no visible damage.",
+        "image": "img/compare/competitor/67.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "NAO",
+          "Lladro"
+        ],
+        "awLot": "17"
+      }
+    },
+    {
+      "lot": "87",
+      "auctologue": {
+        "lot": "87",
+        "title": "Lenox Holiday Pattern Covered Round Vegetable Serving Bowl Casserole",
+        "description": "A vintage Lenox Holiday pattern round covered vegetable serving bowl. Featuring the classic holly and berry motif with gilt-rimmed handles and accents, in the Dimension shape. Includes matching porcelain lid.",
+        "image": "img/compare/auctologue/87.jpg",
+        "highlightTerms": [
+          "Holiday",
+          "Lenox"
+        ]
+      },
+      "gavelist": {
+        "lot": "87",
+        "title": "Lenox Holiday Covered Casserole Dish",
+        "description": "Lenox Holiday Collection Covered Casserole Dish, Holly And Berry Motif, Gold Trim.",
+        "image": "img/compare/competitor/87.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "87",
+        "title": "Lenox Holiday Pattern Porcelain Covered Casserole Dish",
+        "description": "Lenox porcelain covered casserole dish in the Holiday pattern, featuring holly and berry motifs with 24k gold accents on the handles and lid. The piece showcases the brand's classic design and craftsmanship. In good condition, with no visible signs of damage or wear on the exterior.",
+        "image": "img/compare/competitor/87.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": [],
+        "awLot": "18"
+      }
+    },
+    {
+      "lot": "92",
+      "auctologue": {
+        "lot": "92",
+        "title": "Vintage Lenox Solitaire Ivory Porcelain Oval Serving Platter",
+        "description": "A vintage Lenox oval serving platter in the \"Solitaire\" pattern. Crafted in the United States, this porcelain platter features the signature Lenox ivory glaze highlighted by a delicate platinum trim along the rim. The underside bears the classic gold Lenox wreath maker's mark.",
+        "image": "img/compare/auctologue/92.jpg",
+        "highlightTerms": [
+          "Solitaire",
+          "Lenox"
+        ]
+      },
+      "gavelist": {
+        "lot": "92",
+        "title": "Lenox Oval Serving Platter",
+        "description": "Lenox Oval Serving Platter, Cream Porcelain, Gold Rim.",
+        "image": "img/compare/competitor/92.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Solitaire"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "92",
+        "title": "Lenox Oval Ceramic Serving Platter with Gold Trim",
+        "description": "Lenox oval serving platter made in the USA. Features a simple yet elegant design with a gold trim along its edge. Crafted from fine ceramic, it bears the embossed Lenox mark on the underside. Ideal as a functional or collectible piece. Dimensions and specific pattern name not provided.",
+        "image": "img/compare/competitor/92.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Solitaire"
+        ],
+        "awLot": "19"
+      }
+    },
+    {
+      "lot": "95",
+      "auctologue": {
+        "lot": "95",
+        "title": "Lenox Holiday Iced Beverage Glass Set Gold Rim Goblets 4-Piece",
+        "description": "A four-piece set of Lenox Holiday pattern iced beverage glasses. Each glass features the signature holly berry motif on a frosted band, supported by a clear stem and base, finished with a gold-gilded rim.",
+        "image": "img/compare/auctologue/95.jpg",
+        "highlightTerms": [
+          "Holiday",
+          "Lenox"
+        ]
+      },
+      "gavelist": {
+        "lot": "95",
+        "title": "Lenox Holiday Stemware Set",
+        "description": "Lenox Holiday Stemware, Holly And Berry Pattern, Gold Rim.",
+        "image": "img/compare/competitor/95.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "95",
+        "title": "Four Holiday-Themed Stemmed Glasses",
+        "description": "Four stemmed glasses decorated with a holiday motif, featuring green holly leaves and red berries, complemented by a gold trim along the rim. Made of clear glass, these glasses are uniform in size and design, suitable for drinks or festive occasions. No visible chips or cracks are present.",
+        "image": "img/compare/competitor/95.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Lenox"
+        ],
+        "awLot": "20"
+      }
+    },
+    {
+      "lot": "118",
+      "auctologue": {
+        "lot": "118",
+        "title": "Chinese Crystal Shanghai Skyline Souvenir Paperweight Oriental Pearl Tower",
+        "description": "A heavy crystal block paperweight containing a detailed, multi-dimensional metallic miniature of the Shanghai skyline. The model highlights prominent architectural landmarks including the Oriental Pearl Tower, the Bund, Nanpu Bridge, and riverboats. The front face is embellished with etched floral corner details and a gold-toned label inscribed with the address 558 East Nanjing Road, Shanghai, and contact number 63226226.",
+        "image": "img/compare/auctologue/118.jpg",
+        "highlightTerms": [
+          "Oriental Pearl Tower",
+          "Shanghai"
+        ]
+      },
+      "gavelist": {
+        "lot": "118",
+        "title": "Shanghai Skyline Crystal Paperweight",
+        "description": "Shanghai Skyline Crystal Paperweight, Featuring Metal Relief Of Oriental Pearl Tower And Bund Architecture, Etched Floral Details.",
+        "image": "img/compare/competitor/118.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "118",
+        "title": "Crystal Shanghai Skyline Paperweight with Gold Accents",
+        "description": "Crystal paperweight featuring a detailed depiction of the iconic Shanghai skyline, including notable architectural landmarks such as the Oriental Pearl Tower, crafted with gold-tone and metallic accents. The design is encased within a clear rectangular crystal block with etched floral details along the edges. Intricate detailing captures the city's unique cityscape.",
+        "image": "img/compare/competitor/118.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": [],
+        "awLot": "21"
+      }
+    },
+    {
+      "lot": "183",
+      "auctologue": {
+        "lot": "183",
+        "title": "Belleek Ireland Shamrock 2 Quart Rectangular Covered Casserole Baker",
+        "description": "A vintage Belleek Everyday Shamrock 2-quart rectangular covered casserole baker. Constructed of cream-colored ceramic featuring the signature basketweave embossed texture, hand-painted green shamrock sprig motif, and a fitted lid with central handle. Imported from Ireland.",
+        "image": "img/compare/auctologue/183.jpg",
+        "highlightTerms": [
+          "Belleek"
+        ]
+      },
+      "gavelist": {
+        "lot": "183",
+        "title": "Belleek Porcelain Covered Casserole",
+        "description": "Belleek Porcelain Covered Casserole Dish, Basketweave Pattern, Hand-Painted Shamrock Motif.",
+        "image": "img/compare/competitor/183.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "183",
+        "title": "Belleek Ireland Clover Motif Lidded Porcelain Dish",
+        "description": "A Belleek fine porcelain rectangular lidded dish featuring a basketweave design adorned with the iconic hand-painted clover motif. Stamped with the Belleek Ireland mark. The lid has a small handle with embossed detailing. Condition appears to be very good with no visible cracks or chips.",
+        "image": "img/compare/competitor/183.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": [],
+        "awLot": "22"
+      }
+    },
+    {
+      "lot": "189",
+      "auctologue": {
+        "lot": "189",
+        "title": "Vintage Westclox Baby Ben Gilbert And Linden Alarm Clocks Lot",
+        "description": "Three vintage wind-up alarm clocks. Features a Westclox Baby Ben clock with a dark dial, a Gilbert alarm clock manufactured in Winsted, Connecticut, and a Linden Black Forest alarm clock.",
+        "image": "img/compare/auctologue/189.jpg",
+        "highlightTerms": [
+          "Westclox",
+          "Baby Ben",
+          "Gilbert",
+          "Linden"
+        ]
+      },
+      "gavelist": {
+        "lot": "189",
+        "title": "Vtg Alarm Clock Assortment",
+        "description": "Vtg Alarm Clock Assortment, Includes Westclox Baby Ben, Gilbert, And Linden Black Forest Models.",
+        "image": "img/compare/competitor/189.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "189",
+        "title": "Three Vintage Alarm Clocks by Westclox, Gilbert, and Linder",
+        "description": "Three vintage alarm clocks, featuring brands Westclox, Gilbert, and Linder. Each clock is made of metal with painted dials, showing varying degrees of wear consistent with age. The Westclox Baby Ben features a black dial, the Gilbert has a cream dial, and the Linder Black Forest has ornate numbering. Rear mechanisms are intact, condition untested. Sold as-is.",
+        "image": "img/compare/competitor/189.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": [],
+        "awLot": "23"
+      }
+    },
+    {
+      "lot": "205",
+      "auctologue": {
+        "lot": "205",
+        "title": "Vintage Kirk Stieff Pewter Pitcher DuPont Promotional Jug",
+        "description": "One vintage polished pewter tavern pitcher manufactured by Kirk Stieff. Features an engraved front emblem for E.I. DuPont de Nemours & Company, marked \"DuPont, Established 1802.\" Includes the original Kirk Stieff manufacturer paper insert card.",
+        "image": "img/compare/auctologue/205.jpg",
+        "highlightTerms": [
+          "Kirk Stieff",
+          "DuPont"
+        ]
+      },
+      "gavelist": {
+        "lot": "205",
+        "title": "Kirk Stieff Pewter Pitcher",
+        "description": "Kirk Stieff Pewter Pitcher, E.I. Du Pont De Nemours & Company Commemorative Logo.",
+        "image": "img/compare/competitor/205.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "205",
+        "title": "Kirk Stieff Pewter Creamer with Engraved Markings",
+        "description": "Kirk Stieff pewter creamer featuring an engraved emblem and 'SV8 32' on the base, signifying quality craftsmanship by America's oldest silversmiths. Its rounded design includes a functional spout and elegantly curved handle. Comes in original packaging marked with 'Kirk Stieff Pewter.' Suitable for display or use.",
+        "image": "img/compare/competitor/205.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": [],
+        "awLot": "24"
+      }
+    },
+    {
+      "lot": "269a",
+      "auctologue": {
+        "lot": "269a",
+        "title": "Richard Remmey Style Antique Blue Decorated Salt Glazed Stoneware Crock",
+        "description": "A 19th-century salt-glazed stoneware cylindrical jar featuring a defined, rolled collar rim and three stylized hand-painted cobalt blue leaf sprig decorations around the shoulder.",
+        "image": "img/compare/auctologue/269a.jpg",
+        "highlightTerms": [
+          "Remmey"
+        ]
+      },
+      "gavelist": {
+        "lot": "269a",
+        "title": "Stoneware Crock Cobalt Blue Feather",
+        "description": "Stoneware Crock, Cobalt Blue Feather Design, Cylindrical Form.",
+        "image": "img/compare/competitor/269a.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Remmey"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "269a",
+        "title": "Stoneware Crock with Hand-Painted Blue Design",
+        "description": "Stoneware crock featuring a hand-painted cobalt blue decorative pattern. The vessel showcases a classic cylindrical shape and a rounded lip. Likely intended for storage or decor purposes. Surface indicates signs of use and age, such as slight discoloration or wear. Dimensions and maker not specified.",
+        "image": "img/compare/competitor/269a.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Remmey"
+        ],
+        "awLot": "25"
+      }
+    },
+    {
+      "lot": "287",
+      "auctologue": {
+        "lot": "287",
+        "title": "Vintage Towle Austrian 24% Lead Crystal Champagne Coupe Glass",
+        "description": "A vintage Towle lead crystal champagne or cocktail coupe glass. Crafted in Austria of over 24% lead crystal, this stemware piece features a wide, rounded coupe bowl set upon a stem with faceted geometric details and a simple circular foot. Retains the original manufacturer's clear adhesive label on the base reading \"Towle OVER 24% LEAD CRYSTAL AUSTRIA.",
+        "image": "img/compare/auctologue/287.jpg",
+        "highlightTerms": [
+          "Towle"
+        ]
+      },
+      "gavelist": {
+        "lot": "287",
+        "title": "Towle Lead Crystal Champagne Coupe",
+        "description": "Towle Lead Crystal Champagne Coupe, Faceted Stem, Made In Austria.",
+        "image": "img/compare/competitor/287.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": []
+      },
+      "auctionWriter": {
+        "lot": "287",
+        "title": "Towle Lead Crystal Champagne Coupe Glass",
+        "description": "Towle champagne coupe glass made in Austria, crafted from over 24% lead crystal. Features a sleek, polished design with a clear stem and bowl. The original label is intact on the base, indicating authenticity and material composition. Condition shows some surface wear consistent with prior use.",
+        "image": "img/compare/competitor/287.jpg",
+        "incompleteTitle": false,
+        "missingEssentials": [],
+        "awLot": "26"
+      }
+    },
+    {
+      "lot": "315",
+      "auctologue": {
+        "lot": "315",
+        "title": "Antique American Brilliant Period Cut Crystal Sawtooth Creamer Pitcher",
+        "description": "Antique American Brilliant Period (ABP) cut glass creamer pitcher featuring deep geometric star and hobstar patterns, a sawtooth rim, and a notched applied handle.",
+        "image": "img/compare/auctologue/315.jpg",
+        "highlightTerms": [
+          "American Brilliant Period",
+          "Cut Crystal"
+        ]
+      },
+      "gavelist": {
+        "lot": "315",
+        "title": "Pressed Glass Creamer Starburst",
+        "description": "Pressed Glass Creamer, Starburst Pattern, Scalloped Rim.",
+        "image": "img/compare/competitor/315.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "American Brilliant Period"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "315",
+        "title": "Pressed Glass Creamer with Starburst Pattern",
+        "description": "Clear pressed glass creamer featuring an intricate starburst design and a scalloped rim. Designed with a curved spout and ornate handle for easy pouring. The condition shows minor wear consistent with age and use but remains in good overall shape. Dimensions and maker are not specified.",
+        "image": "img/compare/competitor/315.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "American Brilliant Period"
+        ],
+        "awLot": "27"
+      }
+    },
+    {
+      "lot": "317",
+      "auctologue": {
+        "lot": "317",
+        "title": "Antique Romanesque Carved Stone Figures of Saints Peter and Paul",
+        "description": "A pair of hand-carved stone figures in the French Romanesque style. The lot features a representation of Saint Peter, depicted with a beard and holding a key, alongside Saint Paul, depicted holding a book.",
+        "image": "img/compare/auctologue/317.jpg",
+        "highlightTerms": [
+          "Saints Peter and Paul"
+        ]
+      },
+      "gavelist": {
+        "lot": "317",
+        "title": "Carved Stone Religious Figurines",
+        "description": "Carved Stone Religious Figurines, Depicting Saints, Textured Finish.",
+        "image": "img/compare/competitor/317.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Saints Peter and Paul"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "317",
+        "title": "Stone Religious Statues in Medieval Style",
+        "description": "Carved stone religious statues featuring a bearded male figure holding a staff and a female figure with hands folded in prayer. The carvings exhibit a medieval style with textured surfaces. Each figure is fully three-dimensional and crafted with defined details, suggesting historical or spiritual significance. Condition appears consistent with age, showing surface wear and natural stone weathering.",
+        "image": "img/compare/competitor/317.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Saints Peter and Paul"
+        ],
+        "awLot": "28"
+      }
+    },
+    {
+      "lot": "333",
+      "auctologue": {
+        "lot": "333",
+        "title": "Vintage Lladro 1991 Spring Bell Porcelain Ornament No 7613",
+        "description": "A vintage 1991 Lladro \"Campana Primavera\" (Spring Bell) porcelain ornament, catalog number 7613. The matte bisque piece features a bas-relief depiction of a young girl among spring blossoms, finished with a pastel pink band at the lower rim and a molded hanging loop at the crown.",
+        "image": "img/compare/auctologue/333.jpg",
+        "highlightTerms": [
+          "Lladro"
+        ]
+      },
+      "gavelist": {
+        "lot": "333",
+        "title": "Bisque Porcelain Relief Bell",
+        "description": "Bisque Porcelain Bell, Relief Floral And Figural Motif, Matte Finish.",
+        "image": "img/compare/competitor/333.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Lladro"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "333",
+        "title": "White Ceramic Tealight Candle Holder",
+        "description": "White ceramic tealight candle holder featuring an embossed design that includes floral motifs and an angelic figure. The dome-shaped cover is elaborately decorated, and the piece is designed to emit soft lighting when used with a tealight. It contains a hole at the top possibly for heat dissipation. Overall condition appears intact, with no visible cracks or chips.",
+        "image": "img/compare/competitor/333.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Lladro"
+        ],
+        "awLot": "29"
+      }
+    },
+    {
+      "lot": "341",
+      "auctologue": {
+        "lot": "341",
+        "title": "Antique Turkoman Tekke Hand-Woven Wool Rug",
+        "description": "A late 19th to early 20th century hand-woven wool Turkoman Tekke rug. The design features a traditional rust-red field decorated with classic Tekke guls and geometric repeating motifs in shades of ivory, deep navy, and crimson, finished with geometric borders and fringed ends.",
+        "image": "img/compare/auctologue/341.jpg",
+        "highlightTerms": [
+          "Turkoman",
+          "Tekke"
+        ]
+      },
+      "gavelist": {
+        "lot": "341",
+        "title": "Hand-Knotted Wool Tribal Rug",
+        "description": "Hand-Knotted Wool Rug, Geometric Tribal Pattern, Earth Tones, Fringed Ends.",
+        "image": "img/compare/competitor/341.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Turkoman"
+        ]
+      },
+      "auctionWriter": {
+        "lot": "341",
+        "title": "Handwoven Wool Oriental Rug with Geometric Patterns",
+        "description": "Handwoven wool rug featuring intricate geometric patterns in a red and earthy color palette. The design showcases alternating stylized medallion motifs bordered by elaborate detailing. The rug shows wear along the edges with some fraying, consistent with usage and age. It is rectangular in shape and suitable for display or floor use.",
+        "image": "img/compare/competitor/341.jpg",
+        "incompleteTitle": true,
+        "missingEssentials": [
+          "Turkoman"
+        ],
+        "awLot": "30"
+      }
+    }
+  ]
+}

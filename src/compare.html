@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compare Competitors — Auctologue</title>
+  <meta name="description" content="Side-by-side catalog comparison: Auctologue vs Gavelist and AuctionWriter on the same challenge lots." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #3b82f6;
+      --dark-blue: #2563eb;
+      --accent-blue: #60a5fa;
+      --brand-blue: #93c5fd;
+      --text-primary: #e5e7eb;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --bg: #0b1220;
+      --border: #1f2937;
+      --panel: #111827;
+      --radius: 18px;
+      --max: 1180px;
+      --link-color: #93c5fd;
+      --page-bg: radial-gradient(circle at 8% 0%, rgba(59, 130, 246, 0.22), transparent 42%), radial-gradient(circle at 92% 12%, rgba(59, 130, 246, 0.15), transparent 38%), linear-gradient(180deg, #162744 0%, #111f35 26%, #0f1a2d 55%, var(--bg) 100%);
+      --nav-bg: #1b3760;
+      --auct-accent: #4ade80;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--text-primary);
+      background: var(--page-bg);
+      line-height: 1.6;
+    }
+    a, a:visited { color: var(--link-color); }
+    a:hover { color: var(--accent-blue); }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    .topbar {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      background: var(--nav-bg);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: "Pinyon Script", cursive;
+      font-size: clamp(1.9rem, 2.8vw, 2.4rem);
+      text-decoration: none;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+    .brand img { width: 64px; height: 64px; object-fit: contain; }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav a {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+    .nav a.active {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      color: var(--text-primary);
+    }
+    .nav .app-btn {
+      border: 1px solid rgba(147, 197, 253, 0.4);
+      border-radius: 12px;
+      padding: 8px 16px;
+      font-weight: 500;
+      background: linear-gradient(180deg, var(--primary-blue), var(--dark-blue));
+      color: #f8fafc;
+    }
+
+    .page-intro {
+      padding: clamp(28px, 6vw, 48px) 0 20px;
+      text-align: center;
+    }
+    .page-intro h1 {
+      font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #4ade80 0%, #60a5fa 55%, #818cf8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .page-intro p {
+      color: var(--text-secondary);
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 1.02rem;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 18px;
+      margin: 8px 0 28px;
+      padding: 14px 18px;
+      background: rgba(17, 24, 39, 0.72);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      position: sticky;
+      top: 74px;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+    }
+    .controls-brand {
+      font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--auct-accent);
+    }
+    .controls-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .controls label {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .controls select {
+      appearance: none;
+      background: #0b1220 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2393c5fd' d='M1.4.6 6 5.2 10.6.6 12 2 6 8 0 2z'/%3E%3C/svg%3E") right 12px center / 12px no-repeat;
+      color: var(--text-primary);
+      border: 1px solid rgba(147, 197, 253, 0.35);
+      border-radius: 10px;
+      padding: 10px 36px 10px 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      min-width: 200px;
+      cursor: pointer;
+    }
+    .controls select:focus {
+      outline: 2px solid rgba(96, 165, 250, 0.55);
+      outline-offset: 2px;
+    }
+    .lot-count {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .lot-row {
+      display: grid;
+      gap: 14px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .lot-row:last-child { border-bottom: 0; }
+
+    .lot-badge {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .listing {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+    .listing img {
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      border-radius: 10px;
+      background: #0b1220;
+      border: 1px solid var(--border);
+    }
+    .listing .side-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .listing.auct .side-tag { color: var(--auct-accent); }
+    .listing.comp .side-tag { color: var(--brand-blue); }
+    .listing h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+    .listing h3.title-incomplete {
+      color: #ff5c5c;
+      font-weight: 700;
+      text-shadow: 0 0 12px rgba(255, 40, 40, 0.35);
+    }
+    .listing h3 .brand-good {
+      color: #4ade80;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(74, 222, 128, 0.45), 0 0 20px rgba(34, 197, 94, 0.25);
+    }
+    .listing p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .status {
+      text-align: center;
+      color: var(--text-muted);
+      padding: 40px 12px;
+    }
+    .status.error { color: #fca5a5; }
+
+    .final {
+      margin-top: 48px;
+      text-align: center;
+      padding: 28px 16px;
+      border-top: 1px solid var(--border);
+    }
+    .final h3 {
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+    }
+    .final .btn {
+      display: inline-block;
+      background: linear-gradient(180deg, var(--primary-blue), var(--dark-blue));
+      color: #f8fafc;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 12px 24px;
+      font-weight: 600;
+    }
+
+    @media (min-width: 820px) {
+      .lot-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+      .lot-badge {
+        grid-column: 1 / -1;
+        margin-bottom: -4px;
+      }
+      .listing .side-tag { display: none; }
+      .listing {
+        grid-template-columns: 112px 1fr;
+        gap: 16px;
+      }
+      .listing img {
+        width: 112px;
+        height: 112px;
+      }
+    }
+
+    @media (max-width: 819px) {
+      .controls {
+        top: 74px;
+      }
+      .controls-right {
+        width: 100%;
+        justify-content: flex-end;
+      }
+      .controls select { min-width: 0; flex: 1; }
+      .listing {
+        grid-template-columns: 80px 1fr;
+        gap: 12px;
+      }
+      .listing img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a href="index.html" class="brand"><img src="Aucto_Hat_Transparent.png" alt="Aucto" />Auctologue</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="plans.html">Plans</a>
+        <a href="features.html">Features</a>
+        <a href="/blog/">Blog</a>
+        <a href="about.html">About</a>
+        <a href="https://app.auctologue.com/" class="app-btn">Open WebApp</a>
+      </nav>
+    </header>
+
+    <section class="page-intro">
+      <h1>Compare Competitors</h1>
+      <p>Same challenge catalog, side by side. Auctologue on the left; pick a competitor on the right.</p>
+    </section>
+
+    <div class="controls">
+      <div class="controls-brand">Auctologue</div>
+      <div class="controls-right">
+        <label for="competitor-select">Competitor</label>
+        <select id="competitor-select" aria-label="Select competitor to compare">
+          <option value="gavelist">Gavelist</option>
+          <option value="auctionWriter">AuctionWriter</option>
+        </select>
+        <span class="lot-count" id="lot-count"></span>
+      </div>
+    </div>
+
+    <div id="comparison" class="status">Loading catalog…</div>
+
+    <section class="final">
+      <h3>Try Auctologue</h3>
+      <a href="https://app.auctologue.com/" class="btn">Open WebApp</a>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      const COMPETITOR_KEYS = {
+        gavelist: { label: "Gavelist", dataKey: "gavelist" },
+        auctionWriter: { label: "AuctionWriter", dataKey: "auctionWriter" },
+      };
+
+      const selectEl = document.getElementById("competitor-select");
+      const listEl = document.getElementById("comparison");
+      const countEl = document.getElementById("lot-count");
+      let catalog = null;
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function highlightTitle(title, terms) {
+        var safe = escapeHtml(title || "");
+        if (!terms || !terms.length) return safe;
+
+        var sorted = terms.slice().sort(function (a, b) { return b.length - a.length; });
+        sorted.forEach(function (term) {
+          if (!term) return;
+          var esc = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          var re = new RegExp("(" + esc + ")", "ig");
+          safe = safe.replace(re, '<span class="brand-good">$1</span>');
+        });
+        return safe;
+      }
+
+      function listingHtml(sideClass, sideLabel, item, options) {
+        options = options || {};
+        var incomplete = !!item.incompleteTitle;
+        var titleClass = incomplete ? ' class="title-incomplete"' : "";
+        var titleAttr = incomplete && item.missingEssentials && item.missingEssentials.length
+          ? ' title="Missing: ' + escapeHtml(item.missingEssentials.join(", ")) + '"'
+          : "";
+        var titleHtml = options.highlight
+          ? highlightTitle(item.title, item.highlightTerms)
+          : escapeHtml(item.title);
+
+        return (
+          '<article class="listing ' + sideClass + '">' +
+            '<img src="' + escapeHtml(item.image) + '" alt="" loading="lazy" decoding="async" width="112" height="112" />' +
+            "<div>" +
+              '<span class="side-tag">' + escapeHtml(sideLabel) + "</span>" +
+              "<h3" + titleClass + titleAttr + ">" + titleHtml + "</h3>" +
+              "<p>" + escapeHtml(item.description || "") + "</p>" +
+            "</div>" +
+          "</article>"
+        );
+      }
+
+      function render() {
+        if (!catalog) return;
+        const key = selectEl.value;
+        const meta = COMPETITOR_KEYS[key] || COMPETITOR_KEYS.gavelist;
+        countEl.textContent = catalog.lots.length + " lots";
+
+        const html = catalog.lots.map(function (row) {
+          const auct = row.auctologue;
+          const comp = row[meta.dataKey];
+          const highlightAuct = !!comp.incompleteTitle;
+          return (
+            '<div class="lot-row">' +
+              '<div class="lot-badge">Lot ' + escapeHtml(row.lot) + "</div>" +
+              listingHtml("auct", "Auctologue", auct, { highlight: highlightAuct }) +
+              listingHtml("comp", meta.label, comp) +
+            "</div>"
+          );
+        }).join("");
+
+        listEl.className = "";
+        listEl.innerHTML = html;
+      }
+
+      selectEl.addEventListener("change", function () {
+        const params = new URLSearchParams(window.location.search);
+        params.set("vs", selectEl.value);
+        history.replaceState(null, "", "?" + params.toString());
+        render();
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      const initial = params.get("vs");
+      if (initial && COMPETITOR_KEYS[initial]) {
+        selectEl.value = initial;
+      }
+
+      fetch("img/compare/compare-data.json")
+        .then(function (res) {
+          if (!res.ok) throw new Error("Could not load comparison data");
+          return res.json();
+        })
+        .then(function (data) {
+          catalog = data;
+          render();
+        })
+        .catch(function (err) {
+          listEl.className = "status error";
+          listEl.textContent = err.message || "Failed to load comparison.";
+        });
+    })();
+  </script>
+</body>
+</html>
