@@ -48,8 +48,13 @@
             font-size: 1.05rem;
             line-height: 1.7;
             color: var(--text-primary);
-            /* Match homepage: bright blue at top fading into dark */
-            background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark-blue) 8%, #1e3a5f 28%, #152238 55%, var(--dark-bg) 82%);
+            /* Match homepage background exactly */
+            background:
+              radial-gradient(circle at 8% 0%, rgba(59, 130, 246, 0.22), transparent 42%),
+              radial-gradient(circle at 92% 12%, rgba(59, 130, 246, 0.15), transparent 38%),
+              linear-gradient(180deg, #162744 0%, #111f35 26%, #0f1a2d 55%, var(--dark-bg) 100%);
+            background-attachment: fixed;
+            background-color: var(--dark-bg);
             min-height: 100vh;
         }
 
