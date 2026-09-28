@@ -1,3 +1,15 @@
 [build]
   publish = "_site"
   command = "npx @11ty/eleventy"
+
+[[redirects]]
+  from = "/plans"
+  to = "/pricing"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/plans.html"
+  to = "/pricing"
+  status = 301
+  force = true
