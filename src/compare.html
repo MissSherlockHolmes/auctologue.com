@@ -336,6 +336,7 @@
         <select id="competitor-select" aria-label="Select competitor to compare">
           <option value="gavelist">Gavelist</option>
           <option value="auctionWriter">AuctionWriter</option>
+          <option value="estimint">Estimint</option>
         </select>
         <span class="lot-count" id="lot-count"></span>
       </div>
@@ -354,6 +355,7 @@
       const COMPETITOR_KEYS = {
         gavelist: { label: "Gavelist", dataKey: "gavelist" },
         auctionWriter: { label: "AuctionWriter", dataKey: "auctionWriter" },
+        estimint: { label: "Estimint", dataKey: "estimint" },
       };
 
       const selectEl = document.getElementById("competitor-select");
