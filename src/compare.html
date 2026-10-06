@@ -337,6 +337,8 @@
           <option value="gavelist">Gavelist</option>
           <option value="auctionWriter">AuctionWriter</option>
           <option value="estimint">Estimint</option>
+          <option value="llmImages">Local LLM (images only)</option>
+          <option value="llmWeb">LLM with web search</option>
         </select>
         <span class="lot-count" id="lot-count"></span>
       </div>
@@ -356,6 +358,8 @@
         gavelist: { label: "Gavelist", dataKey: "gavelist" },
         auctionWriter: { label: "AuctionWriter", dataKey: "auctionWriter" },
         estimint: { label: "Estimint", dataKey: "estimint" },
+        llmImages: { label: "Local LLM (images only)", dataKey: "llmImages" },
+        llmWeb: { label: "LLM with web search", dataKey: "llmWeb" },
       };
 
       const selectEl = document.getElementById("competitor-select");
